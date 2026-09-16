@@ -33,10 +33,11 @@ Run the available project checks before submitting changes:
 
 ```bash
 npm run lint
+npm run validate:data
 npm run build
 ```
 
-Additional validation and test commands will be added as the data foundation is implemented.
+Test commands will be added when the first domain behavior requires them.
 
 ## AI-assisted work
 
