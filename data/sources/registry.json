@@ -14,5 +14,19 @@
     "retrievedAt": "2026-09-16",
     "freshness": "PSGC current; population values from 2024 POPCEN",
     "notes": "Canonical BetterBauang source for municipality identifiers, barangay composition, urban/rural classification, and published 2024 POPCEN population values."
+  },
+  {
+    "id": "SRC-004",
+    "publisher": "Municipality of Bauang",
+    "title": "FY 2024 Procurement Monitoring Report",
+    "url": "https://bauanglaunion.gov.ph/wp-content/uploads/2025/01/FY-2024-Procurement-Monitoring-Report-1.pdf",
+    "authority": "A",
+    "domains": [
+      "procurement"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-16",
+    "freshness": "Historical procurement report as of December 31, 2024",
+    "notes": "Official municipal Procurement Monitoring Report. Use only for its stated FY 2024 historical reporting period."
   }
 ]
