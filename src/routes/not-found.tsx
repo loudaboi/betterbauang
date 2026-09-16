@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export function NotFoundRoute() {
+export default function NotFoundRoute() {
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-semibold">Page not found</h1>
