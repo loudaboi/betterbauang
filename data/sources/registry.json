@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "SRC-008",
+    "publisher": "Philippine Statistics Authority",
+    "title": "Municipality of Bauang",
+    "url": "https://psa.gov.ph/classification/psgc/barangays/0103307000",
+    "authority": "A",
+    "domains": [
+      "geography",
+      "population",
+      "barangays"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-16",
+    "freshness": "PSGC current; population values from 2024 POPCEN",
+    "notes": "Canonical BetterBauang source for municipality identifiers, barangay composition, urban/rural classification, and published 2024 POPCEN population values."
+  }
+]
