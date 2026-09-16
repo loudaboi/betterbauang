@@ -2,7 +2,7 @@
   "dataset": "psa-bauang-2024-popcen",
   "sourceId": "SRC-008",
   "extractedAt": "2026-09-16",
-  "reviewStatus": "pending",
+  "reviewStatus": "approved",
   "municipality": {
     "name": "Bauang",
     "officialName": "Municipality of Bauang",
@@ -289,5 +289,6 @@
       "classification": "rural",
       "population": 1440
     }
-  ]
+  ],
+  "reviewedAt": "2026-09-16"
 }
