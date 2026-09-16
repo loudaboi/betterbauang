@@ -20,7 +20,7 @@ export const procurementRecordSchema = z
     contractSigningDate: z.iso.date().nullable(),
     noticeToProceedDate: z.iso.date().nullable(),
     deliveryCompletionTerm: z.string().min(1).nullable(),
-    completionAcceptanceDate: z.iso.date().nullable(),
+    deliveryCompletionAcceptanceDate: z.iso.date().nullable(),
     reportingPeriod: z.string().min(1),
     recordStatus: procurementRecordStatusSchema,
     remarks: z.string().min(1).nullable().optional(),
@@ -61,9 +61,19 @@ export const procurementStagingDatasetSchema = z
     dataset: z.string().min(1),
     sourceId: z.string().min(1),
     extractedAt: z.iso.date(),
-    reviewStatus: z.literal('pending'),
+    reviewStatus: z.enum(['pending', 'approved']),
+    reviewedAt: z.iso.date().optional(),
     records: procurementCollectionSchema,
   })
   .strict()
+  .superRefine((dataset, ctx) => {
+    if (dataset.reviewStatus === 'approved' && !dataset.reviewedAt) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Approved staging data requires reviewedAt',
+        path: ['reviewedAt'],
+      })
+    }
+  })
 
 export type ProcurementRecord = z.infer<typeof procurementRecordSchema>
