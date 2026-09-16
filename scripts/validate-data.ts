@@ -3,13 +3,17 @@ import path from 'node:path'
 
 import { barangayCollectionSchema } from '../src/domain/civic-data/barangay.ts'
 import { municipalitySchema } from '../src/domain/civic-data/municipality.ts'
-import { procurementStagingDatasetSchema } from '../src/domain/civic-data/procurement.ts'
+import {
+  procurementCollectionSchema,
+  procurementStagingDatasetSchema,
+} from '../src/domain/civic-data/procurement.ts'
 import { sourceRegistrySchema } from '../src/domain/civic-data/source.ts'
 
 const root = process.cwd()
 const sourceRegistryPath = path.join(root, 'data', 'sources', 'registry.json')
 const municipalityPath = path.join(root, 'data', 'normalized', 'municipality.json')
 const barangaysPath = path.join(root, 'data', 'normalized', 'barangays.json')
+const procurementPath = path.join(root, 'data', 'normalized', 'procurement.json')
 const procurementStagingPath = path.join(
   root,
   'data',
@@ -69,10 +73,21 @@ if (!procurementStagingResult.success) {
   process.exit(1)
 }
 
+const procurementResult = procurementCollectionSchema.safeParse(
+  await readJson(procurementPath),
+)
+
+if (!procurementResult.success) {
+  console.error('Normalized procurement validation failed:')
+  console.error(formatIssues(procurementResult.error.issues))
+  process.exit(1)
+}
+
 const sourceIds = new Set(registryResult.data.map((source) => source.id))
 const municipality = municipalityResult.data
 const barangays = barangaysResult.data
-const procurementRecords = procurementStagingResult.data.records
+const stagedProcurement = procurementStagingResult.data
+const procurementRecords = procurementResult.data
 
 if (!sourceIds.has(municipality.provenance.sourceId)) {
   fail(`Unknown municipality source ID: ${municipality.provenance.sourceId}`)
@@ -113,21 +128,17 @@ if (barangayPopulationTotal !== municipality.population) {
   )
 }
 
-if (!sourceIds.has(procurementStagingResult.data.sourceId)) {
-  fail(
-    `Unknown procurement dataset source ID: ${procurementStagingResult.data.sourceId}`,
-  )
+if (stagedProcurement.reviewStatus !== 'approved') {
+  fail('Procurement staging data has not been approved for normalization')
+}
+
+if (!sourceIds.has(stagedProcurement.sourceId)) {
+  fail(`Unknown procurement dataset source ID: ${stagedProcurement.sourceId}`)
 }
 
 for (const record of procurementRecords) {
   if (!sourceIds.has(record.provenance.sourceId)) {
     fail(`Unknown procurement source ID for ${record.papCode}: ${record.provenance.sourceId}`)
-  }
-
-  if (record.provenance.sourceId !== procurementStagingResult.data.sourceId) {
-    fail(
-      `Procurement source mismatch for ${record.papCode}: dataset uses ${procurementStagingResult.data.sourceId}, record uses ${record.provenance.sourceId}`,
-    )
   }
 
   if (record.reportingPeriod !== record.provenance.reportingPeriod) {
@@ -137,10 +148,20 @@ for (const record of procurementRecords) {
   }
 }
 
+const stagedIds = new Set(stagedProcurement.records.map((record) => record.id))
+const normalizedIds = new Set(procurementRecords.map((record) => record.id))
+
+if (
+  stagedIds.size !== normalizedIds.size ||
+  [...stagedIds].some((id) => !normalizedIds.has(id))
+) {
+  fail('Normalized procurement records do not match the approved staging record set')
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode)
 }
 
 console.log(
-  `Data validation passed: ${registryResult.data.length} sources, 1 municipality, ${barangays.length} barangays, ${procurementRecords.length} staged procurement records.`,
+  `Data validation passed: ${registryResult.data.length} sources, 1 municipality, ${barangays.length} barangays, ${procurementRecords.length} normalized procurement records.`,
 )
