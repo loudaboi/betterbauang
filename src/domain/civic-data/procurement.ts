@@ -51,14 +51,6 @@ export const procurementCollectionSchema = z
         })
       }
 
-      if (record.contractCost !== null && record.contractCost > record.abc) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'Contract cost exceeds ABC',
-          path: [index, 'contractCost'],
-        })
-      }
-
       ids.add(record.id)
       papCodes.add(record.papCode)
     })
