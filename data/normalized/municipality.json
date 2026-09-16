@@ -1,0 +1,23 @@
+{
+  "recordType": "municipality",
+  "id": "0103307000",
+  "name": "Bauang",
+  "officialName": "Municipality of Bauang",
+  "province": "La Union",
+  "region": "Region I (Ilocos Region)",
+  "psgc": "0103307000",
+  "correspondenceCode": "013307000",
+  "incomeClass": "1st",
+  "barangayCount": 39,
+  "population": 77670,
+  "populationReferencePeriod": "2024 POPCEN",
+  "provenance": {
+    "sourceId": "SRC-008",
+    "reportingPeriod": "2024 POPCEN",
+    "retrievedAt": "2026-09-16",
+    "lastVerifiedAt": "2026-09-16",
+    "verificationStatus": "verified",
+    "extractionMethod": "ai-assisted",
+    "notes": "PSGC identifiers and barangay composition were verified against the PSA source; population values use the 2024 POPCEN reference period."
+  }
+}
