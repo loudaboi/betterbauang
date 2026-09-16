@@ -1,0 +1,293 @@
+{
+  "dataset": "psa-bauang-2024-popcen",
+  "sourceId": "SRC-008",
+  "extractedAt": "2026-09-16",
+  "reviewStatus": "pending",
+  "municipality": {
+    "name": "Bauang",
+    "officialName": "Municipality of Bauang",
+    "province": "La Union",
+    "region": "Region I (Ilocos Region)",
+    "psgc": "0103307000",
+    "correspondenceCode": "013307000",
+    "incomeClass": "1st",
+    "barangayCount": 39,
+    "population": 77670,
+    "populationReferencePeriod": "2024 POPCEN"
+  },
+  "barangays": [
+    {
+      "name": "Acao",
+      "psgc": "0103307001",
+      "correspondenceCode": "013307001",
+      "classification": "urban",
+      "population": 4454
+    },
+    {
+      "name": "Baccuit Norte",
+      "psgc": "0103307002",
+      "correspondenceCode": "013307002",
+      "classification": "urban",
+      "population": 2491
+    },
+    {
+      "name": "Baccuit Sur",
+      "psgc": "0103307003",
+      "correspondenceCode": "013307003",
+      "classification": "urban",
+      "population": 2732
+    },
+    {
+      "name": "Bagbag",
+      "psgc": "0103307004",
+      "correspondenceCode": "013307004",
+      "classification": "urban",
+      "population": 1458
+    },
+    {
+      "name": "Ballay",
+      "psgc": "0103307005",
+      "correspondenceCode": "013307005",
+      "classification": "rural",
+      "population": 1697
+    },
+    {
+      "name": "Bawanta",
+      "psgc": "0103307006",
+      "correspondenceCode": "013307006",
+      "classification": "rural",
+      "population": 1068
+    },
+    {
+      "name": "Boy-utan",
+      "psgc": "0103307007",
+      "correspondenceCode": "013307007",
+      "classification": "rural",
+      "population": 1101
+    },
+    {
+      "name": "Bucayab",
+      "psgc": "0103307008",
+      "correspondenceCode": "013307008",
+      "classification": "rural",
+      "population": 1417
+    },
+    {
+      "name": "Cabalayangan",
+      "psgc": "0103307009",
+      "correspondenceCode": "013307009",
+      "classification": "rural",
+      "population": 1719
+    },
+    {
+      "name": "Cabisilan",
+      "psgc": "0103307010",
+      "correspondenceCode": "013307010",
+      "classification": "rural",
+      "population": 724
+    },
+    {
+      "name": "Calumbaya",
+      "psgc": "0103307011",
+      "correspondenceCode": "013307011",
+      "classification": "urban",
+      "population": 2490
+    },
+    {
+      "name": "Carmay",
+      "psgc": "0103307012",
+      "correspondenceCode": "013307012",
+      "classification": "rural",
+      "population": 477
+    },
+    {
+      "name": "Casilagan",
+      "psgc": "0103307013",
+      "correspondenceCode": "013307013",
+      "classification": "rural",
+      "population": 1138
+    },
+    {
+      "name": "Central East",
+      "psgc": "0103307014",
+      "correspondenceCode": "013307014",
+      "classification": "urban",
+      "population": 4159
+    },
+    {
+      "name": "Central West",
+      "psgc": "0103307015",
+      "correspondenceCode": "013307015",
+      "classification": "urban",
+      "population": 3979
+    },
+    {
+      "name": "Dili",
+      "psgc": "0103307016",
+      "correspondenceCode": "013307016",
+      "classification": "rural",
+      "population": 2182
+    },
+    {
+      "name": "Disso-or",
+      "psgc": "0103307017",
+      "correspondenceCode": "013307017",
+      "classification": "rural",
+      "population": 1139
+    },
+    {
+      "name": "Guerrero",
+      "psgc": "0103307018",
+      "correspondenceCode": "013307018",
+      "classification": "rural",
+      "population": 1082
+    },
+    {
+      "name": "Nagrebcan",
+      "psgc": "0103307019",
+      "correspondenceCode": "013307019",
+      "classification": "rural",
+      "population": 1551
+    },
+    {
+      "name": "Pagdalagan Sur",
+      "psgc": "0103307020",
+      "correspondenceCode": "013307020",
+      "classification": "urban",
+      "population": 2787
+    },
+    {
+      "name": "Palintucang",
+      "psgc": "0103307021",
+      "correspondenceCode": "013307021",
+      "classification": "rural",
+      "population": 1019
+    },
+    {
+      "name": "Palugsi-Limmansangan",
+      "psgc": "0103307022",
+      "correspondenceCode": "013307022",
+      "classification": "rural",
+      "population": 1541
+    },
+    {
+      "name": "Parian Oeste",
+      "psgc": "0103307023",
+      "correspondenceCode": "013307023",
+      "classification": "rural",
+      "population": 1245
+    },
+    {
+      "name": "Parian Este",
+      "psgc": "0103307024",
+      "correspondenceCode": "013307024",
+      "classification": "rural",
+      "population": 1898
+    },
+    {
+      "name": "Paringao",
+      "psgc": "0103307025",
+      "correspondenceCode": "013307025",
+      "classification": "urban",
+      "population": 4218
+    },
+    {
+      "name": "Payocpoc Norte Este",
+      "psgc": "0103307026",
+      "correspondenceCode": "013307026",
+      "classification": "rural",
+      "population": 1266
+    },
+    {
+      "name": "Payocpoc Norte Oeste",
+      "psgc": "0103307027",
+      "correspondenceCode": "013307027",
+      "classification": "rural",
+      "population": 1961
+    },
+    {
+      "name": "Payocpoc Sur",
+      "psgc": "0103307028",
+      "correspondenceCode": "013307028",
+      "classification": "urban",
+      "population": 2972
+    },
+    {
+      "name": "Pilar",
+      "psgc": "0103307029",
+      "correspondenceCode": "013307029",
+      "classification": "rural",
+      "population": 402
+    },
+    {
+      "name": "Pudoc",
+      "psgc": "0103307030",
+      "correspondenceCode": "013307030",
+      "classification": "rural",
+      "population": 1858
+    },
+    {
+      "name": "Pottot",
+      "psgc": "0103307031",
+      "correspondenceCode": "013307031",
+      "classification": "rural",
+      "population": 1252
+    },
+    {
+      "name": "Pugo",
+      "psgc": "0103307032",
+      "correspondenceCode": "013307032",
+      "classification": "rural",
+      "population": 3450
+    },
+    {
+      "name": "Quinavite",
+      "psgc": "0103307033",
+      "correspondenceCode": "013307033",
+      "classification": "rural",
+      "population": 3687
+    },
+    {
+      "name": "Lower San Agustin",
+      "psgc": "0103307034",
+      "correspondenceCode": "013307034",
+      "classification": "rural",
+      "population": 1122
+    },
+    {
+      "name": "Santa Monica",
+      "psgc": "0103307035",
+      "correspondenceCode": "013307035",
+      "classification": "rural",
+      "population": 1446
+    },
+    {
+      "name": "Santiago",
+      "psgc": "0103307036",
+      "correspondenceCode": "013307036",
+      "classification": "urban",
+      "population": 3719
+    },
+    {
+      "name": "Taberna",
+      "psgc": "0103307037",
+      "correspondenceCode": "013307037",
+      "classification": "rural",
+      "population": 2150
+    },
+    {
+      "name": "Upper San Agustin",
+      "psgc": "0103307038",
+      "correspondenceCode": "013307038",
+      "classification": "rural",
+      "population": 1179
+    },
+    {
+      "name": "Urayong",
+      "psgc": "0103307039",
+      "correspondenceCode": "013307039",
+      "classification": "rural",
+      "population": 1440
+    }
+  ]
+}
