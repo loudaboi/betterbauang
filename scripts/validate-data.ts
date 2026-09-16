@@ -1,35 +1,17 @@
-import { readdir, readFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 
-import { normalizedRecordBaseSchema } from '../src/domain/civic-data/provenance.ts'
+import { barangayCollectionSchema } from '../src/domain/civic-data/barangay.ts'
+import { municipalitySchema } from '../src/domain/civic-data/municipality.ts'
 import { sourceRegistrySchema } from '../src/domain/civic-data/source.ts'
 
 const root = process.cwd()
 const sourceRegistryPath = path.join(root, 'data', 'sources', 'registry.json')
-const normalizedRoot = path.join(root, 'data', 'normalized')
+const municipalityPath = path.join(root, 'data', 'normalized', 'municipality.json')
+const barangaysPath = path.join(root, 'data', 'normalized', 'barangays.json')
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'))
-}
-
-async function findJsonFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true })
-  const files = []
-
-  for (const entry of entries) {
-    const entryPath = path.join(directory, entry.name)
-
-    if (entry.isDirectory()) {
-      files.push(...(await findJsonFiles(entryPath)))
-      continue
-    }
-
-    if (entry.isFile() && entry.name.endsWith('.json')) {
-      files.push(entryPath)
-    }
-  }
-
-  return files
 }
 
 function formatIssues(issues) {
@@ -41,8 +23,12 @@ function formatIssues(issues) {
     .join('\n')
 }
 
-const registryJson = await readJson(sourceRegistryPath)
-const registryResult = sourceRegistrySchema.safeParse(registryJson)
+function fail(message) {
+  console.error(message)
+  process.exitCode = 1
+}
+
+const registryResult = sourceRegistrySchema.safeParse(await readJson(sourceRegistryPath))
 
 if (!registryResult.success) {
   console.error('Source registry validation failed:')
@@ -50,44 +36,69 @@ if (!registryResult.success) {
   process.exit(1)
 }
 
-const sourceIds = new Set(registryResult.data.map((source) => source.id))
-const normalizedFiles = await findJsonFiles(normalizedRoot)
+const municipalityResult = municipalitySchema.safeParse(await readJson(municipalityPath))
 
-let recordCount = 0
-let hasErrors = false
-
-for (const filePath of normalizedFiles) {
-  const json = await readJson(filePath)
-  const records = Array.isArray(json) ? json : [json]
-
-  records.forEach((record, index) => {
-    const result = normalizedRecordBaseSchema.safeParse(record)
-    const displayPath = path.relative(root, filePath)
-    const recordLabel = records.length > 1 ? `${displayPath}[${index}]` : displayPath
-
-    if (!result.success) {
-      hasErrors = true
-      console.error(`Invalid normalized record: ${recordLabel}`)
-      console.error(formatIssues(result.error.issues))
-      return
-    }
-
-    if (!sourceIds.has(result.data.provenance.sourceId)) {
-      hasErrors = true
-      console.error(
-        `Unknown source ID in ${recordLabel}: ${result.data.provenance.sourceId}`,
-      )
-      return
-    }
-
-    recordCount += 1
-  })
-}
-
-if (hasErrors) {
+if (!municipalityResult.success) {
+  console.error('Municipality validation failed:')
+  console.error(formatIssues(municipalityResult.error.issues))
   process.exit(1)
 }
 
+const barangaysResult = barangayCollectionSchema.safeParse(await readJson(barangaysPath))
+
+if (!barangaysResult.success) {
+  console.error('Barangay validation failed:')
+  console.error(formatIssues(barangaysResult.error.issues))
+  process.exit(1)
+}
+
+const sourceIds = new Set(registryResult.data.map((source) => source.id))
+const municipality = municipalityResult.data
+const barangays = barangaysResult.data
+
+if (!sourceIds.has(municipality.provenance.sourceId)) {
+  fail(`Unknown municipality source ID: ${municipality.provenance.sourceId}`)
+}
+
+for (const barangay of barangays) {
+  if (!sourceIds.has(barangay.provenance.sourceId)) {
+    fail(`Unknown source ID for ${barangay.name}: ${barangay.provenance.sourceId}`)
+  }
+
+  if (barangay.municipalityId !== municipality.id) {
+    fail(
+      `Invalid municipality link for ${barangay.name}: expected ${municipality.id}, received ${barangay.municipalityId}`,
+    )
+  }
+
+  if (barangay.populationReferencePeriod !== municipality.populationReferencePeriod) {
+    fail(
+      `Population reference period mismatch for ${barangay.name}: expected ${municipality.populationReferencePeriod}, received ${barangay.populationReferencePeriod}`,
+    )
+  }
+}
+
+if (barangays.length !== municipality.barangayCount) {
+  fail(
+    `Barangay count mismatch: municipality declares ${municipality.barangayCount}, normalized data contains ${barangays.length}`,
+  )
+}
+
+const barangayPopulationTotal = barangays.reduce(
+  (total, barangay) => total + barangay.population,
+  0,
+)
+
+if (barangayPopulationTotal !== municipality.population) {
+  fail(
+    `Population total mismatch: municipality declares ${municipality.population}, barangays sum to ${barangayPopulationTotal}`,
+  )
+}
+
+if (process.exitCode) {
+  process.exit(process.exitCode)
+}
+
 console.log(
-  `Data validation passed: ${registryResult.data.length} sources, ${recordCount} normalized records.`,
+  `Data validation passed: ${registryResult.data.length} sources, 1 municipality, ${barangays.length} barangays.`,
 )
