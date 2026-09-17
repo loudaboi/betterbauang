@@ -41,7 +41,7 @@ export default function BarangaysRoute() {
             >
               <span className="font-medium">{barangay.name}</span>
               <span className="text-sm text-neutral-600">
-                {barangay.population.toLocaleString()}
+                {barangay.population.toLocaleString('en-PH')}
               </span>
             </Link>
           </li>
