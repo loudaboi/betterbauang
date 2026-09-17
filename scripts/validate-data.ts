@@ -2,11 +2,17 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { barangayCollectionSchema } from '../src/domain/civic-data/barangay.ts'
+import { civicDocumentCollectionSchema } from '../src/domain/civic-data/document.ts'
+import { emergencyContactCollectionSchema } from '../src/domain/civic-data/emergency.ts'
+import { financialObservationCollectionSchema } from '../src/domain/civic-data/finance.ts'
+import { governmentDirectorySchema } from '../src/domain/civic-data/government.ts'
 import { municipalitySchema } from '../src/domain/civic-data/municipality.ts'
 import {
   procurementCollectionSchema,
   procurementStagingDatasetSchema,
 } from '../src/domain/civic-data/procurement.ts'
+import { publicProjectCollectionSchema } from '../src/domain/civic-data/project.ts'
+import { governmentServiceCollectionSchema } from '../src/domain/civic-data/service.ts'
 import { sourceRegistrySchema } from '../src/domain/civic-data/source.ts'
 
 const root = process.cwd()
@@ -14,6 +20,12 @@ const sourceRegistryPath = path.join(root, 'data', 'sources', 'registry.json')
 const municipalityPath = path.join(root, 'data', 'normalized', 'municipality.json')
 const barangaysPath = path.join(root, 'data', 'normalized', 'barangays.json')
 const procurementPath = path.join(root, 'data', 'normalized', 'procurement.json')
+const servicesPath = path.join(root, 'data', 'normalized', 'services.json')
+const governmentPath = path.join(root, 'data', 'normalized', 'government.json')
+const emergencyPath = path.join(root, 'data', 'normalized', 'emergency.json')
+const financePath = path.join(root, 'data', 'normalized', 'financial-observations.json')
+const documentsPath = path.join(root, 'data', 'normalized', 'documents.json')
+const projectsPath = path.join(root, 'data', 'normalized', 'projects.json')
 const procurementStagingPath = path.join(
   root,
   'data',
@@ -39,64 +51,86 @@ function fail(message) {
   process.exitCode = 1
 }
 
-const registryResult = sourceRegistrySchema.safeParse(await readJson(sourceRegistryPath))
+function parseOrExit(label, schema, data) {
+  const result = schema.safeParse(data)
 
-if (!registryResult.success) {
-  console.error('Source registry validation failed:')
-  console.error(formatIssues(registryResult.error.issues))
-  process.exit(1)
+  if (!result.success) {
+    console.error(`${label} validation failed:`)
+    console.error(formatIssues(result.error.issues))
+    process.exit(1)
+  }
+
+  return result.data
 }
 
-const municipalityResult = municipalitySchema.safeParse(await readJson(municipalityPath))
-
-if (!municipalityResult.success) {
-  console.error('Municipality validation failed:')
-  console.error(formatIssues(municipalityResult.error.issues))
-  process.exit(1)
-}
-
-const barangaysResult = barangayCollectionSchema.safeParse(await readJson(barangaysPath))
-
-if (!barangaysResult.success) {
-  console.error('Barangay validation failed:')
-  console.error(formatIssues(barangaysResult.error.issues))
-  process.exit(1)
-}
-
-const procurementStagingResult = procurementStagingDatasetSchema.safeParse(
+const registry = parseOrExit(
+  'Source registry',
+  sourceRegistrySchema,
+  await readJson(sourceRegistryPath),
+)
+const municipality = parseOrExit(
+  'Municipality',
+  municipalitySchema,
+  await readJson(municipalityPath),
+)
+const barangays = parseOrExit(
+  'Barangay',
+  barangayCollectionSchema,
+  await readJson(barangaysPath),
+)
+const stagedProcurement = parseOrExit(
+  'Procurement staging',
+  procurementStagingDatasetSchema,
   await readJson(procurementStagingPath),
 )
-
-if (!procurementStagingResult.success) {
-  console.error('Procurement staging validation failed:')
-  console.error(formatIssues(procurementStagingResult.error.issues))
-  process.exit(1)
-}
-
-const procurementResult = procurementCollectionSchema.safeParse(
+const procurementRecords = parseOrExit(
+  'Normalized procurement',
+  procurementCollectionSchema,
   await readJson(procurementPath),
 )
+const services = parseOrExit(
+  'Services',
+  governmentServiceCollectionSchema,
+  await readJson(servicesPath),
+)
+const government = parseOrExit(
+  'Government directory',
+  governmentDirectorySchema,
+  await readJson(governmentPath),
+)
+const emergencyContacts = parseOrExit(
+  'Emergency contacts',
+  emergencyContactCollectionSchema,
+  await readJson(emergencyPath),
+)
+const financialObservations = parseOrExit(
+  'Financial observations',
+  financialObservationCollectionSchema,
+  await readJson(financePath),
+)
+const documents = parseOrExit(
+  'Civic documents',
+  civicDocumentCollectionSchema,
+  await readJson(documentsPath),
+)
+const projects = parseOrExit(
+  'Public projects',
+  publicProjectCollectionSchema,
+  await readJson(projectsPath),
+)
 
-if (!procurementResult.success) {
-  console.error('Normalized procurement validation failed:')
-  console.error(formatIssues(procurementResult.error.issues))
-  process.exit(1)
+const sourceIds = new Set(registry.map((source) => source.id))
+
+function validateSourceLink(label, provenance) {
+  if (!sourceIds.has(provenance.sourceId)) {
+    fail(`Unknown ${label} source ID: ${provenance.sourceId}`)
+  }
 }
 
-const sourceIds = new Set(registryResult.data.map((source) => source.id))
-const municipality = municipalityResult.data
-const barangays = barangaysResult.data
-const stagedProcurement = procurementStagingResult.data
-const procurementRecords = procurementResult.data
-
-if (!sourceIds.has(municipality.provenance.sourceId)) {
-  fail(`Unknown municipality source ID: ${municipality.provenance.sourceId}`)
-}
+validateSourceLink('municipality', municipality.provenance)
 
 for (const barangay of barangays) {
-  if (!sourceIds.has(barangay.provenance.sourceId)) {
-    fail(`Unknown source ID for ${barangay.name}: ${barangay.provenance.sourceId}`)
-  }
+  validateSourceLink(`source for ${barangay.name}`, barangay.provenance)
 
   if (barangay.municipalityId !== municipality.id) {
     fail(
@@ -137,9 +171,7 @@ if (!sourceIds.has(stagedProcurement.sourceId)) {
 }
 
 for (const record of procurementRecords) {
-  if (!sourceIds.has(record.provenance.sourceId)) {
-    fail(`Unknown procurement source ID for ${record.papCode}: ${record.provenance.sourceId}`)
-  }
+  validateSourceLink(`procurement record ${record.papCode}`, record.provenance)
 
   if (record.reportingPeriod !== record.provenance.reportingPeriod) {
     fail(
@@ -158,10 +190,50 @@ if (
   fail('Normalized procurement records do not match the approved staging record set')
 }
 
+for (const service of services) {
+  validateSourceLink(`service ${service.id}`, service.provenance)
+}
+
+for (const official of government.officials) {
+  validateSourceLink(`government official ${official.id}`, official.provenance)
+}
+
+for (const office of government.offices) {
+  validateSourceLink(`government office ${office.id}`, office.provenance)
+}
+
+for (const contact of emergencyContacts) {
+  validateSourceLink(`emergency contact ${contact.id}`, contact.provenance)
+}
+
+for (const observation of financialObservations) {
+  validateSourceLink(`financial observation ${observation.id}`, observation.provenance)
+}
+
+for (const document of documents) {
+  validateSourceLink(`document ${document.id}`, document.provenance)
+}
+
+for (const project of projects) {
+  validateSourceLink(`project ${project.id}`, project.provenance)
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode)
 }
 
 console.log(
-  `Data validation passed: ${registryResult.data.length} sources, 1 municipality, ${barangays.length} barangays, ${procurementRecords.length} normalized procurement records.`,
+  [
+    `Data validation passed: ${registry.length} sources`,
+    '1 municipality',
+    `${barangays.length} barangays`,
+    `${procurementRecords.length} normalized procurement records`,
+    `${services.length} services`,
+    `${government.officials.length} officials`,
+    `${government.offices.length} offices`,
+    `${emergencyContacts.length} emergency contacts`,
+    `${financialObservations.length} financial observations`,
+    `${documents.length} civic documents`,
+    `${projects.length} public projects`,
+  ].join(', ') + '.',
 )

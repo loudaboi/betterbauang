@@ -1,5 +1,101 @@
 [
   {
+    "id": "SRC-001",
+    "publisher": "Municipality of Bauang",
+    "title": "Municipality of Bauang official website",
+    "url": "https://bauanglaunion.gov.ph/",
+    "authority": "A",
+    "domains": [
+      "local-government",
+      "offices",
+      "services",
+      "transparency"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Current municipal website; individual fields and documents require their own reporting-period and freshness checks.",
+    "notes": "Primary municipal publisher. Do not assume every field on the site is equally current."
+  },
+  {
+    "id": "SRC-002",
+    "publisher": "Municipality of Bauang",
+    "title": "Citizen's Charter",
+    "url": "https://bauanglaunion.gov.ph/transparency/citizens-charter/",
+    "authority": "A",
+    "domains": [
+      "services",
+      "requirements",
+      "fees",
+      "processing-times"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Current-published office-level Charter documents reviewed during Phase 4G.1; some PDFs do not expose a visible edition year.",
+    "notes": "Canonical service-process source. Normalize resident-facing services only after document-level review and duplicate/variant handling."
+  },
+  {
+    "id": "SRC-003",
+    "publisher": "Municipality of Bauang",
+    "title": "Full Disclosure Policy",
+    "url": "https://bauanglaunion.gov.ph/transparency/full-disclosure-policy/",
+    "authority": "A",
+    "domains": [
+      "budget",
+      "finance",
+      "transparency",
+      "procurement-documents"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "CY 2025 and CY 2026 disclosure listings reviewed during Phase 4G.1; document periods must remain explicit.",
+    "notes": "Municipal disclosure index. Underlying DILG FDP document endpoints may have separate availability states."
+  },
+  {
+    "id": "SRC-004",
+    "publisher": "Municipality of Bauang",
+    "title": "FY 2024 Procurement Monitoring Report",
+    "url": "https://bauanglaunion.gov.ph/wp-content/uploads/2025/01/FY-2024-Procurement-Monitoring-Report-1.pdf",
+    "authority": "A",
+    "domains": [
+      "procurement"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-16",
+    "freshness": "Historical procurement report as of December 31, 2024",
+    "notes": "Official municipal Procurement Monitoring Report. Use only for its stated FY 2024 historical reporting period."
+  },
+  {
+    "id": "SRC-005",
+    "publisher": "DICT / Municipality of Bauang",
+    "title": "eLGU Bauang",
+    "url": "https://elgu-bauang-la-union.e.gov.ph/",
+    "authority": "A",
+    "domains": [
+      "transactional-services",
+      "service-routing"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Active official transaction surface reviewed in 2026.",
+    "notes": "Use BetterBauang to explain and route residents to official transactions rather than recreating accounts, applications, or payments."
+  },
+  {
+    "id": "SRC-007",
+    "publisher": "Provincial Government of La Union",
+    "title": "Municipality of Bauang profile",
+    "url": "https://launion.gov.ph/municipality-of-bauang/",
+    "authority": "B",
+    "domains": [
+      "government",
+      "officials",
+      "municipal-profile"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Current government roster requires release-time reverification; some profile statistics are older than current PSA releases.",
+    "notes": "Use field-level source precedence. Do not use the profile population as current when newer PSA data exist."
+  },
+  {
     "id": "SRC-008",
     "publisher": "Philippine Statistics Authority",
     "title": "Municipality of Bauang",
@@ -16,17 +112,84 @@
     "notes": "Canonical BetterBauang source for municipality identifiers, barangay composition, urban/rural classification, and published 2024 POPCEN population values."
   },
   {
-    "id": "SRC-004",
-    "publisher": "Municipality of Bauang",
-    "title": "FY 2024 Procurement Monitoring Report",
-    "url": "https://bauanglaunion.gov.ph/wp-content/uploads/2025/01/FY-2024-Procurement-Monitoring-Report-1.pdf",
+    "id": "SRC-009",
+    "publisher": "Bureau of Local Government Finance",
+    "title": "LGU Fiscal Data",
+    "url": "https://blgf.gov.ph/lgu-fiscal-data/",
     "authority": "A",
     "domains": [
-      "procurement"
+      "finance",
+      "revenue",
+      "expenditure",
+      "sef",
+      "ldrrmf"
     ],
     "status": "READY",
-    "retrievedAt": "2026-09-16",
-    "freshness": "Historical procurement report as of December 31, 2024",
-    "notes": "Official municipal Procurement Monitoring Report. Use only for its stated FY 2024 historical reporting period."
+    "retrievedAt": "2026-09-18",
+    "freshness": "FY 2025 annual and FY 2026 quarterly Bauang records reviewed during Phase 4G.1. Quarterly SRE values are cumulative year-to-date.",
+    "notes": "Preferred standardized source for normalized fiscal observations. Preserve the original FDP disclosure documents separately."
+  },
+  {
+    "id": "SRC-010",
+    "publisher": "Philippine Government Electronic Procurement System",
+    "title": "PhilGEPS procurement notices",
+    "url": "https://notices.philgeps.gov.ph/",
+    "authority": "A",
+    "domains": [
+      "procurement",
+      "opportunities",
+      "awards"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Use exact published notice or award records and their own dates; current opportunities change continuously.",
+    "notes": "Use as the current procurement notice/award layer. Do not collapse PhilGEPS states into PMR or APP states without a documented match."
+  },
+  {
+    "id": "SRC-011",
+    "publisher": "Department of Public Works and Highways",
+    "title": "DPWH infrastructure records",
+    "url": "https://www.dpwh.gov.ph/dpwh/",
+    "authority": "A",
+    "domains": [
+      "infrastructure",
+      "projects"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Project-level records require their own reporting date and lifecycle status.",
+    "notes": "Projects located in Bauang must remain explicitly attributed to DPWH or the actual implementing agency and must not be presented as municipal projects."
+  },
+  {
+    "id": "SRC-012",
+    "publisher": "Commission on Audit",
+    "title": "Bauang Compliance Audit Report 2024",
+    "url": "https://www.coa.gov.ph/wpfd_file/bauang-compliance-audit-report-2024/",
+    "authority": "A",
+    "domains": [
+      "audits",
+      "sef",
+      "transparency"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Historical audit covering its stated 2024 period.",
+    "notes": "Surface the original audit record and reviewed factual summaries only. Do not convert audit documents into unsupported scores or misconduct claims."
+  },
+  {
+    "id": "SRC-013",
+    "publisher": "Department of the Interior and Local Government",
+    "title": "Full Disclosure Policy Portal",
+    "url": "https://fdpp.dilg.gov.ph/",
+    "authority": "A",
+    "domains": [
+      "full-disclosure",
+      "finance",
+      "procurement-documents"
+    ],
+    "status": "CONDITIONAL",
+    "retrievedAt": "2026-09-18",
+    "freshness": "CY 2025 and CY 2026 Bauang listings reviewed during Phase 4G.1; some official document endpoints returned server errors.",
+    "notes": "Preserve listed-document metadata even when retrieval fails. Record retrieval failure explicitly rather than silently dropping the disclosure."
   }
 ]
