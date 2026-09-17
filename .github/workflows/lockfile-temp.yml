@@ -1,0 +1,28 @@
+name: Temporary lockfile generation
+
+on:
+  push:
+    branches:
+      - build/betterbauang-v0
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Generate package lock
+        run: npm install --package-lock-only
+
+      - name: Upload package lock
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-lock
+          path: package-lock.json
