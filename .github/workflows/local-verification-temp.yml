@@ -28,13 +28,13 @@ jobs:
 
       - name: Prepare verification bundle
         run: |
-          tar --exclude=.git --exclude=node_modules --exclude=build --exclude=.react-router --exclude=verification-source.tar.gz -czf verification-source.tar.gz .
-          tar -czf npm-cache.tar.gz -C "$HOME" .npm
+          tar --exclude=.git --exclude=node_modules --exclude=build --exclude=.react-router -czf "$RUNNER_TEMP/verification-source.tar.gz" .
+          tar -czf "$RUNNER_TEMP/npm-cache.tar.gz" -C "$HOME" .npm
 
       - name: Upload verification bundle
         uses: actions/upload-artifact@v4
         with:
           name: local-verification-bundle
           path: |
-            verification-source.tar.gz
-            npm-cache.tar.gz
+            ${{ runner.temp }}/verification-source.tar.gz
+            ${{ runner.temp }}/npm-cache.tar.gz
