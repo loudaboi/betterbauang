@@ -15,6 +15,9 @@ export default function HomeRoute() {
         <Link className="underline" to="/barangays">
           Barangays
         </Link>
+        <Link className="underline" to="/procurement">
+          Procurement
+        </Link>
       </nav>
     </main>
   )
