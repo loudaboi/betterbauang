@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 build
 .react-router
+.wrangler/
 dist
 dist-ssr
 *.local
