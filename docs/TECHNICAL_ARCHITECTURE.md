@@ -6,18 +6,33 @@ BetterBauang should remain technically small while ensuring published civic info
 
 ## Current application baseline
 
-- React
-- TypeScript
-- Vite
-- React Router
-- Tailwind CSS
-- Zod
+- React 19
+- React Router 8 Framework Mode
+- Vite 8
+- TypeScript strict mode
+- Tailwind CSS 4
+- Zod 4
 - Oxlint
-- npm with committed lockfile
+- npm with a committed lockfile
+- static prerendering
 
-The application currently uses a minimal client-side router during repository and data-foundation work.
+Node.js 22.23.2 is pinned in `.node-version`.
 
-Static rendering for public civic routes will be resolved before the application expands into its full civic route set.
+## Rendering
+
+BetterBauang uses React Router Framework Mode with `ssr: false`.
+
+Canonical public civic routes are prerendered during the production build. `react-router.config.ts` derives barangay and procurement detail routes from validated normalized civic data rather than maintaining a duplicate route list.
+
+The public deployable output is:
+
+```text
+build/client
+```
+
+React Router may also produce build-time server artifacts while prerendering. Those artifacts do not create a production application server or runtime backend.
+
+Core civic information is emitted as generated HTML rather than depending on client JavaScript to become readable.
 
 ## Civic data architecture
 
@@ -28,7 +43,7 @@ official source
 → schema and domain validation
 → human review
 → normalized production data
-→ application
+→ static prerender
 ```
 
 Directories:
@@ -42,49 +57,40 @@ data/
 
 The production application must not consume staging data.
 
+`src/lib/civic-data.server.ts` reads normalized JSON during build/server execution and validates it again through the existing Zod schemas. Routes do not fetch civic data from a runtime API.
+
 ## Runtime validation
 
 Zod is the runtime validation layer for civic data.
 
-Initial validation should remain small:
-
-- source metadata;
-- provenance;
-- stable IDs;
-- dates;
-- URLs where required;
-- controlled status values.
-
-Domain schemas should be added only when a real dataset requires them.
+Validation covers the implemented civic domains and their provenance, identifiers, dates, URLs, controlled statuses, and domain invariants.
 
 ## MVP infrastructure rules
 
 Do not add a runtime database, authentication, CMS, application API, analytics, queue, vector database, object storage, or runtime AI service unless an approved product requirement requires it.
 
-Search, deployment, browser testing, and automation should be added when the application reaches the stage where they provide concrete value.
+The current application has no runtime database, API server, authentication system, CMS, or application server.
 
-## Rendering
+## CI
 
-The final public civic application should expose important information as generated HTML rather than requiring client JavaScript to make core facts readable.
+GitHub Actions uses the Node.js version pinned in `.node-version` and runs the existing project contract:
 
-The current BrowserRouter setup is temporary and intentionally sufficient for foundation work.
+```text
+npm ci
+npm run validate:data
+npm run lint
+npm run build
+```
 
-## Testing and CI
-
-Testing should grow with real behavior.
-
-Initial order:
-
-1. data validation;
-2. unit/data tests;
-3. CI for stable commands;
-4. browser tests when meaningful user flows exist.
+CI validates the application and civic-data build. It is separate from Cloudflare deployment.
 
 ## Deployment
 
-Cloudflare remains the intended hosting direction for the static public application.
+The deployment target is Cloudflare Workers Static Assets.
 
-Deployment configuration is deferred until the static output strategy is finalized.
+`wrangler.jsonc` is asset-only and points to `build/client`. It does not define a Worker `main` entry point, runtime bindings, or backend services.
+
+Production deployment and Cloudflare account connection remain separate release steps and are not performed by CI.
 
 ## Architecture rule
 
