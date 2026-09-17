@@ -8,9 +8,9 @@ Its purpose is to make public local-government information easier to find, under
 
 ## Status
 
-Early development.
+Phase 4 product implementation is in progress.
 
-BetterBauang is currently establishing its technical and civic-data foundation before public features are implemented.
+The current application consumes validated normalized civic data and prerenders its public civic routes as static HTML. Production deployment has not yet been released.
 
 ## What BetterBauang is for
 
@@ -36,17 +36,32 @@ BetterBauang does not replace official government transaction systems. Where an 
 
 ## Development
 
-The project is currently in its repository-foundation phase.
-
 Current technical baseline:
 
-* React
-* TypeScript
-* Vite
-* React Router
-* Tailwind CSS
+* React 19
+* React Router 8 Framework Mode
+* Vite 8
+* TypeScript strict mode
+* Tailwind CSS 4
+* Zod 4
+* Oxlint
+* npm with a committed lockfile
+* static prerendering
 
-Civic data, validation, testing, provenance, and CI infrastructure will be added incrementally before real public datasets are introduced.
+Node.js is pinned in `.node-version`.
+
+Install dependencies and run the current project checks with:
+
+```bash
+npm ci
+npm run validate:data
+npm run lint
+npm run build
+```
+
+The public static build output is `build/client`.
+
+BetterBauang does not currently require a runtime database, API server, authentication system, CMS, or application server. The deployment target is Cloudflare Workers Static Assets.
 
 ## BetterLGU
 
@@ -56,8 +71,8 @@ BetterLGU participation does not make BetterBauang an official government portal
 
 ## Contributing
 
-Contribution guidelines will be added as the repository foundation is completed.
+See `CONTRIBUTING.md` for contribution and civic-data requirements.
 
 ## License
 
-Licensing and source-data rights documentation will be added as part of the repository foundation.
+MIT License. See `LICENSE`.
