@@ -30,6 +30,8 @@ jobs:
         run: |
           tar --exclude=.git --exclude=node_modules --exclude=build --exclude=.react-router -czf "$RUNNER_TEMP/verification-source.tar.gz" .
           tar -czf "$RUNNER_TEMP/npm-cache.tar.gz" -C "$HOME" .npm
+          NODE_ROOT="$(dirname "$(dirname "$(command -v node)")")"
+          tar -czf "$RUNNER_TEMP/node-runtime.tar.gz" -C "$NODE_ROOT" .
 
       - name: Upload verification bundle
         uses: actions/upload-artifact@v4
@@ -38,3 +40,4 @@ jobs:
           path: |
             ${{ runner.temp }}/verification-source.tar.gz
             ${{ runner.temp }}/npm-cache.tar.gz
+            ${{ runner.temp }}/node-runtime.tar.gz
