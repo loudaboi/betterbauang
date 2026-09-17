@@ -50,7 +50,11 @@ export async function getProcurementRecordById(recordId: string) {
   return records.find((record) => record.id === recordId) ?? null
 }
 
+export async function getSources() {
+  return sourcesPromise
+}
+
 export async function getSourceById(sourceId: string) {
-  const sources = await sourcesPromise
+  const sources = await getSources()
   return sources.find((source) => source.id === sourceId) ?? null
 }
