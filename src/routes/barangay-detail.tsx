@@ -41,7 +41,7 @@ export default function BarangayDetailRoute() {
       <dl className="mt-10 grid gap-6 sm:grid-cols-2">
         <div>
           <dt className="text-sm text-neutral-600">Population</dt>
-          <dd className="mt-1 text-2xl font-semibold">{barangay.population.toLocaleString()}</dd>
+          <dd className="mt-1 text-2xl font-semibold">{barangay.population.toLocaleString('en-PH')}</dd>
           <dd className="text-sm text-neutral-600">{barangay.populationReferencePeriod}</dd>
         </div>
         <div>
