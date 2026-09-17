@@ -1,5 +1,3 @@
-import { Link } from 'react-router'
-
 export default function HomeRoute() {
   return (
     <main className="mx-auto min-h-screen max-w-3xl px-6 py-12">
@@ -7,18 +5,6 @@ export default function HomeRoute() {
       <p className="mt-4 max-w-xl text-neutral-700">
         Independent civic information and transparency for Bauang, La Union.
       </p>
-
-      <nav className="mt-10 flex gap-6" aria-label="Explore BetterBauang">
-        <Link className="underline" to="/bauang">
-          Bauang overview
-        </Link>
-        <Link className="underline" to="/barangays">
-          Barangays
-        </Link>
-        <Link className="underline" to="/procurement">
-          Procurement
-        </Link>
-      </nav>
     </main>
   )
 }
