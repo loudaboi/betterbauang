@@ -18,7 +18,7 @@ export default function BauangRoute() {
   const { municipality, source } = useLoaderData<typeof loader>()
 
   return (
-    <main data-pagefind-body data-pagefind-meta="category:Bauang" data-pagefind-filter="category:Bauang" className="mx-auto min-h-screen max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <main className="mx-auto min-h-screen max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <header>
         <p className="text-sm font-medium text-neutral-500">{municipality.officialName}</p>
         <h1 className="mt-2 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">
@@ -35,7 +35,7 @@ export default function BauangRoute() {
           <dd className="mt-1 text-2xl font-semibold tracking-[-0.02em]">
             {municipality.population.toLocaleString('en-PH')}
           </dd>
-          <dd data-pagefind-meta="period" className="mt-1 text-sm text-neutral-500">{municipality.populationReferencePeriod}</dd>
+          <dd className="mt-1 text-sm text-neutral-500">{municipality.populationReferencePeriod}</dd>
         </div>
         <div>
           <dt className="text-sm text-neutral-500">Barangays</dt>

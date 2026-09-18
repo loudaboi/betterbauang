@@ -28,12 +28,12 @@ export default function ProcurementRoute() {
   const { records, source, reportingPeriod } = useLoaderData<typeof loader>()
 
   return (
-    <main data-pagefind-body data-pagefind-meta="category:Procurement" data-pagefind-filter="category:Procurement" className="mx-auto min-h-screen max-w-4xl px-6 py-12">
+    <main className="mx-auto min-h-screen max-w-4xl px-6 py-12">
       <Link className="text-sm underline" to="/">
         BetterBauang
       </Link>
 
-      <header className="mt-8" data-pagefind-meta={`period:${reportingPeriod}`}>
+      <header className="mt-8">
         <p className="text-sm text-neutral-600">Historical records</p>
         <h1 className="mt-2 text-4xl font-semibold">Procurement</h1>
         <p className="mt-4 max-w-2xl text-neutral-700">

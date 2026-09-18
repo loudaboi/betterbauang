@@ -20,12 +20,12 @@ export default function BarangaysRoute() {
   const { municipality, barangays, source } = useLoaderData<typeof loader>()
 
   return (
-    <main data-pagefind-body data-pagefind-meta="category:Barangay" data-pagefind-filter="category:Barangay" className="mx-auto min-h-screen max-w-4xl px-6 py-12">
+    <main className="mx-auto min-h-screen max-w-4xl px-6 py-12">
       <Link className="text-sm underline" to="/bauang">
         Bauang
       </Link>
 
-      <header className="mt-8" data-pagefind-meta={`period:${municipality.populationReferencePeriod}`}>
+      <header className="mt-8">
         <h1 className="text-4xl font-semibold">Barangays</h1>
         <p className="mt-4 max-w-2xl text-neutral-700">
           All {barangays.length} barangays of {municipality.name}, with PSA codes, classification, and {municipality.populationReferencePeriod} population.

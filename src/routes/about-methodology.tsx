@@ -10,7 +10,7 @@ const verificationStatuses = [
 
 export default function MethodologyRoute() {
   return (
-    <main data-pagefind-body data-pagefind-meta="category:About" data-pagefind-filter="category:About" className="mx-auto min-h-screen max-w-3xl px-6 py-12">
+    <main className="mx-auto min-h-screen max-w-3xl px-6 py-12">
       <header>
         <p className="text-sm text-neutral-600">About</p>
         <h1 className="mt-2 text-4xl font-semibold">Methodology</h1>

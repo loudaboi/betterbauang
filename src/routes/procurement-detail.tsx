@@ -54,7 +54,7 @@ export default function ProcurementDetailRoute() {
   const { record, source } = useLoaderData<typeof loader>()
 
   return (
-    <main data-pagefind-body data-pagefind-meta="category:Procurement" data-pagefind-filter="category:Procurement" className="mx-auto min-h-screen max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <main className="mx-auto min-h-screen max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <Link
         className="inline-flex min-h-11 items-center text-sm font-medium text-neutral-600 hover:text-neutral-950"
         to="/procurement"
@@ -62,7 +62,7 @@ export default function ProcurementDetailRoute() {
         ← All procurement records
       </Link>
 
-      <header className="mt-6" data-pagefind-meta={`period:${record.reportingPeriod}`}>
+      <header className="mt-6">
         <p className="text-sm font-medium text-neutral-500">{record.reportingPeriod} historical procurement record</p>
         <h1 className="mt-2 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">{record.title}</h1>
         <p className="mt-4 font-mono text-sm text-neutral-500">{record.papCode}</p>
