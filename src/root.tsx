@@ -9,16 +9,10 @@ import {
   ScrollRestoration,
 } from 'react-router'
 
-import { defaultLocale, localeLabels } from './lib/i18n.ts'
+import { defaultLocale } from './lib/i18n.ts'
 import './index.css'
 
-const primaryNav = [
-  { to: '/bauang', label: 'Bauang' },
-  { to: '/barangays', label: 'Barangays' },
-  { to: '/procurement', label: 'Procurement' },
-  { to: '/about', label: 'About' },
-  { to: '/search', label: 'Search' },
-]
+const primaryNav = [{ to: '/', label: 'Home' }] as const
 
 function PrimaryNav({ mobile = false }: { mobile?: boolean }) {
   return (
@@ -36,12 +30,27 @@ function PrimaryNav({ mobile = false }: { mobile?: boolean }) {
               isActive ? 'text-neutral-950' : 'text-neutral-600 hover:text-neutral-950',
             ].join(' ')
           }
+          end
           to={item.to}
         >
           {item.label}
         </NavLink>
       ))}
     </nav>
+  )
+}
+
+function LanguageControls() {
+  return (
+    <div className="flex items-center gap-2 text-xs font-medium" aria-label="Language availability">
+      <span className="border border-neutral-900 bg-neutral-900 px-2 py-1 text-white">EN</span>
+      <span aria-disabled="true" className="border border-neutral-200 px-2 py-1 text-neutral-400" title="Filipino content is not yet published">
+        FIL
+      </span>
+      <span aria-disabled="true" className="border border-neutral-200 px-2 py-1 text-neutral-400" title="Ilocano content is not yet published">
+        ILO
+      </span>
+    </div>
   )
 }
 
@@ -77,23 +86,24 @@ export default function Root() {
       <div className="border-b border-neutral-200 bg-neutral-50">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 text-xs text-neutral-600 sm:px-6">
           <span>Independent civic information for Bauang, La Union</span>
-          <div className="flex shrink-0 items-center gap-4">
-            <span>{localeLabels[defaultLocale]}</span>
-            <Link className="hover:text-neutral-950" to="/about/sources">
-              Sources
-            </Link>
-          </div>
+          <Link className="hover:text-neutral-950" to="/about/sources">
+            Sources
+          </Link>
         </div>
       </div>
 
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex min-h-16 items-center justify-between gap-6">
-            <Link className="text-base font-semibold tracking-[-0.01em] text-neutral-950" to="/">
+          <div className="flex min-h-16 items-center justify-between gap-4 sm:gap-6">
+            <Link className="shrink-0 text-base font-semibold tracking-[-0.01em] text-neutral-950" to="/">
               BetterBauang
             </Link>
 
             <PrimaryNav />
+
+            <div className="ml-auto hidden md:block">
+              <LanguageControls />
+            </div>
 
             <details className="group md:hidden">
               <summary className="flex min-h-11 cursor-pointer list-none items-center text-sm font-medium text-neutral-700">
@@ -101,6 +111,9 @@ export default function Root() {
               </summary>
               <div className="absolute left-0 right-0 z-40 border-b border-neutral-200 bg-white px-4 shadow-sm sm:px-6">
                 <PrimaryNav mobile />
+                <div className="border-t border-neutral-200 py-4">
+                  <LanguageControls />
+                </div>
               </div>
             </details>
           </div>
