@@ -21,8 +21,8 @@ export default function BarangaysRoute() {
 
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-12">
-      <Link className="text-sm underline" to="/bauang">
-        Bauang
+      <Link className="text-sm underline" to="/government">
+        Government
       </Link>
 
       <header className="mt-8">
