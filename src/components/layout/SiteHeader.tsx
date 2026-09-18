@@ -7,29 +7,35 @@ const livePrimaryNav = [
   { to: '/contact', label: 'Contact' },
 ] as const
 
+const languages = ['EN', 'FIL', 'ILO'] as const
+
+type Language = (typeof languages)[number]
+
 function LanguageControls() {
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>('EN')
+
   return (
-    <div
-      className="inline-flex items-center gap-1 rounded-lg border border-border bg-background p-1"
-      aria-label="Language availability"
-    >
-      <span className="min-w-9 rounded-md bg-primary px-2.5 py-1.5 text-center text-xs font-semibold text-primary-foreground">
-        EN
-      </span>
-      <span
-        aria-disabled="true"
-        className="min-w-9 rounded-md px-2.5 py-1.5 text-center text-xs font-semibold text-muted-foreground opacity-55"
-        title="Filipino content is not yet published"
-      >
-        FIL
-      </span>
-      <span
-        aria-disabled="true"
-        className="min-w-9 rounded-md px-2.5 py-1.5 text-center text-xs font-semibold text-muted-foreground opacity-55"
-        title="Ilocano content is not yet published"
-      >
-        ILO
-      </span>
+    <div className="flex items-center gap-1.5" aria-label="Language selector">
+      {languages.map((language) => {
+        const selected = selectedLanguage === language
+
+        return (
+          <button
+            aria-pressed={selected}
+            className={[
+              'h-8 min-w-10 rounded-md border px-2.5 text-xs font-semibold transition-colors',
+              selected
+                ? 'border-primary bg-primary text-primary-foreground'
+                : 'border-primary/55 bg-card text-primary hover:border-primary hover:bg-secondary',
+            ].join(' ')}
+            key={language}
+            onClick={() => setSelectedLanguage(language)}
+            type="button"
+          >
+            {language}
+          </button>
+        )
+      })}
     </div>
   )
 }
@@ -41,7 +47,7 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
         <NavLink
           className={({ isActive }) =>
             [
-              'flex min-h-12 items-center border-b border-border text-base font-medium transition-colors lg:min-h-11 lg:border-b-0',
+              'flex min-h-12 items-center border-b border-border text-base font-normal transition-colors lg:min-h-11 lg:border-b-0',
               isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
             ].join(' ')
           }
@@ -62,14 +68,14 @@ function Brand({ mobile = false }: { mobile?: boolean }) {
       <span
         className={
           mobile
-            ? 'block text-base font-semibold tracking-[-0.02em]'
-            : 'block text-lg font-semibold tracking-[-0.025em]'
+            ? 'block text-lg font-bold tracking-[-0.025em]'
+            : 'block text-2xl font-bold tracking-[-0.035em]'
         }
       >
         BetterBauang
       </span>
       {!mobile && (
-        <span className="mt-0.5 block whitespace-nowrap text-[0.6875rem] leading-4 text-muted-foreground">
+        <span className="mt-0.5 block whitespace-nowrap text-xs font-medium leading-4 text-muted-foreground">
           Independent Civic Community Portal for Bauang
         </span>
       )}
@@ -83,7 +89,7 @@ export function SiteHeader() {
   return (
     <header className="relative border-b border-border bg-card">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6 xl:px-8">
-        <div className="hidden min-h-20 grid-cols-[minmax(17rem,1fr)_auto_minmax(17rem,1fr)] items-center gap-8 lg:grid">
+        <div className="hidden min-h-20 grid-cols-[minmax(19rem,1fr)_auto_minmax(19rem,1fr)] items-center gap-8 lg:grid">
           <div className="justify-self-start">
             <Brand />
           </div>

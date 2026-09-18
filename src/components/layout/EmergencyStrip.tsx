@@ -1,5 +1,3 @@
-import { Link } from 'react-router'
-
 import type { EmergencyContact } from '../../domain/civic-data/emergency.ts'
 import { toTelHref } from '../../lib/phone.ts'
 
@@ -70,14 +68,6 @@ function HotlineIcon({ name }: { name: HotlineIconName }) {
   )
 }
 
-function ArrowIcon() {
-  return (
-    <svg aria-hidden="true" className="size-3.5" fill="none" viewBox="0 0 16 16">
-      <path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" />
-    </svg>
-  )
-}
-
 function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplicate?: boolean }) {
   const phoneNumber = item.contact.phoneNumbers[0]
 
@@ -95,19 +85,6 @@ function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplica
   )
 }
 
-function AllHotlinesLink({ duplicate = false }: { duplicate?: boolean }) {
-  return (
-    <Link
-      className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 text-xs font-semibold text-destructive transition-colors hover:bg-white/90"
-      tabIndex={duplicate ? -1 : undefined}
-      to="/contact"
-    >
-      All hotlines
-      <ArrowIcon />
-    </Link>
-  )
-}
-
 function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; duplicate?: boolean }) {
   return (
     <div
@@ -121,8 +98,6 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
       {items.map((item) => (
         <HotlineLink duplicate={duplicate} item={item} key={item.contact.id} />
       ))}
-
-      <AllHotlinesLink duplicate={duplicate} />
     </div>
   )
 }
@@ -152,8 +127,6 @@ export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
             <HotlineLink item={item} key={item.contact.id} />
           ))}
         </div>
-
-        <AllHotlinesLink />
       </div>
     </aside>
   )
