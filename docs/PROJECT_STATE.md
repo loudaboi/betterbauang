@@ -40,7 +40,7 @@ The product should help residents:
 
 - understand and access municipal services;
 - find the right government office or contact;
-- understand officials, offices, and barangays;
+- understand current officials and barangay leadership where source-ready;
 - inspect public finance, procurement, disclosures, audits, and properly attributed infrastructure;
 - understand verified statistics about Bauang;
 - trace material civic information to authoritative sources.
@@ -90,6 +90,19 @@ Search      → Find a Service inside Home/Services
 
 Legislative becomes a primary destination only if a maintainable official corpus later justifies it.
 
+### Route consolidation rule
+
+The final public route surface should match the information architecture rather than preserve scaffolding for its own sake.
+
+Approved V1 cleanup decisions:
+
+- Barangay data remains a first-class normalized dataset, but separate `/barangays` and `/barangays/:slug` presentation is not required when the pages do not provide distinct resident value. Barangays should be presented directly inside Government.
+- The current `/bauang` reference page is development scaffolding. Its useful municipality statistics belong in Statistics and, selectively, the final Home snapshot. Retire the standalone route when that information has been absorbed.
+- Procurement remains a Transparency responsibility. Existing procurement routes may remain as implementation URLs if useful, but Procurement must not behave as a separate primary product section.
+- About, Sources, and Methodology remain supporting trust routes and footer destinations.
+
+Do not create route depth merely because normalized records exist.
+
 ## 4. V1 section responsibilities
 
 ### Home
@@ -102,7 +115,7 @@ Final responsibilities:
 - Find a Service;
 - popular/useful services;
 - emergency access;
-- quick links to Government, Statistics, Transparency, Contact, and Barangays;
+- quick links to Government, Statistics, Transparency, and Contact;
 - a small period-labeled Bauang snapshot;
 - Sources, Methodology, and Corrections.
 
@@ -138,21 +151,27 @@ V1 search is primarily **Find a Service**, implemented over normalized service r
 
 ### Government
 
-Answers: **Who and where is the local government?**
+Answers: **Who represents Bauang locally and how do residents reach the local government?**
 
-Contains:
+V1 contains:
 
-- current elected officials;
-- municipal offices and responsibilities;
-- government/contact directory;
+- current elected municipal officials;
+- reviewed general municipal contact information;
 - all 39 barangays;
+- current Punong Barangay and direct contact information only where a competent current source supports it;
 - legislation only if source-ready.
+
+A comprehensive municipal-office bureaucracy directory is **not** a V1 completion requirement. Office-specific information should appear in Services or Contact when that is more useful to residents and when the source supports it.
+
+Separate barangay profile pages are not a V1 requirement. They should exist only if they contain enough distinct, verified resident-useful information to justify another destination.
 
 ### Statistics
 
 Answers: **What do verified data say about Bauang?**
 
 Contains period-labeled statistics such as municipality population, barangay population, PSGC/geographic classifications, and only other indicators supported by competent sources.
+
+Statistics should absorb the useful reference information currently exposed by the development-only `/bauang` page before that route is retired.
 
 ### Transparency
 
@@ -174,8 +193,8 @@ Answers: **Who do I need to reach?**
 Contains:
 
 - full emergency contact directory;
-- Municipal Hall contact/location information;
-- verified municipal office contacts;
+- Municipal Hall/general municipal contact information;
+- verified municipal office contacts when source-ready;
 - official Municipality channels;
 - appropriate official external destinations.
 
@@ -220,7 +239,6 @@ Completed:
 - verified general municipal trunk line, mobile number, and email normalized from the official Bauang eLGU contact surface;
 - `/contact` built and statically prerendered with tap-to-call links, source links, and last-verified context;
 - persistent emergency strip added above the main header using normalized reviewed data;
-- live header navigation is `Home`, `Services`, `Government`, and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
 - official Municipality website and eLGU destinations exposed as external government links;
 - no `/emergency` route added.
 
@@ -238,13 +256,13 @@ Completed:
 - official Municipality-hosted Business Permit Application Form normalized and linked to new and renewal business services;
 - `/services` and `/services/:service` built and statically prerendered from normalized service records;
 - lightweight Find a Service implemented over normalized service data only;
-- Services added to live navigation and transition-homepage access;
+- Services added to live navigation;
 - no site-wide global search or Pagefind reintroduced;
 - the current directory is intentionally limited to source-ready records and is not presented as a complete inventory of every municipal transaction.
 
 ### Government
 
-Status: **COMPLETE**
+Status: **CORE COMPLETE / FINALIZATION NEXT**
 
 Completed:
 
@@ -254,10 +272,19 @@ Completed:
 - council members retain the source's generic `Sangguniang Bayan Member` role label rather than inferred committee, federation, or ex-officio roles;
 - existing verified Municipality of Bauang general contact integrated without inventing unverified office responsibilities or direct official contact details;
 - `/government` built and statically prerendered;
-- all 39 PSA-backed barangays integrated beneath Government while existing `/barangays` and barangay detail routes remain available;
-- Barangays removed as a separate transition-homepage destination and linked from Government instead;
+- all 39 PSA-backed barangays available as normalized production data;
 - Government added to live navigation;
 - political imagery, endorsements, rankings, and unsupported descriptive claims are not part of the Government section.
+
+Finalization still required before moving on:
+
+- remove the redundant public `/barangays` index and `/barangays/:slug` presentation from the final V1 route surface and prerender list;
+- preserve all normalized barangay, PSA identifier, classification, and population data for Government and Statistics;
+- research the freshest competent current sources available for Bauang Punong Barangay names and direct contact numbers;
+- do not use stale political/contact records as current merely because they are complete;
+- publish only the Punong Barangay/contact fields that pass source and freshness review;
+- present the barangays directly inside `/government` without requiring a click into low-value profile pages;
+- run route/link QA after the legacy barangay pages are removed.
 
 ### Statistics
 
@@ -274,11 +301,13 @@ Already have:
 Still need:
 
 - build `/statistics` from existing reviewed data;
+- absorb useful municipality reference information currently exposed by `/bauang`;
+- retire `/bauang` after that information is safely integrated;
 - add new indicators only if they materially improve V1.
 
-### Transparency — Finances
+### Transparency: Finances
 
-Status: **NEXT — SOURCE ACQUIRED / NEEDS NORMALIZATION**
+Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
 
 Already have:
 
@@ -295,7 +324,7 @@ Still need:
 - organize original disclosure documents;
 - prefer straightforward tables/summaries before charts.
 
-### Transparency — Procurement
+### Transparency: Procurement
 
 Status: **PARTIAL READY IN REPO + NEWER SOURCES ACQUIRED**
 
@@ -315,7 +344,9 @@ Still need:
 - avoid inferred joins without source evidence;
 - integrate Procurement under Transparency.
 
-### Transparency — Documents and audits
+Existing procurement URLs do not make Procurement a primary navigation section.
+
+### Transparency: Documents and audits
 
 Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
 
@@ -333,7 +364,7 @@ Still need:
 - surface audits neutrally;
 - link original official documents where available.
 
-### Transparency — Infrastructure
+### Transparency: Infrastructure
 
 Status: **CONDITIONAL**
 
@@ -347,6 +378,8 @@ Still need:
 - acquire/verify a limited useful Bauang project corpus before publishing;
 - preserve actual implementing agency and source lifecycle status.
 
+Infrastructure is optional for V1 if a defensible useful corpus is not source-ready. Do not block the rebuild waiting for completeness.
+
 ### Languages
 
 Status: **ARCHITECTURE READY / CONTENT NOT READY**
@@ -357,13 +390,33 @@ Publish Filipino and Ilocano only after reviewed civic content is ready. Do not 
 
 ### Visual design and accessibility
 
-Status: **FOUNDATION EXISTS / FINAL PASS NEEDED**
+Status: **FUNCTIONAL FOUNDATION ONLY / FINAL UI DEFERRED**
 
-Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, the shared emergency/header foundation, and the Services/Government interaction baseline.
+Current implementation may use enough styling to remain readable, responsive, keyboard-usable, and testable while the information architecture and civic verticals are rebuilt.
 
-Still need a stronger BetterBauang visual system, better tables/lists across remaining sections, consistent official-link treatment, and cross-device accessibility review.
+Do **not** lock the final BetterBauang visual system, redesign individual verticals, or treat temporary presentation as final before the rebuild is complete.
 
-Target: modern public-service product; strong typography, disciplined whitespace, restrained civic accent, minimal shadows/cards, no gradients/glow, no seal imitation.
+After Government finalization, Transparency, Statistics, and route consolidation are complete, stop feature work and conduct a dedicated UI planning phase before implementation.
+
+That UI planning phase must evaluate the complete resident-facing product together, including:
+
+- typography and type scale;
+- spacing and grid;
+- page/section hierarchy;
+- header and emergency strip treatment;
+- service discovery and service-detail patterns;
+- Government roster and barangay presentation;
+- Transparency tables, document lists, finance summaries, and procurement patterns;
+- Statistics presentation;
+- provenance/source treatment;
+- buttons, links, interaction states, and official external-link treatment;
+- mobile navigation and responsive behavior;
+- final homepage composition;
+- accessibility across the complete system.
+
+Approved broad direction remains: modern public-service product, strong typography, disciplined whitespace, restrained civic accent, clear lists/tables, minimal shadows/cards, no gradients/glow, no seal imitation.
+
+Those are constraints for the later design plan, not permission to start the final visual implementation early.
 
 ## 6. Source material worked during source closure
 
@@ -382,18 +435,37 @@ If a future session cannot access one of these files, it must not reconstruct fa
 
 ## 7. Implementation sequence
 
-Build complete resident-facing verticals instead of more empty foundations.
+Finish the rebuild before final UI design.
 
 ```text
-1. IA/search cleanup                    COMPLETE
-2. Contact + emergency strip            COMPLETE
-3. Services                             COMPLETE
-4. Government                           COMPLETE
-5. Transparency                         NEXT
-6. Statistics
-7. Final homepage + visual system
-8. Languages + trust + SEO + accessibility + public QA
+1. IA/search cleanup                         COMPLETE
+2. Contact + emergency strip                 COMPLETE
+3. Services                                  COMPLETE
+4. Government core                           COMPLETE
+5. Government finalization                   NEXT
+6. Transparency
+7. Statistics + retire absorbed /bauang route
+8. Rebuild closure + route/link/data QA
+9. UI planning gate                          REQUIRES EXPLICIT APPROVAL
+10. Final homepage + visual system
+11. Languages + trust + SEO + accessibility + public QA
 ```
+
+### Rebuild phase rule
+
+Until step 8 is complete:
+
+- prioritize source closure, normalized data, information architecture, route consolidation, resident task completeness, responsive functionality, and accessibility baseline;
+- use neutral functional presentation where needed;
+- do not spend implementation cycles polishing a final visual identity that may be invalidated by remaining content structures.
+
+### UI planning gate
+
+At step 9, **stop before coding the final UI**.
+
+The complete product should be reviewed as one system. Produce and approve a deliberate UI plan before changing the visual system or final homepage. The plan should identify the design direction, reusable patterns, page hierarchy, responsive behavior, and rollout order.
+
+Do not silently transition from rebuild work into final visual design.
 
 For each civic vertical:
 
@@ -443,4 +515,4 @@ A new session should:
 2. confirm `main` is untouched;
 3. read `PROJECT_STATE.md`, `DATA_PROVENANCE.md`, `TECHNICAL_ARCHITECTURE.md`, and `EXPERIENCE_FOUNDATION.md`;
 4. inspect the current implementation before editing;
-5. execute only the current `NEXT` vertical unless explicitly approved to do more.
+5. execute only the current `NEXT` step unless explicitly approved to do more.
