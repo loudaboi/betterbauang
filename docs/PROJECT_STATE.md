@@ -210,29 +210,23 @@ Do not reintroduce site-wide global search unless a later demonstrated need just
 
 ### Contact + emergency strip
 
-Status: **NEXT — SOURCE ACQUIRED / NEEDS NORMALIZATION**
+Status: **COMPLETE**
 
-Already have:
+Completed:
 
-- reviewed 2026 Bauang emergency hotline advisory for MDRRMO, Municipal Health, PNP, and BFP;
-- older Citizen's Charter emergency contacts retained for conflict/supersession handling;
-- municipal website and Charter contact sources;
-- emergency domain schema and empty normalized collection.
-
-Still need:
-
-- normalize the current emergency records;
-- verify Municipal Hall and any office contacts intended for V1;
-- build `/contact`;
-- add the persistent tap-to-call emergency strip;
-- expose source and last-verified context on Contact;
-- keep EN / FIL / ILO controls in the main header area.
-
-No `/emergency` page.
+- current Bauang MDRRMO, MHO, PNP Bauang MPS, and BFP emergency contacts normalized from the Municipality's August 16, 2026 emergency advisory;
+- Unified 911 normalized separately from current official DILG guidance;
+- older non-current emergency numbers are not presented as current;
+- verified general municipal trunk line, mobile number, and email normalized from the official Bauang eLGU contact surface;
+- `/contact` built and statically prerendered with tap-to-call links, source links, and last-verified context;
+- persistent emergency strip added above the main header using normalized reviewed data;
+- live header navigation is `Home` and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
+- official Municipality website and eLGU destinations exposed as external government links;
+- no `/emergency` route added.
 
 ### Services
 
-Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+Status: **NEXT — SOURCE ACQUIRED / NEEDS NORMALIZATION**
 
 Already have:
 
@@ -260,7 +254,7 @@ Already have:
 
 - PGLU Bauang profile source;
 - supporting official reporting gathered during source closure;
-- government schema and empty normalized collection;
+- government schema and one verified general municipal contact record used by Contact;
 - all 39 barangays already normalized from PSA/PSGC.
 
 Still need:
@@ -370,9 +364,9 @@ Publish Filipino and Ilocano only after reviewed civic content is ready. Do not 
 
 Status: **FOUNDATION EXISTS / FINAL PASS NEEDED**
 
-Already have responsive shell, skip navigation, focus baseline, provenance component, and static/mobile architecture.
+Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, and the shared emergency/header foundation.
 
-Still need a stronger BetterBauang visual system, refined header/emergency strip, excellent service UX, better tables/lists, consistent official-link treatment, and cross-device accessibility review.
+Still need a stronger BetterBauang visual system, excellent service UX, better tables/lists, consistent official-link treatment, and cross-device accessibility review.
 
 Target: modern public-service product; strong typography, disciplined whitespace, restrained civic accent, minimal shadows/cards, no gradients/glow, no seal imitation.
 
@@ -397,8 +391,8 @@ Build complete resident-facing verticals instead of more empty foundations.
 
 ```text
 1. IA/search cleanup                    COMPLETE
-2. Contact + emergency strip            NEXT
-3. Services
+2. Contact + emergency strip            COMPLETE
+3. Services                             NEXT
 4. Government
 5. Transparency
 6. Statistics
