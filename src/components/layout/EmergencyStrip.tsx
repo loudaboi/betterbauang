@@ -19,7 +19,7 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
   return (
     <div
       aria-hidden={duplicate ? true : undefined}
-      className="bb-emergency-ticker-copy flex shrink-0 items-center gap-5 pr-10"
+      className="bb-emergency-ticker-copy flex shrink-0 items-center gap-5 pl-4 pr-10 sm:pl-6"
     >
       <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em]">Emergency</span>
 
@@ -66,7 +66,7 @@ export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
   return (
     <aside className="bg-destructive text-destructive-foreground" aria-label="Emergency contacts">
       <div className="bb-emergency-ticker overflow-hidden lg:hidden">
-        <div className="bb-emergency-ticker-track pl-4 sm:pl-6">
+        <div className="bb-emergency-ticker-track">
           <EmergencyItems items={items} />
           <EmergencyItems duplicate items={items} />
         </div>
