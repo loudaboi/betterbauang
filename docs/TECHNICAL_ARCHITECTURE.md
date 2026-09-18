@@ -34,32 +34,24 @@ React Router may also produce build-time server artifacts while prerendering. Th
 
 Core civic information is emitted as generated HTML rather than depending on client JavaScript to become readable.
 
-## Static search
+## Search and discovery
 
-Global search uses Pagefind as a build-time static index.
+V1 does not require a site-wide global-search subsystem.
 
-The production build flow is:
+The approved discovery pattern is resident-task navigation plus a lightweight `Find a Service` experience once normalized service records are available.
 
-```text
-TypeScript project build
-→ React Router static prerender
-→ build/client
-→ Pagefind indexes reviewed generated HTML
-→ build/client/pagefind
-```
+`Find a Service` should operate over reviewed normalized service data and does not justify a search server, external index, runtime API, database, or AI layer.
 
-The application exposes a prerendered `/search` route. Search state uses the normal `?q=` URL parameter, while the browser loads the generated `/pagefind/pagefind.js` bundle and static index. Search does not require an application API, runtime database, Worker search handler, Meilisearch, or runtime AI.
+Domain-specific browsing and filtering remain inside the relevant section, such as Services or Procurement.
 
-Reviewed pages opt into global search with `data-pagefind-body`. Search-result metadata uses a stable category field and an optional reporting/reference period. Future civic routes join the same index only after they contain reviewed publishable content.
-
-Home and the Search route are intentionally outside the primary Pagefind result corpus. Raw source PDFs are not added as primary global-search records during Phase 4G.3.
+A broader site-wide search may be reconsidered only if later content volume and resident use demonstrate a real need.
 
 ## Civic data architecture
 
 ```text
 official source
 → source registration
-→ staging
+→ staging when needed
 → schema and domain validation
 → human review
 → normalized production data
@@ -87,7 +79,7 @@ Validation covers the implemented civic domains and their provenance, identifier
 
 ## MVP infrastructure rules
 
-Do not add a runtime database, authentication, CMS, application API, analytics, queue, vector database, object storage, or runtime AI service unless an approved product requirement requires it.
+Do not add a runtime database, authentication, CMS, application API, analytics, queue, vector database, object storage, search service, or runtime AI service unless an approved product requirement requires it.
 
 The current application has no runtime database, API server, authentication system, CMS, or application server.
 
@@ -102,7 +94,7 @@ npm run lint
 npm run build
 ```
 
-CI validates the application and civic-data build. `npm run build` also generates the Pagefind static search index after prerendering. CI is separate from Cloudflare deployment.
+CI validates the application and civic-data build. CI is separate from Cloudflare deployment.
 
 ## Deployment
 
