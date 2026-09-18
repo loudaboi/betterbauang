@@ -296,18 +296,52 @@ Brand-specific logo and color decisions remain deferred until the brand phase.
 
 ## 10. Remaining Phase 4G roadmap
 
-### 4G.3 — Homepage + Global Search
+### 4G.3 — Homepage + Global Search Foundation
 
 Next.
 
-Primary goals:
+4G.3 establishes:
 
-- establish homepage hierarchy around resident tasks;
-- implement Pagefind-based static global search;
-- define useful result metadata/categories;
+- the durable homepage foundation;
+- the global static-search infrastructure;
+- the search route and result model;
+- the information hierarchy that later civic domains will plug into.
+
+4G.3 is not:
+
+- the final content-complete homepage;
+- a temporary homepage architecture built around only the currently populated legacy routes;
+- an implementation of Emergency, Services, Government, or Transparency before their own phases.
+
+The homepage foundation should support the evidence-backed V1 product surface:
+
+- Search;
+- Services;
+- Emergency;
+- Government;
+- Barangays;
+- Transparency and Finances;
+- Procurement;
+- documents and audits;
+- About Bauang;
+- trust, sources, and corrections.
+
+Only destinations backed by reviewed production content should be active. Do not create fake cards, disabled civic features, placeholder claims, or dead navigation.
+
+Homepage composition is progressive across later feature phases. As 4G.4 through 4G.7 publish Emergency, Services, Government, and Transparency, those real domains should integrate into the existing homepage hierarchy without requiring a homepage redesign. Final integration is checked again during the later trust, SEO, accessibility, and public-QA phases.
+
+Pagefind should provide one durable static-search foundation that current reviewed pages can join now and later civic domains can join as they become publishable.
+
+A generic eLGU homepage call to action is not required by 4G.3. eLGU should primarily appear where a verified service routes to the official government transaction destination. A generic official-services link may be added later only when it clearly improves the homepage hierarchy.
+
+Primary implementation goals:
+
+- establish a restrained, task-oriented homepage centered on finding public information quickly;
+- implement Pagefind-based static global search and a real `/search` route;
+- define a small stable result metadata convention that can expand across later civic domains;
 - preserve mobile and accessibility behavior;
 - surface only routes that contain useful reviewed content;
-- prepare entry points for later Services, Emergency, Government, and Transparency phases without publishing fake or dead features.
+- avoid overfitting the homepage or search system to the currently populated Bauang, Barangays, Procurement, and About routes.
 
 ### 4G.4 — Emergency
 
