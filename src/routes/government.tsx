@@ -5,7 +5,6 @@ import type { GovernmentOffice } from '../domain/civic-data/government.ts'
 import {
   getBarangays,
   getGovernmentDirectory,
-  getMunicipality,
   getSources,
 } from '../lib/civic-data.server.ts'
 import { toTelHref } from '../lib/phone.ts'
@@ -76,10 +75,9 @@ function ContactLink({ contact }: { contact: GovernmentContact }) {
 }
 
 export async function loader() {
-  const [government, barangays, municipality, sources] = await Promise.all([
+  const [government, barangays, sources] = await Promise.all([
     getGovernmentDirectory(),
     getBarangays(),
-    getMunicipality(),
     getSources(),
   ])
 
@@ -107,26 +105,50 @@ export async function loader() {
     municipalContact = { office: municipalOffice, source }
   }
 
-  const barangaySource = sourceById.get(municipality.provenance.sourceId)
+  const barangayProvenance = barangays[0]?.provenance
+
+  if (!barangayProvenance) {
+    throw new Response('Barangay provenance not found', { status: 500 })
+  }
+
+  const barangaySource = sourceById.get(barangayProvenance.sourceId)
 
   if (!barangaySource) {
     throw new Response('Barangay source not found', { status: 500 })
   }
 
+  const barangayEntries = barangays.map((barangay) => {
+    const leadership = barangay.punongBarangay ?? null
+
+    if (!leadership) {
+      return { barangay, leadershipSource: null }
+    }
+
+    const leadershipSource = sourceById.get(leadership.provenance.sourceId)
+
+    if (!leadershipSource) {
+      throw new Response(`Barangay leadership source not found for ${barangay.name}`, {
+        status: 500,
+      })
+    }
+
+    return { barangay, leadershipSource }
+  })
+
   return {
     government,
-    barangays,
+    barangayEntries,
     rosterSource,
     municipalContact,
     barangaySource,
-    barangayProvenance: municipality.provenance,
+    barangayProvenance,
   }
 }
 
 export default function GovernmentRoute() {
   const {
     government,
-    barangays,
+    barangayEntries,
     rosterSource,
     municipalContact,
     barangaySource,
@@ -270,19 +292,62 @@ export default function GovernmentRoute() {
             className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-neutral-950"
             id="barangays-heading"
           >
-            {barangays.length} barangays
+            {barangayEntries.length} barangays
           </h2>
           <p className="mt-3 text-sm leading-6 text-neutral-600">
-            Bauang&apos;s barangays are listed here as part of Government. Current Punong Barangay and direct contact details are shown only after a competent current source passes review; older directories are not treated as current merely because they are complete.
+            Barangay identity comes from PSA data. Current Punong Barangay and phone details appear only when a separately sourced current record has passed review. Unsupported fields are omitted rather than shown as placeholders.
           </p>
         </div>
 
-        <ul className="mt-7 grid gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
-          {barangays.map((barangay) => (
-            <li className="bg-white px-4 py-4" key={barangay.id}>
-              <span className="text-sm font-medium text-neutral-950">{barangay.name}</span>
-            </li>
-          ))}
+        <ul className="mt-7 grid gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-2">
+          {barangayEntries.map(({ barangay, leadershipSource }) => {
+            const leadership = barangay.punongBarangay
+
+            return (
+              <li className="bg-white px-4 py-4 sm:px-5" key={barangay.id}>
+                <h3 className="text-sm font-semibold text-neutral-950">{barangay.name}</h3>
+
+                {leadership ? (
+                  <div className="mt-3 border-t border-neutral-100 pt-3">
+                    <p className="text-xs text-neutral-500">Punong Barangay</p>
+                    <p className="mt-1 text-sm font-medium text-neutral-950">{leadership.name}</p>
+
+                    {leadership.phoneNumbers.length > 0 ? (
+                      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                        {leadership.phoneNumbers.map((phoneNumber) => (
+                          <a
+                            aria-label={`Call ${leadership.name} of ${barangay.name} at ${phoneNumber}`}
+                            className="inline-flex min-h-10 items-center text-sm font-semibold tabular-nums text-neutral-950 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900"
+                            href={toTelHref(phoneNumber)}
+                            key={phoneNumber}
+                          >
+                            {phoneNumber}
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    <p className="mt-2 text-xs leading-5 text-neutral-500">
+                      Verified {formatDate(leadership.provenance.lastVerifiedAt)}
+                      {leadershipSource ? (
+                        <>
+                          {' · '}
+                          <a
+                            className="underline decoration-neutral-300 underline-offset-2 hover:decoration-neutral-700"
+                            href={leadershipSource.url}
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            Source <span aria-hidden="true">↗</span>
+                          </a>
+                        </>
+                      ) : null}
+                    </p>
+                  </div>
+                ) : null}
+              </li>
+            )
+          })}
         </ul>
 
         <ProvenancePanel provenance={barangayProvenance} source={barangaySource} />

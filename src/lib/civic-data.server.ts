@@ -66,11 +66,6 @@ export async function getBarangays() {
   return barangaysPromise
 }
 
-export async function getBarangayBySlug(slug: string) {
-  const barangays = await getBarangays()
-  return barangays.find((barangay) => barangay.slug === slug) ?? null
-}
-
 export async function getProcurementRecords() {
   return procurementPromise
 }

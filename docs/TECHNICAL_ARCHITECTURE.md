@@ -22,7 +22,9 @@ Node.js 22.23.2 is pinned in `.node-version`.
 
 BetterBauang uses React Router Framework Mode with `ssr: false`.
 
-Canonical public civic routes are prerendered during the production build. `react-router.config.ts` derives service and procurement detail routes from validated normalized civic data rather than maintaining duplicate route lists. Barangays remain normalized civic data consumed by Government and Statistics and do not have separate V1 public index/detail routes.
+Canonical public civic routes are prerendered during the production build. `react-router.config.ts` derives service and procurement detail routes from validated normalized civic data rather than maintaining duplicate route lists.
+
+Barangays remain normalized civic data consumed directly by Government and later Statistics. They do not have separate V1 public index/detail routes.
 
 The public deployable output is:
 
@@ -38,11 +40,11 @@ Core civic information is emitted as generated HTML rather than depending on cli
 
 V1 does not require a site-wide global-search subsystem.
 
-The approved discovery pattern is resident-task navigation plus a lightweight `Find a Service` experience once normalized service records are available.
+The approved discovery pattern is resident-task navigation plus a lightweight `Find a Service` experience over normalized service records.
 
-`Find a Service` should operate over reviewed normalized service data and does not justify a search server, external index, runtime API, database, or AI layer.
+`Find a Service` does not justify a search server, external index, runtime API, database, or AI layer.
 
-Domain-specific browsing and filtering remain inside the relevant section, such as Services or Procurement.
+Domain-specific browsing and filtering remain inside the relevant section.
 
 A broader site-wide search may be reconsidered only if later content volume and resident use demonstrate a real need.
 
@@ -70,6 +72,22 @@ data/
 The production application must not consume staging data.
 
 `src/lib/civic-data.server.ts` reads normalized JSON during build/server execution and validates it again through the existing Zod schemas. Routes do not fetch civic data from a runtime API.
+
+### Barangay data boundary
+
+Barangay records combine stable municipality/geography data with an optional separately provenanced current-leadership record.
+
+The stable record includes fields such as PSGC identifiers, classification, and period-labeled population. Current barangay leadership/contact uses the optional `punongBarangay` object:
+
+```text
+punongBarangay.name
+punongBarangay.phoneNumbers[]
+punongBarangay.provenance
+```
+
+The leadership object is optional by design. Missing current evidence must not force placeholders or stale values into production data.
+
+PSA provenance for stable barangay identity/population does not satisfy the provenance requirement for current Punong Barangay/contact claims.
 
 ## Runtime validation
 

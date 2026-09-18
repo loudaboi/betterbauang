@@ -2,6 +2,14 @@ import { z } from 'zod'
 
 import { provenanceSchema } from './provenance.ts'
 
+export const punongBarangaySchema = z
+  .object({
+    name: z.string().min(1),
+    phoneNumbers: z.array(z.string().min(1)),
+    provenance: provenanceSchema,
+  })
+  .strict()
+
 export const barangaySchema = z
   .object({
     recordType: z.literal('barangay'),
@@ -14,6 +22,7 @@ export const barangaySchema = z
     municipalityId: z.string().min(1),
     population: z.number().int().nonnegative(),
     populationReferencePeriod: z.string().min(1),
+    punongBarangay: punongBarangaySchema.nullable().optional(),
     provenance: provenanceSchema,
   })
   .strict()
@@ -42,4 +51,5 @@ export const barangayCollectionSchema = z.array(barangaySchema).superRefine((bar
   })
 })
 
+export type PunongBarangay = z.infer<typeof punongBarangaySchema>
 export type Barangay = z.infer<typeof barangaySchema>

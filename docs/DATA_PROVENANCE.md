@@ -83,6 +83,8 @@ Use PSA / PSGC for:
 - urban/rural classification where published;
 - current published population values and their census/reference period.
 
+PSA/PSGC provenance for a barangay's identity or population does **not** establish the current Punong Barangay or a current barangay contact number.
+
 ### Services
 
 Use the Municipality of Bauang Citizen's Charter for reviewed service requirements, steps, fees, processing times, and responsible offices.
@@ -91,7 +93,18 @@ Use DICT / Bauang eLGU as the authoritative transaction destination where an off
 
 ### Government and offices
 
-Use current competent LGU/PGLU records for officeholders and office information. Reverify current officeholders before release and after known change events.
+Use current competent LGU/PGLU/DILG records for officeholders and office information. Reverify current officeholders before release and after known change events.
+
+Barangay leadership/contact is separately sourced from barangay geography/population. A normalized `punongBarangay` record must carry its own provenance and freshness metadata.
+
+For Punong Barangay names and direct phone numbers:
+
+- prefer a current authoritative barangay-official directory or current competent LGU/PGLU/DILG publication;
+- verify records individually when no current complete directory is available;
+- do not inherit PSA provenance for leadership/contact claims;
+- do not treat an older directory as current merely because it is complete;
+- if a current source verifies a name but not a phone number, publish the name only and leave phone numbers absent;
+- if no competent current source supports the field, omit it rather than render `TBA`, a guess, or a third-party value.
 
 ### Emergency
 
@@ -143,7 +156,8 @@ Examples:
 
 - emergency contacts;
 - service routes and fees;
-- current officeholders.
+- current municipal officeholders;
+- current Punong Barangays and direct barangay contact numbers.
 
 Behavior:
 

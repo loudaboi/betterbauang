@@ -84,7 +84,7 @@ Prefer the smallest route surface that helps a resident complete a task or under
 For V1:
 
 - Barangays belong inside Government. Separate barangay index/detail pages are unnecessary when they only repeat identity, population, or source metadata already available elsewhere.
-- A separate barangay profile becomes justified only when there is enough distinct verified resident-useful content, such as a current Punong Barangay, direct contact information, additional officials, local services, or other maintainable records.
+- A separate barangay profile becomes justified only when there is enough distinct verified resident-useful content, such as additional officials, local services, facilities, or other maintainable records.
 - Municipality-level reference statistics belong in Statistics and, selectively, the Home snapshot rather than requiring a permanent standalone `About Bauang` destination.
 - Procurement belongs conceptually under Transparency even if implementation URLs remain separate for maintainability.
 - Trust routes may remain separate because they support verification rather than primary navigation.
@@ -154,9 +154,24 @@ Service pages should make requirements, steps, fees, processing time, responsibl
 
 Organize current elected municipal officials, reviewed general municipal contact information, and all 39 barangays.
 
-Where a competent current source supports them, expose Punong Barangay names and direct contact numbers directly in the Government section.
+The intended V1 barangay presentation supports:
 
-Do not require separate barangay profile pages for V1 unless those profiles contain enough distinct verified information to justify them.
+```text
+Barangay name
+Punong Barangay, when current-source verified
+Direct phone number(s), when current-source verified
+Leadership/contact source and last-verified context
+```
+
+Rules:
+
+- barangay identity may come from PSA/PSGC, but leadership/contact must carry separate current provenance;
+- phone numbers should be tap-to-call;
+- omit unsupported fields rather than showing `TBA`, guesses, or stale values;
+- residents should not need a separate barangay profile page merely to see the name, Punong Barangay, or contact number;
+- partial verified coverage is acceptable after a documented current-source pass if competent sources do not support all 39 records.
+
+Government functional hierarchy should be completed during the rebuild across executive leadership, Sangguniang Bayan, municipal contact, barangays, and provenance. That is information architecture and functional QA, not the final visual-design pass.
 
 A complete municipal-office bureaucracy directory is not required for V1. Office-specific information should live in Services or Contact when that better matches the resident task.
 
@@ -263,7 +278,7 @@ Avoid:
 
 The rebuild comes first.
 
-Until Government finalization, Transparency, Statistics, and route consolidation are complete, presentation work should be limited to what is needed for readability, responsive behavior, accessibility, and functional QA.
+Until Government source closure and functional QA, Transparency, Statistics, and route consolidation are complete, presentation work should be limited to what is needed for readability, responsive behavior, accessibility, and functional QA.
 
 Do not lock a final visual system or redesign individual verticals in isolation during the rebuild.
 
