@@ -3,33 +3,77 @@ import { Link } from 'react-router'
 import type { EmergencyContact } from '../../domain/civic-data/emergency.ts'
 import { toTelHref } from '../../lib/phone.ts'
 
+type HotlineIconName = 'phone' | 'warning' | 'shield' | 'fire' | 'health'
+
 type EmergencyStripConfig = {
   id: string
   label: string
+  icon: HotlineIconName
 }
 
 const emergencyStripOrder: readonly EmergencyStripConfig[] = [
-  { id: 'emergency-unified-911', label: 'Unified 911' },
-  { id: 'emergency-bauang-mdrrmo', label: 'MDRRMO' },
-  { id: 'emergency-bauang-pnp', label: 'Police' },
-  { id: 'emergency-bauang-bfp', label: 'Fire' },
-  { id: 'emergency-bauang-mho', label: 'Health' },
+  { id: 'emergency-unified-911', label: 'Unified 911', icon: 'phone' },
+  { id: 'emergency-bauang-mdrrmo', label: 'MDRRMO', icon: 'warning' },
+  { id: 'emergency-bauang-pnp', label: 'Police', icon: 'shield' },
+  { id: 'emergency-bauang-bfp', label: 'Fire', icon: 'fire' },
+  { id: 'emergency-bauang-mho', label: 'Health', icon: 'health' },
 ]
 
 type EmergencyItem = EmergencyStripConfig & {
   contact: EmergencyContact
 }
 
-function PhoneIcon() {
+function HotlineIcon({ name }: { name: HotlineIconName }) {
+  if (name === 'warning') {
+    return (
+      <svg aria-hidden="true" className="size-4 shrink-0" viewBox="0 0 24 24">
+        <path d="M12 2 22 20H2L12 2Z" fill="currentColor" />
+        <path d="M11 8h2v6h-2V8Zm0 8h2v2h-2v-2Z" fill="var(--destructive)" />
+      </svg>
+    )
+  }
+
+  if (name === 'shield') {
+    return (
+      <svg aria-hidden="true" className="size-4 shrink-0" viewBox="0 0 24 24">
+        <path d="M12 2 4 5v6c0 5.1 3.3 9.5 8 11 4.7-1.5 8-5.9 8-11V5l-8-3Z" fill="currentColor" />
+      </svg>
+    )
+  }
+
+  if (name === 'fire') {
+    return (
+      <svg aria-hidden="true" className="size-4 shrink-0" viewBox="0 0 24 24">
+        <path
+          d="M13.4 2c.5 3-1.1 4.8-2.7 6.5-1.1 1.2-1.9 2.3-1.4 4 .3 1 .9 1.7 1.8 2.3-.1-2.2 1-3.9 2.8-5.5 2.7 2.2 4.6 4.7 4.6 8A6.5 6.5 0 0 1 5.5 17c0-3.5 1.8-6.2 4.8-9C11.8 6.6 13 4.9 13.4 2Z"
+          fill="currentColor"
+        />
+      </svg>
+    )
+  }
+
+  if (name === 'health') {
+    return (
+      <svg aria-hidden="true" className="size-4 shrink-0" viewBox="0 0 24 24">
+        <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z" fill="currentColor" />
+      </svg>
+    )
+  }
+
   return (
-    <svg aria-hidden="true" className="size-3.5 shrink-0" fill="none" viewBox="0 0 24 24">
+    <svg aria-hidden="true" className="size-4 shrink-0" viewBox="0 0 24 24">
       <path
-        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8.09 9.65a16 16 0 0 0 6 6l1.19-1.19a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
+        d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2a1.2 1.2 0 0 1 1.2-.3c1 .3 2.1.5 3.2.5.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2A17 17 0 0 1 2.8 4.2C2.8 3.5 3.3 3 4 3h3.4c.7 0 1.2.5 1.2 1.2 0 1.1.2 2.2.5 3.2.1.4 0 .9-.3 1.2l-2.2 2.2Z"
+        fill="currentColor"
       />
+    </svg>
+  )
+}
+
+function ArrowIcon() {
+  return (
+    <svg aria-hidden="true" className="size-3.5" fill="none" viewBox="0 0 16 16">
+      <path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" />
     </svg>
   )
 }
@@ -40,14 +84,27 @@ function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplica
   return (
     <a
       aria-label={duplicate ? undefined : `Call ${item.contact.agency} at ${phoneNumber}`}
-      className="inline-flex min-h-8 shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 text-xs transition-colors hover:bg-white/15"
+      className="inline-flex min-h-9 shrink-0 items-center gap-2 rounded-full bg-white/15 px-3.5 text-xs font-medium transition-colors hover:bg-white/25"
       href={toTelHref(phoneNumber)}
       tabIndex={duplicate ? -1 : undefined}
     >
-      <PhoneIcon />
-      <span className="font-medium">{item.label}:</span>
+      <HotlineIcon name={item.icon} />
+      <span>{item.label}:</span>
       <span className="font-semibold tabular-nums">{phoneNumber}</span>
     </a>
+  )
+}
+
+function AllHotlinesLink({ duplicate = false }: { duplicate?: boolean }) {
+  return (
+    <Link
+      className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 text-xs font-semibold text-destructive transition-colors hover:bg-white/90"
+      tabIndex={duplicate ? -1 : undefined}
+      to="/contact"
+    >
+      All hotlines
+      <ArrowIcon />
+    </Link>
   )
 }
 
@@ -55,9 +112,9 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
   return (
     <div
       aria-hidden={duplicate ? true : undefined}
-      className="bb-emergency-ticker-copy flex shrink-0 items-center gap-2 pl-4 pr-6 sm:pl-6"
+      className="bb-emergency-ticker-copy flex min-h-12 shrink-0 items-center gap-2.5 pl-4 pr-7 sm:pl-6"
     >
-      <span className="shrink-0 text-[0.6875rem] font-semibold uppercase tracking-[0.12em]">
+      <span className="mr-1 shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.13em]">
         Emergency Hotlines
       </span>
 
@@ -65,13 +122,7 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
         <HotlineLink duplicate={duplicate} item={item} key={item.contact.id} />
       ))}
 
-      <Link
-        className="inline-flex min-h-8 shrink-0 items-center px-2 text-xs font-semibold hover:underline"
-        tabIndex={duplicate ? -1 : undefined}
-        to="/contact"
-      >
-        All contacts <span className="ml-1" aria-hidden="true">→</span>
-      </Link>
+      <AllHotlinesLink duplicate={duplicate} />
     </div>
   )
 }
@@ -91,20 +142,18 @@ export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
         </div>
       </div>
 
-      <div className="mx-auto hidden max-w-7xl items-center gap-4 px-6 py-1.5 xl:flex xl:px-8">
-        <span className="shrink-0 text-[0.6875rem] font-semibold uppercase tracking-[0.12em]">
+      <div className="mx-auto hidden min-h-12 max-w-7xl items-center gap-4 px-6 py-2 xl:flex xl:px-8">
+        <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.13em]">
           Emergency Hotlines
         </span>
 
-        <div className="flex flex-1 items-center justify-center gap-2">
+        <div className="flex flex-1 items-center justify-center gap-2.5">
           {items.map((item) => (
             <HotlineLink item={item} key={item.contact.id} />
           ))}
         </div>
 
-        <Link className="shrink-0 text-xs font-semibold hover:underline" to="/contact">
-          All contacts <span className="ml-1" aria-hidden="true">→</span>
-        </Link>
+        <AllHotlinesLink />
       </div>
     </aside>
   )

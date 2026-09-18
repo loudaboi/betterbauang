@@ -20,7 +20,7 @@
   --bb-ink-muted: #66606a;
   --bb-line: #ddd8df;
   --bb-line-strong: #c8c0ca;
-  --bb-danger: #9d2d3d;
+  --bb-danger: #d60000;
 
   --background: var(--bb-paper);
   --foreground: var(--bb-ink);
