@@ -16,7 +16,7 @@ BetterBauang is an independent public-information layer for Bauang, La Union.
 The interface should help residents:
 
 - understand and access municipal services;
-- find government offices, officials, barangays, and contacts;
+- find government officials, barangay leadership, offices, and contacts where source-ready;
 - inspect statistics and transparency information;
 - reach emergency contacts quickly;
 - verify where material civic information came from.
@@ -75,6 +75,22 @@ Search      → Find a Service inside Home/Services
 
 Legislative should become a primary destination only if a maintainable official legislation corpus later justifies it. Otherwise relevant laws/ordinances belong under Government.
 
+## Route and destination discipline
+
+Normalized data does not automatically deserve its own page.
+
+Prefer the smallest route surface that helps a resident complete a task or understand a civic subject.
+
+For V1:
+
+- Barangays belong inside Government. Separate barangay index/detail pages are unnecessary when they only repeat identity, population, or source metadata already available elsewhere.
+- A separate barangay profile becomes justified only when there is enough distinct verified resident-useful content, such as a current Punong Barangay, direct contact information, additional officials, local services, or other maintainable records.
+- Municipality-level reference statistics belong in Statistics and, selectively, the Home snapshot rather than requiring a permanent standalone `About Bauang` destination.
+- Procurement belongs conceptually under Transparency even if implementation URLs remain separate for maintainability.
+- Trust routes may remain separate because they support verification rather than primary navigation.
+
+Do not preserve development scaffolding as permanent information architecture without a resident-use justification.
+
 ## Service discovery
 
 V1 search is primarily **Find a Service**.
@@ -122,9 +138,11 @@ Use:
 - Find a Service;
 - popular/useful services;
 - emergency access;
-- shortcuts to Government, Statistics, Transparency, Contact, and Barangays;
+- shortcuts to Government, Statistics, Transparency, and Contact;
 - a small Bauang snapshot when useful;
 - trust/source links.
+
+Barangays are reached through Government rather than promoted as a separate primary Home destination.
 
 ### Services
 
@@ -134,11 +152,19 @@ Service pages should make requirements, steps, fees, processing time, responsibl
 
 ### Government
 
-Organize officials, municipal offices, government directory information, and Barangays.
+Organize current elected municipal officials, reviewed general municipal contact information, and all 39 barangays.
+
+Where a competent current source supports them, expose Punong Barangay names and direct contact numbers directly in the Government section.
+
+Do not require separate barangay profile pages for V1 unless those profiles contain enough distinct verified information to justify them.
+
+A complete municipal-office bureaucracy directory is not required for V1. Office-specific information should live in Services or Contact when that better matches the resident task.
 
 ### Statistics
 
 Present period-labeled, sourced data without decorative dashboard behavior.
+
+Absorb useful municipality-reference information that otherwise exists only as development scaffolding.
 
 ### Transparency
 
@@ -149,8 +175,8 @@ Organize finances, procurement, public documents, audits, and appropriately attr
 Provide the complete contact layer:
 
 - emergency contacts;
-- Municipal Hall;
-- municipal offices;
+- Municipal Hall/general municipal contact;
+- municipal offices where current contact details are source-ready;
 - official government channels and destinations.
 
 ## Provenance presentation
@@ -211,9 +237,9 @@ The shared shell must:
 
 ## Visual direction
 
-BetterBauang should feel like a modern public-service product rather than a generic municipal template.
+BetterBauang should eventually feel like a modern public-service product rather than a generic municipal template.
 
-Prefer:
+Approved broad direction:
 
 - strong typography;
 - generous but disciplined whitespace;
@@ -233,6 +259,18 @@ Avoid:
 - oversized political imagery;
 - decorative complexity that competes with civic information.
 
+### UI timing rule
+
+The rebuild comes first.
+
+Until Government finalization, Transparency, Statistics, and route consolidation are complete, presentation work should be limited to what is needed for readability, responsive behavior, accessibility, and functional QA.
+
+Do not lock a final visual system or redesign individual verticals in isolation during the rebuild.
+
+After the rebuild is complete, stop feature work and run a dedicated UI planning phase before visual implementation. That plan should evaluate the complete product together and define reusable patterns for typography, spacing, hierarchy, navigation, lists/tables, civic-data presentation, provenance, mobile behavior, and the final Home composition.
+
+The broad visual direction above is a constraint for that later plan, not a substitute for it.
+
 ## Accessibility
 
 Baseline requirements:
@@ -245,6 +283,8 @@ Baseline requirements:
 - mobile tap targets that do not require precision;
 - no essential information conveyed only by color;
 - source and verification information readable by assistive technology.
+
+Accessibility baseline work remains part of each rebuild vertical. Final cross-device accessibility review happens after the visual system is applied.
 
 ## Architecture boundary
 
