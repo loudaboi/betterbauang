@@ -13,6 +13,7 @@ export default {
 
     return [
       '/',
+      '/contact',
       '/bauang',
       '/barangays',
       ...barangays.map((barangay) => `/barangays/${barangay.slug}`),
