@@ -80,9 +80,7 @@ function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplica
       tabIndex={duplicate ? -1 : undefined}
     >
       <HotlineIcon name={item.icon} />
-      <span className={isUnified911 ? 'font-semibold' : undefined}>
-        {item.label}{isUnified911 ? '' : ':'}
-      </span>
+      <span className={isUnified911 ? 'font-semibold' : undefined}>{item.label}</span>
       {!isUnified911 && <span className="font-semibold tabular-nums">{phoneNumber}</span>}
     </a>
   )
@@ -92,9 +90,9 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
   return (
     <div
       aria-hidden={duplicate ? true : undefined}
-      className="bb-emergency-ticker-copy flex min-h-12 shrink-0 items-center gap-2.5 pl-4 pr-7 sm:pl-6"
+      className="bb-emergency-ticker-copy flex min-h-12 shrink-0 items-center gap-4 pl-4 pr-8 sm:pl-6"
     >
-      <span className="mr-1 shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.13em]">
+      <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.08em]">
         Emergency Hotlines
       </span>
 
@@ -120,12 +118,12 @@ export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
         </div>
       </div>
 
-      <div className="mx-auto hidden min-h-12 w-full max-w-[96rem] items-center gap-6 px-8 py-2 xl:flex xl:px-10 2xl:px-12">
-        <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.13em]">
-          Emergency Hotlines
-        </span>
+      <div className="mx-auto hidden min-h-12 w-full max-w-[96rem] items-center justify-center px-8 py-2 xl:flex xl:px-10 2xl:px-12">
+        <div className="flex items-center justify-center gap-4 2xl:gap-5">
+          <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.08em]">
+            Emergency Hotlines
+          </span>
 
-        <div className="flex flex-1 items-center justify-between gap-3">
           {items.map((item) => (
             <HotlineLink item={item} key={item.contact.id} />
           ))}
