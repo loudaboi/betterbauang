@@ -7,14 +7,14 @@ const currentDestinations = [
     description: 'Find reviewed municipal services, requirements, steps, and official transaction routes.',
   },
   {
+    to: '/government',
+    title: 'Government',
+    description: 'See the current reviewed municipal roster, general municipal contact, and all 39 barangays.',
+  },
+  {
     to: '/contact',
     title: 'Contact',
     description: 'Find reviewed emergency and general municipal contact information.',
-  },
-  {
-    to: '/barangays',
-    title: 'Barangays',
-    description: 'Browse reviewed barangay reference pages and their published source context.',
   },
   {
     to: '/bauang',
@@ -42,7 +42,7 @@ export default function HomeRoute() {
           Public information about Bauang, made easier to use.
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-700 sm:text-lg">
-          BetterBauang is an independent civic information project for Bauang, La Union. Browse the reviewed public information currently available while the Government, Transparency, and Statistics sections are built from verified sources.
+          BetterBauang is an independent civic information project for Bauang, La Union. Browse the reviewed public information currently available while the Transparency and Statistics sections are built from verified sources.
         </p>
       </section>
 
