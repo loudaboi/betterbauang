@@ -9,18 +9,23 @@ const livePrimaryNav = [
 
 function LanguageControls() {
   return (
-    <div className="flex items-center gap-4 text-xs font-semibold" aria-label="Language availability">
-      <span className="border-b-2 border-primary pb-1 text-primary">EN</span>
+    <div
+      className="inline-flex items-center gap-1 rounded-lg border border-border bg-background p-1"
+      aria-label="Language availability"
+    >
+      <span className="min-w-9 rounded-md bg-primary px-2.5 py-1.5 text-center text-xs font-semibold text-primary-foreground">
+        EN
+      </span>
       <span
         aria-disabled="true"
-        className="pb-1 text-muted-foreground opacity-55"
+        className="min-w-9 rounded-md px-2.5 py-1.5 text-center text-xs font-semibold text-muted-foreground opacity-55"
         title="Filipino content is not yet published"
       >
         FIL
       </span>
       <span
         aria-disabled="true"
-        className="pb-1 text-muted-foreground opacity-55"
+        className="min-w-9 rounded-md px-2.5 py-1.5 text-center text-xs font-semibold text-muted-foreground opacity-55"
         title="Ilocano content is not yet published"
       >
         ILO
@@ -36,7 +41,7 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
         <NavLink
           className={({ isActive }) =>
             [
-              'flex min-h-12 items-center border-b border-border text-sm font-medium transition-colors lg:min-h-11 lg:border-b-0',
+              'flex min-h-12 items-center border-b border-border text-base font-medium transition-colors lg:min-h-11 lg:border-b-0',
               isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
             ].join(' ')
           }
@@ -54,12 +59,18 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
 function Brand({ mobile = false }: { mobile?: boolean }) {
   return (
     <Link className="min-w-0 text-foreground" to="/" aria-label="BetterBauang home">
-      <span className={mobile ? 'block text-base font-semibold tracking-[-0.02em]' : 'block text-lg font-semibold tracking-[-0.025em]'}>
+      <span
+        className={
+          mobile
+            ? 'block text-base font-semibold tracking-[-0.02em]'
+            : 'block text-lg font-semibold tracking-[-0.025em]'
+        }
+      >
         BetterBauang
       </span>
       {!mobile && (
-        <span className="mt-0.5 block max-w-64 text-xs leading-4 text-muted-foreground">
-          BetterLGU · Independent community civic portal for Bauang
+        <span className="mt-0.5 block whitespace-nowrap text-[0.6875rem] leading-4 text-muted-foreground">
+          Independent Civic Community Portal for Bauang
         </span>
       )}
     </Link>
@@ -72,7 +83,7 @@ export function SiteHeader() {
   return (
     <header className="relative border-b border-border bg-card">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6 xl:px-8">
-        <div className="hidden min-h-20 grid-cols-[minmax(15rem,1fr)_auto_minmax(15rem,1fr)] items-center gap-8 lg:grid">
+        <div className="hidden min-h-20 grid-cols-[minmax(17rem,1fr)_auto_minmax(17rem,1fr)] items-center gap-8 lg:grid">
           <div className="justify-self-start">
             <Brand />
           </div>
@@ -112,7 +123,10 @@ export function SiteHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="absolute left-0 right-0 top-full z-40 border-b border-border bg-card lg:hidden" id="mobile-site-menu">
+        <div
+          className="absolute left-0 right-0 top-full z-40 border-b border-border bg-card lg:hidden"
+          id="mobile-site-menu"
+        >
           <div className="mx-auto max-w-7xl px-4 pb-5 sm:px-6">
             <PrimaryNavigation onNavigate={() => setMobileOpen(false)} />
 
@@ -123,8 +137,8 @@ export function SiteHeader() {
 
             <div className="pt-5">
               <p className="text-xs font-semibold text-foreground">BetterLGU</p>
-              <p className="mt-1 max-w-sm text-xs leading-5 text-muted-foreground">
-                Independent community civic portal for Bauang, La Union.
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                Independent Civic Community Portal for Bauang
               </p>
             </div>
           </div>
