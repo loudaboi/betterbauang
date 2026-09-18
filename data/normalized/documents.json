@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "document-business-permit-application-form",
+    "type": "form",
+    "title": "Application Form for Business Permit",
+    "issuingAgency": "Municipality of Bauang",
+    "reportingPeriod": null,
+    "publicationDate": null,
+    "originalUrl": "https://bauanglaunion.gov.ph/wp-content/uploads/2024/01/New-Business-Permit-Application-Form.pdf",
+    "availability": "available",
+    "relatedRecordIds": [
+      "service-register-new-business",
+      "service-renew-business"
+    ],
+    "provenance": {
+      "sourceId": "SRC-001",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "pageReference": "BPLO.F.0006; effectivity date December 27, 2022",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "Official Municipality-hosted business permit application form. The form itself provides New and Renewal application options."
+    }
+  }
+]
