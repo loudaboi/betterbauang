@@ -28,7 +28,7 @@ export default function BarangayDetailRoute() {
   const { barangay, source } = useLoaderData<typeof loader>()
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-6 py-12">
+    <main data-pagefind-body data-pagefind-meta="category:Barangay" data-pagefind-filter="category:Barangay" className="mx-auto min-h-screen max-w-3xl px-6 py-12">
       <Link className="text-sm underline" to="/barangays">
         All barangays
       </Link>
@@ -42,7 +42,7 @@ export default function BarangayDetailRoute() {
         <div>
           <dt className="text-sm text-neutral-600">Population</dt>
           <dd className="mt-1 text-2xl font-semibold">{barangay.population.toLocaleString('en-PH')}</dd>
-          <dd className="text-sm text-neutral-600">{barangay.populationReferencePeriod}</dd>
+          <dd data-pagefind-meta="period" className="text-sm text-neutral-600">{barangay.populationReferencePeriod}</dd>
         </div>
         <div>
           <dt className="text-sm text-neutral-600">Classification</dt>

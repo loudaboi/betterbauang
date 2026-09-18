@@ -18,6 +18,7 @@ export default {
       ...barangays.map((barangay) => `/barangays/${barangay.slug}`),
       '/procurement',
       ...procurementRecords.map((record) => `/procurement/${record.id}`),
+      '/search',
       '/about',
       '/about/sources',
       '/about/methodology',

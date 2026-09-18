@@ -17,6 +17,7 @@ const primaryNav = [
   { to: '/barangays', label: 'Barangays' },
   { to: '/procurement', label: 'Procurement' },
   { to: '/about', label: 'About' },
+  { to: '/search', label: 'Search' },
 ]
 
 function PrimaryNav({ mobile = false }: { mobile?: boolean }) {
