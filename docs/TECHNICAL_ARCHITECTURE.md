@@ -48,6 +48,33 @@ Domain-specific browsing and filtering remain inside the relevant section.
 
 A broader site-wide search may be reconsidered only if later content volume and resident use demonstrate a real need.
 
+## UI architecture
+
+Tailwind CSS 4 is the BetterBauang design-system layer.
+
+Shared visual values are expressed through semantic CSS variables and Tailwind theme tokens rather than hardcoded repeatedly in page components. The initial token layer includes a provisional purple brand ramp, warm neutral surfaces, semantic foreground/background roles, border/input roles, focus color, destructive state, and shared radii. Exact brand values may be tuned later without rewriting page markup.
+
+`components.json` configures the repository for shadcn/ui. BetterBauang uses shadcn as a source for selected local components, not as a separate hosted UI runtime or as the product's visual identity.
+
+Import aliases use:
+
+```text
+@/* → ./src/*
+```
+
+The component policy is:
+
+- add a shadcn component only when the product uses it;
+- keep generated component source in the repository so it can be adapted to BetterBauang tokens and accessibility requirements;
+- do not preinstall a large component catalog;
+- add any required package dependency together with its `package-lock.json` change because CI uses `npm ci`;
+- use Lucide as the icon vocabulary when icons are introduced;
+- add chart dependencies only when a Statistics or Transparency view actually benefits from a chart;
+- prefer tables, lists, and plain values when they communicate the data more clearly than a chart;
+- do not add Kapwa, MUI, Chakra, Mantine, Ant Design, or another full UI framework without a demonstrated need.
+
+Page structure is not defined by the component library. Resident purpose, information hierarchy, and source-ready content are planned first; reusable components implement that plan afterward.
+
 ## Civic data architecture
 
 ```text

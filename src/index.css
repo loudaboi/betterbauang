@@ -1,38 +1,113 @@
 @import "tailwindcss";
 
 :root {
+  /* Provisional BetterBauang brand ramp. Tune values centrally as the visual system develops. */
+  --bb-purple-50: #faf7fd;
+  --bb-purple-100: #f3edf9;
+  --bb-purple-200: #e6d8f1;
+  --bb-purple-300: #d2bce6;
+  --bb-purple-400: #b895d5;
+  --bb-purple-500: #996cc0;
+  --bb-purple-600: #7f50ab;
+  --bb-purple-700: #6d3fa0;
+  --bb-purple-800: #55307e;
+  --bb-purple-900: #452866;
+  --bb-purple-950: #2c163f;
+
+  --bb-paper: #f8f7f4;
+  --bb-surface: #ffffff;
+  --bb-ink: #19161c;
+  --bb-ink-muted: #66606a;
+  --bb-line: #ddd8df;
+  --bb-line-strong: #c8c0ca;
+  --bb-danger: #9d2d3d;
+
+  --background: var(--bb-paper);
+  --foreground: var(--bb-ink);
+  --card: var(--bb-surface);
+  --card-foreground: var(--bb-ink);
+  --popover: var(--bb-surface);
+  --popover-foreground: var(--bb-ink);
+  --primary: var(--bb-purple-700);
+  --primary-foreground: #ffffff;
+  --secondary: var(--bb-purple-100);
+  --secondary-foreground: var(--bb-purple-900);
+  --muted: #efede9;
+  --muted-foreground: var(--bb-ink-muted);
+  --accent: var(--bb-purple-100);
+  --accent-foreground: var(--bb-purple-900);
+  --destructive: var(--bb-danger);
+  --destructive-foreground: #ffffff;
+  --border: var(--bb-line);
+  --input: var(--bb-line-strong);
+  --ring: var(--bb-purple-700);
+  --radius: 0.625rem;
+
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  color: #171717;
-  background: #ffffff;
+  color: var(--foreground);
+  background: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+}
+
 html {
   min-width: 320px;
-  background: #ffffff;
+  background: var(--background);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #ffffff;
+  color: var(--foreground);
+  background: var(--background);
 }
 
 ::selection {
-  background: #e5e5e5;
-  color: #171717;
+  color: var(--foreground);
+  background: var(--secondary);
 }
 
 a {
   text-underline-offset: 0.2em;
 }
 
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
 :focus-visible {
-  outline: 2px solid #171717;
+  outline: 2px solid var(--ring);
   outline-offset: 3px;
 }
 

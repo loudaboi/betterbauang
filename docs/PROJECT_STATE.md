@@ -1,9 +1,9 @@
 # BetterBauang Project State
 
 Status: Active implementation reference  
-Last synchronized: 2026-09-18
+Last synchronized: 2026-09-19
 
-This file is the authoritative V1 implementation sequence and completion-state reference.
+This file tracks the current V1 implementation state and the next work.
 
 Read alongside:
 
@@ -93,19 +93,19 @@ Approved V1 decisions:
 - Procurement belongs conceptually under Transparency. Existing procurement URLs may remain implementation routes if useful, but Procurement is not a primary navigation section.
 - About, Sources, and Methodology remain supporting trust routes.
 
-## 4. Rebuild and UI boundary
+## 4. Delivery approach
 
-Finish the information, data, route, and resident-task rebuild before final visual design.
+Data work and visual work now move together instead of waiting for one large redesign at the end.
 
-During the rebuild:
+Rules:
 
-- source closure, normalization, route consolidation, semantic hierarchy, responsive functionality, and accessibility baseline are in scope;
-- neutral functional presentation is allowed where necessary;
-- final typography, spacing system, visual identity, page composition, component styling, and final homepage design are deferred.
-
-After rebuild closure, stop feature work and conduct a dedicated UI planning phase before changing the final visual system.
-
-Do not silently transition from rebuild work into UI design.
+- civic claims remain source-gated regardless of presentation work;
+- shared design tokens and reusable components come before one-off page styling;
+- page structure and content hierarchy must be planned before that page is rebuilt visually;
+- brand colors, spacing, radii, states, and other reusable values belong in tokens rather than scattered hardcoded values;
+- shadcn/ui is a source for selected reusable components, not the BetterBauang visual identity;
+- visual work must not invent missing data or preserve obsolete routes for design convenience;
+- accessibility and responsive behavior are part of each page build, not a later patch.
 
 ## 5. Current implementation state
 
@@ -147,7 +147,7 @@ Completed:
 
 ### Government
 
-Status: **IN PROGRESS — LEADERSHIP/CONTACT SOURCE CLOSURE NEXT**
+Status: **IN PROGRESS — LEADERSHIP/CONTACT SOURCE CLOSURE**
 
 Core work already completed:
 
@@ -160,7 +160,7 @@ Core work already completed:
 - Government added to live navigation;
 - stale 2024 barangay-leadership/contact material was not promoted as current 2026 data.
 
-Implementation contract now supports the intended barangay information model:
+The barangay implementation supports:
 
 ```text
 Barangay name
@@ -169,23 +169,16 @@ Verified direct phone number(s), when available
 Leadership/contact provenance and last-verified date
 ```
 
-The normalized barangay schema has a separate optional `punongBarangay` record with its own provenance. Barangay leadership/contact claims must not inherit PSA population/geography provenance.
+The normalized barangay schema has a separate optional `punongBarangay` record with its own provenance. Missing fields are omitted rather than filled with `TBA`, guesses, or stale directory data.
 
-The Government page renders leadership/contact information only when such reviewed normalized data exists. Missing fields are omitted. Do not render `TBA`, guessed names, guessed numbers, or stale directory entries as current.
+Still required:
 
-Government is **not complete yet**.
+1. complete one dedicated current-source pass for Punong Barangays and direct contacts;
+2. normalize every record that passes freshness/source review;
+3. document unresolved coverage instead of filling gaps from stale material;
+4. complete Government hierarchy, tap-to-call, and provenance QA.
 
-Still required before Transparency:
-
-1. conduct a dedicated current-source acquisition pass for Bauang's 39 Punong Barangays and direct contact numbers using competent current official sources;
-2. verify records individually or from a current authoritative directory;
-3. normalize every record that passes freshness/source review into the separate `punongBarangay` field;
-4. document unresolved coverage rather than filling gaps from stale material;
-5. perform a final functional Government hierarchy/source QA covering executive leadership, Sangguniang Bayan, municipal contact, barangays, tap-to-call behavior, and provenance presentation.
-
-A perfect 39/39 leadership/contact corpus is desirable but is not allowed to become an indefinite blocker. If a dedicated current-source pass cannot support complete coverage, record the coverage limitation, omit unsupported fields, finish the functional QA, and then close Government.
-
-Do **not** start Transparency until this source-closure pass and Government functional QA are completed and documented.
+A perfect 39/39 leadership/contact corpus is desirable but must not become an indefinite blocker if competent current sources do not publish complete coverage.
 
 ### Statistics
 
@@ -208,9 +201,9 @@ Still required:
 
 ### Transparency
 
-Status: **SOURCE MATERIAL PARTLY READY / IMPLEMENTATION DEFERRED UNTIL GOVERNMENT CLOSES**
+Status: **SOURCE MATERIAL PARTLY READY / PAGE NOT BUILT**
 
-Available source families and existing groundwork include:
+Available source families and groundwork include:
 
 - BLGF FY2025 annual fiscal datasets;
 - BLGF FY2026 Q1 SRE data;
@@ -223,9 +216,7 @@ Available source families and existing groundwork include:
 - COA Bauang Compliance Audit Report 2024;
 - finance, procurement, document, and project schemas.
 
-Do not assume a Transparency sub-order from this inventory. When Government closes, first audit the complete Transparency surface and lock the resident-facing V1 structure before implementing its finance, procurement, document/audit, and optional infrastructure pieces.
-
-Infrastructure remains optional if a useful defensible corpus is not source-ready.
+Before implementation, audit the complete Transparency surface and lock the resident-facing V1 structure. Infrastructure remains optional if a useful defensible corpus is not source-ready.
 
 ### Languages
 
@@ -239,68 +230,73 @@ fil
 ilo
 ```
 
-EN remains canonical during the rebuild. Publish Filipino and Ilocano only after reviewed translated civic content exists. Runtime AI translation is not authoritative civic content.
+EN remains canonical. Publish Filipino and Ilocano only after reviewed translated civic content exists. Runtime AI translation is not authoritative civic content.
 
-### Visual design
+### UI foundation
 
-Status: **FINAL UI DEFERRED**
+Status: **COMPLETE**
 
-Current styling exists only to keep the product readable, responsive, accessible, and testable during the rebuild.
+The repository now has:
 
-The later UI planning gate must evaluate the full product together, including:
+- a Tailwind CSS semantic token layer;
+- a centralized provisional purple brand ramp and warm neutral surfaces;
+- shadcn/ui project configuration for source-owned components;
+- `@/*` aliases in TypeScript and Vite;
+- Lucide selected as the icon vocabulary when icons are introduced;
+- a rule that charting is added through the approved component layer only when Statistics or Transparency actually needs a chart.
 
-- typography and type scale;
-- grid and spacing;
-- header and emergency strip;
-- service discovery/detail patterns;
-- Government leadership and barangay presentation;
-- Transparency tables, documents, finance, and procurement;
-- Statistics;
-- provenance treatment;
-- buttons, links, and external-government-link patterns;
-- mobile navigation and responsive behavior;
-- final Home composition;
-- accessibility.
+The exact purple ramp, typography, and complete component inventory are still design decisions, not frozen constants.
 
-Broad constraint: modern public-service product, strong typography, disciplined whitespace, restrained civic accent, clear lists/tables, minimal shadows/cards, no gradients/glow, no seal imitation.
+No Kapwa or full UI framework is part of the BetterBauang stack.
 
-## 6. Current NEXT task
+## 6. Current work
 
-**Government leadership/contact source closure.**
+Two tracks can now move in parallel.
 
-Execution sequence:
+### Civic data
+
+**Next: Government leadership/contact source closure and Government functional QA.**
 
 ```text
 current competent official source discovery
 → source registration
 → extraction/staging if needed
 → freshness and conflict review
-→ normalize only supported Punong Barangay/contact records
-→ Government functional hierarchy/source QA
+→ normalize supported Punong Barangay/contact records
+→ Government functional QA
 → validation + CI
-→ mark Government COMPLETE
 ```
 
-Do not move to Transparency merely because route consolidation is complete.
+### Product/UI
 
-## 7. Remaining implementation sequence
+**Next: plan the Home structure, then build the homepage with the shared visual system.**
+
+The Home structure is not considered approved merely because the visual foundation exists. Decide the hierarchy and content composition first, then implement it.
+
+Government source closure does not block Home visual work. Home visual work does not relax Government source rules.
+
+## 7. Remaining work
+
+Civic/data track:
 
 ```text
-1. IA/search cleanup                              COMPLETE
-2. Contact + emergency strip                      COMPLETE
-3. Services                                       COMPLETE
-4. Government core + barangay route consolidation COMPLETE
-5. Government leadership/contact source closure   NEXT
-6. Government functional hierarchy + source QA
-7. Transparency audit + implementation
-8. Statistics + retire absorbed /bauang route
-9. Rebuild closure + route/link/data QA
-10. UI planning gate                              REQUIRES EXPLICIT APPROVAL
-11. Final homepage + visual system
-12. Languages + trust + SEO + accessibility + public QA
+Government leadership/contact closure + QA
+→ Transparency audit + implementation
+→ Statistics + retire /bauang
+→ route/link/data QA
 ```
 
-At step 10, stop before coding the final UI and produce an explicit design plan for approval.
+Product/UI track:
+
+```text
+UI foundation                           COMPLETE
+→ Home structure plan + homepage build NEXT
+→ apply shared patterns to existing Services, Government, and Contact
+→ build Transparency and Statistics with the shared system as those sections are implemented
+→ final cross-product responsive/accessibility/visual QA
+```
+
+Languages, trust/SEO cleanup, and public-release QA follow once the V1 product is complete enough to review as a whole.
 
 ## 8. Source material already worked
 
@@ -325,6 +321,7 @@ Keep the current static-first architecture:
 - React Router Framework Mode;
 - TypeScript strict;
 - Tailwind CSS;
+- selected source-owned shadcn/ui components as needed;
 - Zod;
 - static prerendering;
 - Cloudflare Workers Static Assets.
@@ -349,4 +346,4 @@ A new session must:
 2. confirm `main` is untouched;
 3. read `PROJECT_STATE.md`, `DATA_PROVENANCE.md`, `TECHNICAL_ARCHITECTURE.md`, and `EXPERIENCE_FOUNDATION.md`;
 4. inspect the current implementation before editing;
-5. execute only the current `NEXT` task unless explicit approval changes the sequence.
+5. keep civic data work and UI work within the two current tracks above unless explicit approval changes them.

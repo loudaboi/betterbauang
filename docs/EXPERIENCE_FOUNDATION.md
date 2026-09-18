@@ -1,7 +1,7 @@
 # BetterBauang Experience Foundation
 
 Status: Approved V1 experience direction  
-Last synchronized: 2026-09-18
+Last synchronized: 2026-09-19
 
 ## Purpose
 
@@ -144,6 +144,8 @@ Use:
 
 Barangays are reached through Government rather than promoted as a separate primary Home destination.
 
+The final Home composition must be planned before implementation. The list above defines responsibilities, not a locked layout.
+
 ### Services
 
 Organize around resident needs rather than office bureaucracy.
@@ -170,8 +172,6 @@ Rules:
 - omit unsupported fields rather than showing `TBA`, guesses, or stale values;
 - residents should not need a separate barangay profile page merely to see the name, Punong Barangay, or contact number;
 - partial verified coverage is acceptable after a documented current-source pass if competent sources do not support all 39 records.
-
-Government functional hierarchy should be completed during the rebuild across executive leadership, Sangguniang Bayan, municipal contact, barangays, and provenance. That is information architecture and functional QA, not the final visual-design pass.
 
 A complete municipal-office bureaucracy directory is not required for V1. Office-specific information should live in Services or Contact when that better matches the resident task.
 
@@ -252,39 +252,56 @@ The shared shell must:
 
 ## Visual direction
 
-BetterBauang should eventually feel like a modern public-service product rather than a generic municipal template.
+BetterBauang should feel like a modern public-service product rather than a generic municipal template or SaaS dashboard.
 
-Approved broad direction:
+Approved direction:
 
-- strong typography;
+- purple is the BetterBauang brand family;
+- the exact purple ramp remains adjustable through centralized design tokens;
+- warm neutral page surfaces rather than sterile all-white dashboard styling;
+- strong typography, with the final type system still to be selected;
 - generous but disciplined whitespace;
-- one restrained civic accent;
 - clear lists and tables;
 - subtle separators;
 - consistent external-government-link treatment;
 - minimal shadows;
 - minimal decorative cards;
-- excellent mobile layouts.
+- excellent mobile layouts;
+- reusable semantic tokens instead of hardcoded page-level brand values.
+
+Component direction:
+
+- Tailwind CSS owns the visual token and utility layer;
+- selected shadcn/ui components may be brought into the repository as source-owned components when they solve a real UI need;
+- shadcn defaults are not the BetterBauang visual identity and should consume BetterBauang tokens;
+- Lucide is the selected icon vocabulary when icons are useful;
+- charts and progress/report UI should use reusable components rather than one-off handcrafted implementations;
+- charting should only be introduced when a data view benefits from visualization, with tables or plain values preferred when clearer;
+- do not use Kapwa or a full UI framework merely for visual consistency.
 
 Avoid:
 
 - gradients and glow;
 - seal imitation;
+- stock shadcn/SaaS dashboard appearance;
 - visual clutter such as unrelated currency/weather tickers;
 - oversized political imagery;
 - decorative complexity that competes with civic information.
 
-### UI timing rule
+### Parallel UI rule
 
-The rebuild comes first.
+Visual work now happens alongside the remaining product and data work.
 
-Until Government source closure and functional QA, Transparency, Statistics, and route consolidation are complete, presentation work should be limited to what is needed for readability, responsive behavior, accessibility, and functional QA.
+Before rebuilding a page visually:
 
-Do not lock a final visual system or redesign individual verticals in isolation during the rebuild.
+1. confirm its resident purpose and available source-backed content;
+2. plan the page hierarchy and composition;
+3. reuse shared tokens and components;
+4. implement responsive and accessible behavior with the page, not afterward.
 
-After the rebuild is complete, stop feature work and run a dedicated UI planning phase before visual implementation. That plan should evaluate the complete product together and define reusable patterns for typography, spacing, hierarchy, navigation, lists/tables, civic-data presentation, provenance, mobile behavior, and the final Home composition.
+Do not wait for a single end-of-project redesign, but do not redesign pages ad hoc without a structure decision either.
 
-The broad visual direction above is a constraint for that later plan, not a substitute for it.
+The Home page is the first full visual-system application. Its structure must be reviewed before coding the new composition.
 
 ## Accessibility
 
@@ -299,7 +316,7 @@ Baseline requirements:
 - no essential information conveyed only by color;
 - source and verification information readable by assistive technology.
 
-Accessibility baseline work remains part of each rebuild vertical. Final cross-device accessibility review happens after the visual system is applied.
+Accessibility is part of each page build. A final cross-device review still happens before release.
 
 ## Architecture boundary
 
