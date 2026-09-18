@@ -4,6 +4,7 @@ export default [
   index('./routes/home.tsx'),
   route('services', './routes/services.tsx'),
   route('services/:service', './routes/service-detail.tsx'),
+  route('government', './routes/government.tsx'),
   route('contact', './routes/contact.tsx'),
   route('bauang', './routes/bauang.tsx'),
   route('barangays', './routes/barangays.tsx'),
