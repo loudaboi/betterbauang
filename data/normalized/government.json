@@ -1,5 +1,222 @@
 {
-  "officials": [],
+  "officials": [
+    {
+      "id": "official-ma-clarissa-lee",
+      "displayName": "Ma. Clarissa \"Manang Bong\" T. Lee",
+      "role": "Mayor",
+      "officeOrBody": "Municipality of Bauang",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. Term dates are not stated in the source and are intentionally left null."
+      }
+    },
+    {
+      "id": "official-tanya-roberta-de-guzman",
+      "displayName": "Tanya Roberta A. De Guzman",
+      "role": "Vice Mayor",
+      "officeOrBody": "Municipality of Bauang",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. Term dates are not stated in the source and are intentionally left null."
+      }
+    },
+    {
+      "id": "official-raymund-c-ganaden",
+      "displayName": "Raymund C. Ganaden",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-ryan-andre-m-estigoy",
+      "displayName": "Ryan Andre M. Estigoy",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-veronica-t-bernardo",
+      "displayName": "Veronica T. Bernardo",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-donny-ceazar-d-baradi",
+      "displayName": "Donny Ceazar D. Baradi",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-gabriel-a-sotto",
+      "displayName": "Gabriel A. Sotto",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-bonifacio-a-malinao-jr",
+      "displayName": "Bonifacio A. Malinao Jr.",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-felix-a-sanchez",
+      "displayName": "Felix A. Sanchez",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-angelo-s-aquino",
+      "displayName": "Angelo S. Aquino",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-edgar-b-beninsig",
+      "displayName": "Edgar B. Beninsig",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    },
+    {
+      "id": "official-rich-carlo-a-barnachea",
+      "displayName": "Rich Carlo A. Barnachea",
+      "role": "Sangguniang Bayan Member",
+      "officeOrBody": "Sangguniang Bayan",
+      "termStart": null,
+      "termEnd": null,
+      "contacts": [],
+      "provenance": {
+        "sourceId": "SRC-007",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "Current elected-official roster reverified on the Provincial Government of La Union Bauang profile. The source labels this record as Sangguniang Bayan Member; BetterBauang does not infer a more specific council role."
+      }
+    }
+  ],
   "offices": [
     {
       "id": "office-municipality-of-bauang",
