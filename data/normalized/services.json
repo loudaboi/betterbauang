@@ -1,1 +1,269 @@
-[]
+[
+  {
+    "id": "service-register-new-business",
+    "title": "Register a new business",
+    "category": "Business",
+    "summary": "Register a newly started business through the Business Permits and Licensing Office / Business One Stop Shop.",
+    "providerOffice": "Business Permits and Licensing Office / Business One Stop Shop",
+    "audience": ["Business owners", "Investors"],
+    "requirements": [
+      {"name": "Location sketch of the new business", "whereToSecure": "Applicant"},
+      {"name": "DTI/SEC/CDA certificate", "whereToSecure": "Department of Trade and Industry / Securities and Exchange Commission / Cooperative Development Authority"},
+      {"name": "Certificate attesting to tax exemption, if the business is tax exempt", "whereToSecure": "Applicant"},
+      {"name": "Zoning certification that the business location complies with zoning regulations", "whereToSecure": "Municipal Planning and Development Coordinator"},
+      {"name": "Tax clearance showing municipal tax obligations have been paid", "whereToSecure": "Municipal Treasurer's Office"},
+      {"name": "Barangay clearance", "whereToSecure": "ABC, inside Municipal Hall"},
+      {"name": "Three passport-size pictures of the owner/operator, or the applicable managing partners / president / general manager", "whereToSecure": "Applicant"},
+      {"name": "Health certificate for all food handlers", "whereToSecure": "Municipal Health Office"}
+    ],
+    "steps": [
+      {"order": 1, "title": "Submit the application", "details": "Use the official Bauang eLGU portal and submit or upload the required information and documents."},
+      {"order": 2, "title": "Pay assessed business tax and fees", "details": "Payment may be made over the counter; the source also identifies LANDBANK Link.BizPortal for online payment."},
+      {"order": 3, "title": "Claim the business permit", "details": "The office issues the business permit and other applicable permits or clearances after processing."}
+    ],
+    "fees": [{"label": "Business tax and other fees", "amount": null, "currency": "PHP", "notes": "Amount depends on capitalization and the Municipality of Bauang Revenue Code schedule of fees."}],
+    "processingTime": "Up to 3 working days for a simple transaction.",
+    "channels": ["online", "in-person"],
+    "officialUrl": "https://elgu-bauang-la-union.e.gov.ph/",
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, pages 2-6", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "Consolidates the walk-in and online new-business variants published in the current-listed BPLO Citizen's Charter PDF. The PDF does not expose a visible edition year."}
+  },
+  {
+    "id": "service-renew-business",
+    "title": "Renew a business permit",
+    "category": "Business",
+    "summary": "Renew an existing business registration for the ensuing calendar year.",
+    "providerOffice": "Business Permits and Licensing Office / Business One Stop Shop",
+    "audience": ["Business owners", "Investors"],
+    "requirements": [
+      {"name": "Unified Application Form", "whereToSecure": "Licensing Unit"},
+      {"name": "Previous year's Mayor's Permit", "whereToSecure": "Applicant"},
+      {"name": "Copies of the annual or quarterly tax", "whereToSecure": "Municipal Treasurer's Office"},
+      {"name": "Two copies of receipts showing payment of regulatory fees", "whereToSecure": "Applicant"},
+      {"name": "Certificate of exemption from local taxes or fees, if exempt", "whereToSecure": "Applicant"}
+    ],
+    "steps": [
+      {"order": 1, "title": "Submit the requirements", "details": "Provide the required documents and information for review, verification, and assessment."},
+      {"order": 2, "title": "Pay the assessed tax and fees", "details": "Pay the computed business tax and other fees and obtain the official receipt."},
+      {"order": 3, "title": "Claim the renewed permit", "details": "The office issues the business permit and other applicable permits or clearances."}
+    ],
+    "fees": [{"label": "Business tax and other fees", "amount": null, "currency": "PHP", "notes": "Amount depends on capitalization and the Municipality of Bauang Revenue Code schedule of fees."}],
+    "processingTime": "2 hours and 30 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, pages 6-8", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "Current-listed BPLO Citizen's Charter PDF reviewed; the PDF does not expose a visible edition year."}
+  },
+  {
+    "id": "service-individual-working-permit",
+    "title": "Get an individual working permit",
+    "category": "Permits and clearances",
+    "summary": "Apply for an Individual Working Permit from the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Application Form", "whereToSecure": "Office of the Municipal Business Permits & Licensing"},
+      {"name": "Community Tax Certificate", "whereToSecure": "Office of the Municipal Treasurer"},
+      {"name": "Barangay Clearance", "whereToSecure": "Barangay"},
+      {"name": "Police Clearance", "whereToSecure": "Philippine National Police"},
+      {"name": "Official Receipt", "whereToSecure": "Office of the Municipal Treasurer"}
+    ],
+    "steps": [
+      {"order": 1, "title": "File the application", "details": "Submit the duly accomplished unified application form at Window 3. The office checks and verifies the requirements."},
+      {"order": 2, "title": "Claim the permit", "details": "Claim the Individual Working Permit at Window 3 after processing."}
+    ],
+    "fees": [],
+    "processingTime": "40 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, pages 20-21", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The service table lists no fee amount. BetterBauang does not infer a fee from the separate Official Receipt requirement."}
+  },
+  {
+    "id": "service-mayors-clearance",
+    "title": "Get a Mayor's Clearance",
+    "category": "Permits and clearances",
+    "summary": "Apply for a Mayor's Clearance through the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Application Form", "whereToSecure": "Office of the Municipal Business Permits & Licensing"},
+      {"name": "Community Tax Certificate", "whereToSecure": "Office of the Municipal Treasurer"},
+      {"name": "Barangay Clearance", "whereToSecure": "Barangay"},
+      {"name": "Police Clearance", "whereToSecure": "Philippine National Police"},
+      {"name": "Official Receipt", "whereToSecure": "Office of the Municipal Treasurer"}
+    ],
+    "steps": [
+      {"order": 1, "title": "File the application", "details": "Submit the application at Window 3 for checking and verification."},
+      {"order": 2, "title": "Claim the clearance", "details": "Claim the Mayor's Clearance at Window 3 after processing."}
+    ],
+    "fees": [],
+    "processingTime": "40 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, pages 21 and 24", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "Duplicate Mayor's Clearance entries in the BPLO PDF were consolidated into one resident-facing record. The service tables list no fee amount."}
+  },
+  {
+    "id": "service-motorized-banca-permit",
+    "title": "Get a permit to operate a motorized banca",
+    "category": "Permits and clearances",
+    "summary": "Apply for a permit to operate a motorized banca through the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Application Form", "whereToSecure": "Office of the Municipal Business Permits & Licensing"},
+      {"name": "Community Tax Certificate", "whereToSecure": "Office of the Municipal Treasurer"},
+      {"name": "Barangay Clearance", "whereToSecure": "Barangay"},
+      {"name": "Police Clearance", "whereToSecure": "Philippine National Police"},
+      {"name": "Certificate", "whereToSecure": "Municipal Agriculture Office"},
+      {"name": "Official Receipt", "whereToSecure": "Office of the Municipal Treasurer"}
+    ],
+    "steps": [
+      {"order": 1, "title": "File the application", "details": "Submit the duly accomplished unified application form at Window 3 for checking and verification."},
+      {"order": 2, "title": "Claim the permit", "details": "Claim the Permit to Operate Motorized Banca at Window 3 after processing."}
+    ],
+    "fees": [],
+    "processingTime": "40 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, page 22", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The service table lists no fee amount. BetterBauang does not infer a fee from the separate Official Receipt requirement."}
+  },
+  {
+    "id": "service-public-utility-permit",
+    "title": "Get a public utility permit",
+    "category": "Permits and clearances",
+    "summary": "Apply for a Public Utility Permit through the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Application Form", "whereToSecure": "Office of the Municipal Business Permits & Licensing"},
+      {"name": "Community Tax Certificate", "whereToSecure": "Office of the Municipal Treasurer"},
+      {"name": "Barangay Clearance", "whereToSecure": "Barangay"},
+      {"name": "Police Clearance", "whereToSecure": "Philippine National Police"},
+      {"name": "Official Receipt", "whereToSecure": "Office of the Municipal Treasurer"},
+      {"name": "Franchise", "whereToSecure": "Municipal Treasury Office"},
+      {"name": "OR/CR and Professional Driver's License", "whereToSecure": "Land Transportation Office"}
+    ],
+    "steps": [
+      {"order": 1, "title": "File the application", "details": "Submit the duly accomplished unified application form at Window 3 for checking and verification."},
+      {"order": 2, "title": "Claim the permit", "details": "Claim the Public Utility Permit at Window 3 after processing."}
+    ],
+    "fees": [],
+    "processingTime": "40 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, page 23", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The service table lists no fee amount. BetterBauang does not infer a fee from the separate Official Receipt requirement."}
+  },
+  {
+    "id": "service-close-business",
+    "title": "Close a registered business",
+    "category": "Business",
+    "summary": "Request a Certificate of Business Closure from the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Latest Business Permit", "whereToSecure": "Applicant"},
+      {"name": "Barangay Closure", "whereToSecure": "Barangay"},
+      {"name": "Affidavit of business closure", "whereToSecure": "Business owner"}
+    ],
+    "steps": [
+      {"order": 1, "title": "Provide the required information", "details": "Submit the required information and documents for checking and verification."},
+      {"order": 2, "title": "Claim the certificate", "details": "Claim the business-closure certification after processing."}
+    ],
+    "fees": [],
+    "processingTime": "40 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, page 25", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "Normalized from the Certificate of Business Closure service table in the current-listed BPLO Citizen's Charter PDF."}
+  },
+  {
+    "id": "service-motorcade-parade-permit",
+    "title": "Apply for a motorcade or parade permit",
+    "category": "Permits and clearances",
+    "summary": "Apply for a motorcade, parade, or related-activity permit through the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [
+      {"name": "Letter of Intent approved by the Municipal Mayor", "whereToSecure": "Municipal Mayor's Office"},
+      {"name": "Route Map", "whereToSecure": "Applicant"}
+    ],
+    "steps": [
+      {"order": 1, "title": "Provide the application information", "details": "Submit the required information and documents for checking and verification."},
+      {"order": 2, "title": "Pay the assessed fee", "details": "The office calls the applicant to pay and issues an official receipt."},
+      {"order": 3, "title": "Claim the permit", "details": "Claim the certification or permit at Window 3 after processing."}
+    ],
+    "fees": [{"label": "Applicable fee", "amount": null, "currency": "PHP", "notes": "The source refers to the Municipality of Bauang Revenue Code schedule of fees but does not state a fixed amount in this service table."}],
+    "processingTime": "1 hour",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, page 26", "verificationStatus": "partial", "extractionMethod": "manual", "reviewer": "Louda", "notes": "Process and requirements are clear in the source. Fee amount remains variable/unspecified in the service table, so BetterBauang does not publish a fixed amount."}
+  },
+  {
+    "id": "service-certificate-new-business",
+    "title": "Get a Certificate as New Business",
+    "category": "Business",
+    "summary": "Request a Certificate as New Business from the Business Permits and Licensing Office.",
+    "providerOffice": "Business Permits and Licensing Office",
+    "audience": ["General public"],
+    "requirements": [],
+    "steps": [
+      {"order": 1, "title": "Provide the required information", "details": "The office checks and verifies the inspection report."},
+      {"order": 2, "title": "Pay the published fee", "details": "Pay the fee and obtain the official receipt."},
+      {"order": 3, "title": "Claim the certificate", "details": "Claim the Certificate as New Business at Window 3."}
+    ],
+    "fees": [{"label": "Certificate fee", "amount": 80, "currency": "PHP", "notes": null}],
+    "processingTime": "45 minutes",
+    "channels": ["in-person"],
+    "officialUrl": null,
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-002", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "pageReference": "BPLO-FINAL.pdf, page 27", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The source does not publish a separate client checklist on this page; BetterBauang leaves requirements empty rather than inferring them."}
+  },
+  {
+    "id": "service-local-civil-registry-copy",
+    "title": "Request a Local Civil Registry copy",
+    "category": "Civil records",
+    "summary": "Continue to Bauang's official eLGU portal for the Local Civil Registry copy-request service.",
+    "providerOffice": "Municipality of Bauang",
+    "audience": [],
+    "requirements": [],
+    "steps": [{"order": 1, "title": "Open the official eLGU service", "details": "Complete the request on the official Bauang eLGU transaction portal."}],
+    "fees": [],
+    "processingTime": null,
+    "channels": ["online"],
+    "officialUrl": "https://elgu-bauang-la-union.e.gov.ph/",
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-005", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The current source verifies the official online service class and transaction destination only. Requirements, fees, and processing time are intentionally not inferred."}
+  },
+  {
+    "id": "service-community-tax-certificate",
+    "title": "Get a Community Tax Certificate (Cedula)",
+    "category": "Certificates and taxes",
+    "summary": "Continue to Bauang's official eLGU portal for the Community Tax Certificate / Cedula service.",
+    "providerOffice": "Municipality of Bauang",
+    "audience": [],
+    "requirements": [],
+    "steps": [{"order": 1, "title": "Open the official eLGU service", "details": "Complete the transaction on the official Bauang eLGU portal."}],
+    "fees": [],
+    "processingTime": null,
+    "channels": ["online"],
+    "officialUrl": "https://elgu-bauang-la-union.e.gov.ph/",
+    "relatedDocumentIds": [],
+    "sourceEdition": null,
+    "provenance": {"sourceId": "SRC-005", "retrievedAt": "2026-09-18", "lastVerifiedAt": "2026-09-18", "verificationStatus": "verified", "extractionMethod": "manual", "reviewer": "Louda", "notes": "The current source verifies the official online service class and transaction destination only. Requirements, fees, and processing time are intentionally not inferred."}
+  }
+]
