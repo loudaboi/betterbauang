@@ -1,1 +1,104 @@
-[]
+[
+  {
+    "id": "emergency-unified-911",
+    "agency": "Unified 911",
+    "service": "National emergency hotline",
+    "phoneNumbers": [
+      "911"
+    ],
+    "email": null,
+    "availabilityNotes": "National emergency hotline for urgent police, fire, medical, rescue, and disaster response.",
+    "provenance": {
+      "sourceId": "SRC-015",
+      "publishedAt": "2026-08-03",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "National emergency hotline verified separately from the Municipality of Bauang local emergency advisory."
+    }
+  },
+  {
+    "id": "emergency-bauang-mdrrmo",
+    "agency": "MDRRMO",
+    "service": "Local emergency hotline",
+    "phoneNumbers": [
+      "0998-575-3188",
+      "0938-954-7919",
+      "0916-299-4002"
+    ],
+    "email": null,
+    "availabilityNotes": null,
+    "provenance": {
+      "sourceId": "SRC-014",
+      "publishedAt": "2026-08-16",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "Reviewed against the Municipality of Bauang emergency-hotline advisory published August 16, 2026."
+    }
+  },
+  {
+    "id": "emergency-bauang-mho",
+    "agency": "MHO",
+    "service": "Municipal health emergency hotline",
+    "phoneNumbers": [
+      "0931-863-3091"
+    ],
+    "email": null,
+    "availabilityNotes": null,
+    "provenance": {
+      "sourceId": "SRC-014",
+      "publishedAt": "2026-08-16",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "Reviewed against the Municipality of Bauang emergency-hotline advisory published August 16, 2026."
+    }
+  },
+  {
+    "id": "emergency-bauang-pnp",
+    "agency": "PNP Bauang MPS",
+    "service": "Police emergency hotline",
+    "phoneNumbers": [
+      "0945-358-8965"
+    ],
+    "email": null,
+    "availabilityNotes": null,
+    "provenance": {
+      "sourceId": "SRC-014",
+      "publishedAt": "2026-08-16",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "Reviewed against the Municipality of Bauang emergency-hotline advisory published August 16, 2026."
+    }
+  },
+  {
+    "id": "emergency-bauang-bfp",
+    "agency": "BFP Bauang",
+    "service": "Fire emergency hotline",
+    "phoneNumbers": [
+      "0917-184-6711"
+    ],
+    "email": null,
+    "availabilityNotes": null,
+    "provenance": {
+      "sourceId": "SRC-014",
+      "publishedAt": "2026-08-16",
+      "retrievedAt": "2026-09-18",
+      "lastVerifiedAt": "2026-09-18",
+      "verificationStatus": "verified",
+      "extractionMethod": "manual",
+      "reviewer": "Louda",
+      "notes": "Reviewed against the Municipality of Bauang emergency-hotline advisory published August 16, 2026."
+    }
+  }
+]
