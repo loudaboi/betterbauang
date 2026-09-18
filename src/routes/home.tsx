@@ -2,6 +2,16 @@ import { Link } from 'react-router'
 
 const currentDestinations = [
   {
+    to: '/services',
+    title: 'Services',
+    description: 'Find reviewed municipal services, requirements, steps, and official transaction routes.',
+  },
+  {
+    to: '/contact',
+    title: 'Contact',
+    description: 'Find reviewed emergency and general municipal contact information.',
+  },
+  {
     to: '/barangays',
     title: 'Barangays',
     description: 'Browse reviewed barangay reference pages and their published source context.',
@@ -32,7 +42,7 @@ export default function HomeRoute() {
           Public information about Bauang, made easier to use.
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-700 sm:text-lg">
-          BetterBauang is an independent civic information project for Bauang, La Union. Browse the reviewed public information currently available while the resident-facing service, government, transparency, statistics, and contact sections are built from verified sources.
+          BetterBauang is an independent civic information project for Bauang, La Union. Browse the reviewed public information currently available while the Government, Transparency, and Statistics sections are built from verified sources.
         </p>
       </section>
 
@@ -40,7 +50,7 @@ export default function HomeRoute() {
         <div className="max-w-2xl">
           <h2 className="text-xl font-semibold tracking-[-0.02em]">Available now</h2>
           <p className="mt-2 text-sm leading-6 text-neutral-600">
-            These existing pages remain available during the V1 information-architecture transition. They will be integrated into their final sections as those sections are completed.
+            These pages are available during the V1 information-architecture transition. Existing reference pages will be integrated into their final sections as those sections are completed.
           </p>
         </div>
 
