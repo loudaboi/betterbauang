@@ -262,7 +262,7 @@ Completed:
 
 ### Government
 
-Status: **CORE COMPLETE / FINALIZATION NEXT**
+Status: **COMPLETE**
 
 Completed:
 
@@ -272,19 +272,16 @@ Completed:
 - council members retain the source's generic `Sangguniang Bayan Member` role label rather than inferred committee, federation, or ex-officio roles;
 - existing verified Municipality of Bauang general contact integrated without inventing unverified office responsibilities or direct official contact details;
 - `/government` built and statically prerendered;
-- all 39 PSA-backed barangays available as normalized production data;
+- redundant public `/barangays` and `/barangays/:slug` routes and prerenders removed;
+- all 39 PSA-backed barangay records preserved as normalized production data for Government and Statistics;
+- all 39 barangay names presented directly within `/government` rather than through low-value profile pages;
+- freshness research reviewed available barangay-leadership/contact material, but a complete current competent-source corpus for all 39 Punong Barangays and direct contact numbers was not available through the reviewed public sources;
+- a complete 2024 barangay leadership/contact roster encountered during research was not promoted as current September 2026 civic data;
+- current Punong Barangay/contact fields therefore remain omitted unless a competent current source passes freshness review;
 - Government added to live navigation;
 - political imagery, endorsements, rankings, and unsupported descriptive claims are not part of the Government section.
 
-Finalization still required before moving on:
-
-- remove the redundant public `/barangays` index and `/barangays/:slug` presentation from the final V1 route surface and prerender list;
-- preserve all normalized barangay, PSA identifier, classification, and population data for Government and Statistics;
-- research the freshest competent current sources available for Bauang Punong Barangay names and direct contact numbers;
-- do not use stale political/contact records as current merely because they are complete;
-- publish only the Punong Barangay/contact fields that pass source and freshness review;
-- present the barangays directly inside `/government` without requiring a click into low-value profile pages;
-- run route/link QA after the legacy barangay pages are removed.
+Current barangay leadership/contact acquisition remains a source improvement, not a blocker for the V1 Government information architecture. Do not fill missing current names or phone numbers from stale or third-party directories.
 
 ### Statistics
 
@@ -442,8 +439,8 @@ Finish the rebuild before final UI design.
 2. Contact + emergency strip                 COMPLETE
 3. Services                                  COMPLETE
 4. Government core                           COMPLETE
-5. Government finalization                   NEXT
-6. Transparency
+5. Government finalization                   COMPLETE
+6. Transparency                              NEXT
 7. Statistics + retire absorbed /bauang route
 8. Rebuild closure + route/link/data QA
 9. UI planning gate                          REQUIRES EXPLICIT APPROVAL

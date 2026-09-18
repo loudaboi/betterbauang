@@ -22,7 +22,7 @@ Node.js 22.23.2 is pinned in `.node-version`.
 
 BetterBauang uses React Router Framework Mode with `ssr: false`.
 
-Canonical public civic routes are prerendered during the production build. `react-router.config.ts` derives barangay and procurement detail routes from validated normalized civic data rather than maintaining a duplicate route list.
+Canonical public civic routes are prerendered during the production build. `react-router.config.ts` derives service and procurement detail routes from validated normalized civic data rather than maintaining duplicate route lists. Barangays remain normalized civic data consumed by Government and Statistics and do not have separate V1 public index/detail routes.
 
 The public deployable output is:
 
