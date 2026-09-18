@@ -191,5 +191,52 @@
     "retrievedAt": "2026-09-18",
     "freshness": "CY 2025 and CY 2026 Bauang listings reviewed during Phase 4G.1; some official document endpoints returned server errors.",
     "notes": "Preserve listed-document metadata even when retrieval fails. Record retrieval failure explicitly rather than silently dropping the disclosure."
+  },
+  {
+    "id": "SRC-014",
+    "publisher": "Municipality of Bauang",
+    "title": "Emergency Hotline advisory, August 16, 2026",
+    "url": "https://www.facebook.com/share/p/18FUvo4X9D/",
+    "authority": "A",
+    "domains": [
+      "emergency",
+      "contacts",
+      "public-safety"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Dedicated municipal emergency advisory published August 16, 2026. Emergency contacts are highly time-sensitive and require frequent reverification.",
+    "notes": "Primary source for the current BetterBauang local emergency-contact set reviewed for this release."
+  },
+  {
+    "id": "SRC-015",
+    "publisher": "Department of the Interior and Local Government",
+    "title": "DILG's Unified 911 saves lives through faster emergency response",
+    "url": "https://calabarzon.dilg.gov.ph/dilgs-unified-911-saves-lives-through-faster-emergency-response/",
+    "authority": "A",
+    "domains": [
+      "emergency",
+      "public-safety",
+      "national-hotline"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Official DILG guidance published August 3, 2026 identifying Unified 911 as the centralized national emergency response hotline.",
+    "notes": "National emergency source. Kept separate from Bauang-specific emergency contacts and provenance."
+  },
+  {
+    "id": "SRC-016",
+    "publisher": "DICT / Municipality of Bauang",
+    "title": "Bauang eLGU Contact Us",
+    "url": "https://elgu-bauang-la-union-news.e.gov.ph/ContactUs",
+    "authority": "A",
+    "domains": [
+      "contacts",
+      "local-government"
+    ],
+    "status": "READY",
+    "retrievedAt": "2026-09-18",
+    "freshness": "Official Bauang eLGU contact surface verified September 18, 2026. General contact details should be rechecked on known changes.",
+    "notes": "Source for the general municipal trunk line, mobile number, and email published by the official Bauang eLGU contact/news surface."
   }
 ]
