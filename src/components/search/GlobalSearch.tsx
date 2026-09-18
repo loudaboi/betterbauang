@@ -52,14 +52,26 @@ export function GlobalSearch() {
     const params = new URLSearchParams(window.location.search)
     const nextQuery = params.get('q')?.trim() ?? ''
 
-    setInputValue(nextQuery)
-    setQuery(nextQuery)
+    if (!nextQuery) {
+      return
+    }
+
+    let cancelled = false
+
+    queueMicrotask(() => {
+      if (!cancelled) {
+        setInputValue(nextQuery)
+        setQuery(nextQuery)
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   useEffect(() => {
     if (!query) {
-      setResults([])
-      setStatus('idle')
       return
     }
 
