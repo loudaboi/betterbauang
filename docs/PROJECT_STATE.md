@@ -220,7 +220,7 @@ Completed:
 - verified general municipal trunk line, mobile number, and email normalized from the official Bauang eLGU contact surface;
 - `/contact` built and statically prerendered with tap-to-call links, source links, and last-verified context;
 - persistent emergency strip added above the main header using normalized reviewed data;
-- live header navigation is `Home`, `Services`, and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
+- live header navigation is `Home`, `Services`, `Government`, and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
 - official Municipality website and eLGU destinations exposed as external government links;
 - no `/emergency` route added.
 
@@ -244,21 +244,20 @@ Completed:
 
 ### Government
 
-Status: **NEXT — SOURCE ACQUIRED / NEEDS CURRENT REVERIFICATION**
+Status: **COMPLETE**
 
-Already have:
+Completed:
 
-- PGLU Bauang profile source;
-- supporting official reporting gathered during source closure;
-- government schema and one verified general municipal contact record used by Contact;
-- all 39 barangays already normalized from PSA/PSGC.
-
-Still need:
-
-- reverify current officeholders before publication;
-- normalize mayor, vice mayor, and Sangguniang Bayan roster;
-- verify office responsibilities/contact details;
-- build Government and integrate Barangays beneath it.
+- current mayor, vice mayor, and ten-member Sangguniang Bayan roster reverified against the Provincial Government of La Union Bauang profile on 2026-09-18;
+- recent 2026 official PGLU/LGU-Bauang reporting used as a corroborating freshness check for the current municipal leadership;
+- term dates intentionally remain unknown because the reviewed roster source does not state them;
+- council members retain the source's generic `Sangguniang Bayan Member` role label rather than inferred committee, federation, or ex-officio roles;
+- existing verified Municipality of Bauang general contact integrated without inventing unverified office responsibilities or direct official contact details;
+- `/government` built and statically prerendered;
+- all 39 PSA-backed barangays integrated beneath Government while existing `/barangays` and barangay detail routes remain available;
+- Barangays removed as a separate transition-homepage destination and linked from Government instead;
+- Government added to live navigation;
+- political imagery, endorsements, rankings, and unsupported descriptive claims are not part of the Government section.
 
 ### Statistics
 
@@ -279,7 +278,7 @@ Still need:
 
 ### Transparency — Finances
 
-Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+Status: **NEXT — SOURCE ACQUIRED / NEEDS NORMALIZATION**
 
 Already have:
 
@@ -360,7 +359,7 @@ Publish Filipino and Ilocano only after reviewed civic content is ready. Do not 
 
 Status: **FOUNDATION EXISTS / FINAL PASS NEEDED**
 
-Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, the shared emergency/header foundation, and the Services interaction baseline.
+Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, the shared emergency/header foundation, and the Services/Government interaction baseline.
 
 Still need a stronger BetterBauang visual system, better tables/lists across remaining sections, consistent official-link treatment, and cross-device accessibility review.
 
@@ -389,8 +388,8 @@ Build complete resident-facing verticals instead of more empty foundations.
 1. IA/search cleanup                    COMPLETE
 2. Contact + emergency strip            COMPLETE
 3. Services                             COMPLETE
-4. Government                           NEXT
-5. Transparency
+4. Government                           COMPLETE
+5. Transparency                         NEXT
 6. Statistics
 7. Final homepage + visual system
 8. Languages + trust + SEO + accessibility + public QA
