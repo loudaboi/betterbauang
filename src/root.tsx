@@ -19,6 +19,7 @@ import './index.css'
 const primaryNav = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
+  { to: '/government', label: 'Government' },
   { to: '/contact', label: 'Contact' },
 ] as const
 
