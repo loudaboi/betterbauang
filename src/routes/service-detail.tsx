@@ -2,7 +2,11 @@ import { Link, useLoaderData, type LoaderFunctionArgs } from 'react-router'
 
 import { ProvenancePanel } from '../components/civic/ProvenancePanel.tsx'
 import type { GovernmentService } from '../domain/civic-data/service.ts'
-import { getServiceBySlug, getSourceById } from '../lib/civic-data.server.ts'
+import {
+  getCivicDocuments,
+  getServiceBySlug,
+  getSourceById,
+} from '../lib/civic-data.server.ts'
 
 function channelLabel(channel: GovernmentService['channels'][number]) {
   if (channel === 'in-person') return 'In person'
@@ -31,17 +35,28 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Service not found', { status: 404 })
   }
 
-  const source = await getSourceById(service.provenance.sourceId)
+  const [source, documents] = await Promise.all([
+    getSourceById(service.provenance.sourceId),
+    getCivicDocuments(),
+  ])
 
   if (!source) {
     throw new Response('Source not found', { status: 500 })
   }
 
-  return { service, source }
+  const relatedDocuments = documents.flatMap((document) =>
+    document.relatedRecordIds.includes(service.id) &&
+    document.availability === 'available' &&
+    document.originalUrl
+      ? [{ id: document.id, title: document.title, url: document.originalUrl }]
+      : [],
+  )
+
+  return { service, source, relatedDocuments }
 }
 
 export default function ServiceDetailRoute() {
-  const { service, source } = useLoaderData<typeof loader>()
+  const { service, source, relatedDocuments } = useLoaderData<typeof loader>()
   const hasDetailedProcess =
     service.requirements.length > 0 || service.processingTime !== null || service.fees.length > 0
 
@@ -104,6 +119,30 @@ export default function ServiceDetailRoute() {
           >
             Continue to official eLGU <span className="ml-1" aria-hidden="true">↗</span>
           </a>
+        </section>
+      ) : null}
+
+      {relatedDocuments.length > 0 ? (
+        <section className="mt-8" aria-labelledby="official-forms-heading">
+          <h2 className="text-sm font-semibold text-neutral-950" id="official-forms-heading">
+            Official forms
+          </h2>
+          <div className="mt-3 divide-y divide-neutral-200 border-y border-neutral-200">
+            {relatedDocuments.map((document) => (
+              <a
+                className="flex min-h-14 items-center justify-between gap-4 py-3 text-sm font-medium text-neutral-950 hover:bg-neutral-50"
+                href={document.url}
+                key={document.id}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <span>{document.title}</span>
+                <span className="shrink-0 text-neutral-600">
+                  Open form <span aria-hidden="true">↗</span>
+                </span>
+              </a>
+            ))}
+          </div>
         </section>
       ) : null}
 
