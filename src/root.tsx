@@ -7,12 +7,75 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from 'react-router'
 
+import type { EmergencyContact } from './domain/civic-data/emergency.ts'
+import { getEmergencyContacts } from './lib/civic-data.server.ts'
 import { defaultLocale } from './lib/i18n.ts'
+import { toTelHref } from './lib/phone.ts'
 import './index.css'
 
-const primaryNav = [{ to: '/', label: 'Home' }] as const
+const primaryNav = [
+  { to: '/', label: 'Home' },
+  { to: '/contact', label: 'Contact' },
+] as const
+
+const emergencyStripOrder = [
+  { id: 'emergency-unified-911', label: 'National' },
+  { id: 'emergency-bauang-mdrrmo', label: 'MDRRMO' },
+  { id: 'emergency-bauang-pnp', label: 'Police' },
+  { id: 'emergency-bauang-bfp', label: 'Fire' },
+  { id: 'emergency-bauang-mho', label: 'Health' },
+] as const
+
+export async function loader() {
+  return { emergencyContacts: await getEmergencyContacts() }
+}
+
+function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
+  const items = emergencyStripOrder.flatMap((item) => {
+    const contact = contacts.find((candidate) => candidate.id === item.id)
+    return contact ? [{ ...item, contact }] : []
+  })
+
+  return (
+    <aside className="border-b border-red-200 bg-red-50" aria-label="Emergency contacts">
+      <div className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.1em] text-red-800">
+            Emergency
+          </span>
+
+          <div className="grid flex-1 grid-cols-2 gap-x-4 gap-y-1 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5">
+            {items.map(({ contact, label }) => {
+              const phoneNumber = contact.phoneNumbers[0]
+
+              return (
+                <a
+                  aria-label={`Call ${contact.agency} at ${phoneNumber}`}
+                  className="inline-flex min-h-9 items-center gap-1.5 text-xs text-red-950 hover:underline"
+                  href={toTelHref(phoneNumber)}
+                  key={contact.id}
+                >
+                  <span className="font-medium">{label}</span>
+                  <span className="font-semibold tabular-nums">{phoneNumber}</span>
+                </a>
+              )
+            })}
+
+            <Link
+              className="inline-flex min-h-9 items-center text-xs font-semibold text-red-950 hover:underline"
+              to="/contact"
+            >
+              All contacts <span className="ml-1" aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}
 
 function PrimaryNav({ mobile = false }: { mobile?: boolean }) {
   return (
@@ -44,10 +107,18 @@ function LanguageControls() {
   return (
     <div className="flex items-center gap-2 text-xs font-medium" aria-label="Language availability">
       <span className="border border-neutral-900 bg-neutral-900 px-2 py-1 text-white">EN</span>
-      <span aria-disabled="true" className="border border-neutral-200 px-2 py-1 text-neutral-400" title="Filipino content is not yet published">
+      <span
+        aria-disabled="true"
+        className="border border-neutral-200 px-2 py-1 text-neutral-400"
+        title="Filipino content is not yet published"
+      >
         FIL
       </span>
-      <span aria-disabled="true" className="border border-neutral-200 px-2 py-1 text-neutral-400" title="Ilocano content is not yet published">
+      <span
+        aria-disabled="true"
+        className="border border-neutral-200 px-2 py-1 text-neutral-400"
+        title="Ilocano content is not yet published"
+      >
         ILO
       </span>
     </div>
@@ -74,6 +145,8 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 export default function Root() {
+  const { emergencyContacts } = useLoaderData<typeof loader>()
+
   return (
     <>
       <a
@@ -83,19 +156,15 @@ export default function Root() {
         Skip to content
       </a>
 
-      <div className="border-b border-neutral-200 bg-neutral-50">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 text-xs text-neutral-600 sm:px-6">
-          <span>Independent civic information for Bauang, La Union</span>
-          <Link className="hover:text-neutral-950" to="/about/sources">
-            Sources
-          </Link>
-        </div>
-      </div>
+      <EmergencyStrip contacts={emergencyContacts} />
 
       <header className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex min-h-16 items-center justify-between gap-4 sm:gap-6">
-            <Link className="shrink-0 text-base font-semibold tracking-[-0.01em] text-neutral-950" to="/">
+            <Link
+              className="shrink-0 text-base font-semibold tracking-[-0.01em] text-neutral-950"
+              to="/"
+            >
               BetterBauang
             </Link>
 
@@ -129,10 +198,19 @@ export default function Root() {
           <p className="max-w-2xl leading-6 text-neutral-600">
             BetterBauang is an independent community civic-tech project and is not an official website of the Municipality of Bauang.
           </p>
-          <nav className="flex flex-wrap gap-x-5 gap-y-3 text-neutral-700" aria-label="Trust and methodology">
-            <Link className="hover:text-neutral-950" to="/about/sources">Sources</Link>
-            <Link className="hover:text-neutral-950" to="/about/methodology">Methodology</Link>
-            <Link className="hover:text-neutral-950" to="/about">About</Link>
+          <nav
+            className="flex flex-wrap gap-x-5 gap-y-3 text-neutral-700"
+            aria-label="Trust and methodology"
+          >
+            <Link className="hover:text-neutral-950" to="/about/sources">
+              Sources
+            </Link>
+            <Link className="hover:text-neutral-950" to="/about/methodology">
+              Methodology
+            </Link>
+            <Link className="hover:text-neutral-950" to="/about">
+              About
+            </Link>
           </nav>
         </div>
       </footer>
