@@ -1,4 +1,38 @@
 {
   "officials": [],
-  "offices": []
+  "offices": [
+    {
+      "id": "office-municipality-of-bauang",
+      "name": "Municipality of Bauang",
+      "summary": "General municipal contact published on the official Bauang eLGU contact surface.",
+      "address": null,
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "(072) 888-15-11",
+          "label": "Trunk line"
+        },
+        {
+          "type": "phone",
+          "value": "0910-122-8056",
+          "label": "Mobile"
+        },
+        {
+          "type": "email",
+          "value": "info@bauanglaunion.gov.ph",
+          "label": "General email"
+        }
+      ],
+      "officialUrl": "https://elgu-bauang-la-union-news.e.gov.ph/ContactUs",
+      "provenance": {
+        "sourceId": "SRC-016",
+        "retrievedAt": "2026-09-18",
+        "lastVerifiedAt": "2026-09-18",
+        "verificationStatus": "verified",
+        "extractionMethod": "manual",
+        "reviewer": "Louda",
+        "notes": "General contact details verified on the official Bauang eLGU contact surface. Street address is omitted because it was not verified in this pass."
+      }
+    }
+  ]
 }
