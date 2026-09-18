@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
-    "build": "tsc -b && react-router build && pagefind --site build/client",
+    "build": "tsc -b && react-router build",
     "lint": "oxlint",
     "preview": "vite preview --outDir build/client",
     "validate:data": "node scripts/validate-data.ts"
