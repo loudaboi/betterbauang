@@ -16,6 +16,7 @@ export default {
       '/',
       '/services',
       ...services.map((service) => `/services/${service.id.replace(/^service-/, '')}`),
+      '/government',
       '/contact',
       '/bauang',
       '/barangays',
