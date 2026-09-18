@@ -84,6 +84,11 @@ export async function getServices() {
   return servicesPromise
 }
 
+export async function getServiceBySlug(slug: string) {
+  const services = await getServices()
+  return services.find((service) => service.id === `service-${slug}`) ?? null
+}
+
 export async function getGovernmentDirectory() {
   return governmentPromise
 }
