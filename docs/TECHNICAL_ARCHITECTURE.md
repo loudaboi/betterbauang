@@ -34,6 +34,26 @@ React Router may also produce build-time server artifacts while prerendering. Th
 
 Core civic information is emitted as generated HTML rather than depending on client JavaScript to become readable.
 
+## Static search
+
+Global search uses Pagefind as a build-time static index.
+
+The production build flow is:
+
+```text
+TypeScript project build
+→ React Router static prerender
+→ build/client
+→ Pagefind indexes reviewed generated HTML
+→ build/client/pagefind
+```
+
+The application exposes a prerendered `/search` route. Search state uses the normal `?q=` URL parameter, while the browser loads the generated `/pagefind/pagefind.js` bundle and static index. Search does not require an application API, runtime database, Worker search handler, Meilisearch, or runtime AI.
+
+Reviewed pages opt into global search with `data-pagefind-body`. Search-result metadata uses a stable category field and an optional reporting/reference period. Future civic routes join the same index only after they contain reviewed publishable content.
+
+Home and the Search route are intentionally outside the primary Pagefind result corpus. Raw source PDFs are not added as primary global-search records during Phase 4G.3.
+
 ## Civic data architecture
 
 ```text
@@ -82,7 +102,7 @@ npm run lint
 npm run build
 ```
 
-CI validates the application and civic-data build. It is separate from Cloudflare deployment.
+CI validates the application and civic-data build. `npm run build` also generates the Pagefind static search index after prerendering. CI is separate from Cloudflare deployment.
 
 ## Deployment
 

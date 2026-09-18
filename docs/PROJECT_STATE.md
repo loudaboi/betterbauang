@@ -51,7 +51,8 @@ Phase 4F CI + deployment preparation               COMPLETE
 
 Phase 4G.1 Source Closure                          COMPLETE
 Phase 4G.2 Experience Foundation                   COMPLETE
-Phase 4G.3 Homepage + Global Search                NEXT
+Phase 4G.3 Homepage + Global Search Foundation     COMPLETE
+Phase 4G.4 Emergency                               NEXT
 ```
 
 Phase 4G.1 expanded the earlier narrow MVP only where authoritative Bauang source gates were closed. Source discovery should not continue broadly unless implementation exposes a specific evidence gap.
@@ -244,9 +245,13 @@ Do not add a runtime database, authentication, CMS, application API, Meilisearch
 
 ## 8. Search direction
 
-Pagefind is the approved global static-search foundation.
+Pagefind is the implemented global static-search foundation.
 
-It is not yet implemented.
+The production build prerenders the React Router site into `build/client` and then Pagefind indexes reviewed generated HTML into `build/client/pagefind`. The public search route is `/search`, with normal URL query state under `?q=` so searches can be linked and bookmarked.
+
+Only pages that deliberately opt into the reviewed search corpus with `data-pagefind-body` are indexed. The current search corpus covers Bauang reference information, barangays, historical procurement, About, Sources, and Methodology. Home and Search are not indexed as primary results.
+
+The current result metadata convention uses a small stable category field and an optional reporting/reference period. Current categories are Bauang, Barangay, Procurement, and About. Future reviewed routes can join the same system with Service, Emergency, Government, Transparency, Finance, Document, Audit, and Infrastructure categories without redesigning global search.
 
 Global Search is for discovery across useful BetterBauang pages and reviewed document metadata. It should not become a replacement for domain-specific filtering.
 
@@ -281,7 +286,9 @@ EN / FIL / ILO
 
 Do not publish dead navigation.
 
-The homepage should become a public-information entry point centered on resident jobs and search, not a generic municipal landing page.
+The homepage foundation is a public-information entry point centered on resident jobs and search, not a generic municipal landing page.
+
+Its composition is intentionally progressive. It activates only destinations backed by reviewed production content while preserving hierarchy for Services, Emergency, Government, Transparency, documents, audits, and other evidence-supported V1 domains as their own phases publish them.
 
 Do not lead with:
 
@@ -298,7 +305,7 @@ Brand-specific logo and color decisions remain deferred until the brand phase.
 
 ### 4G.3 — Homepage + Global Search Foundation
 
-Next.
+Complete.
 
 4G.3 establishes:
 
@@ -343,7 +350,19 @@ Primary implementation goals:
 - surface only routes that contain useful reviewed content;
 - avoid overfitting the homepage or search system to the currently populated Bauang, Barangays, Procurement, and About routes.
 
+Completed implementation:
+
+- the homepage now leads with a resident-facing global search and a restrained list of currently reviewed destinations;
+- `/search` is a real prerendered route using `?q=` query state;
+- Pagefind runs after the React Router static build and indexes only explicitly included reviewed pages;
+- search results use category metadata and optional period metadata with a convention designed for later civic domains;
+- Search is a real shared-navigation destination;
+- future-domain navigation, cards, and placeholder civic claims remain absent until reviewed production records exist;
+- a generic eLGU homepage call to action was not added; eLGU remains primarily a verified service-level routing destination.
+
 ### 4G.4 — Emergency
+
+Next.
 
 Promote reviewed emergency records and build the high-freshness emergency experience.
 
@@ -408,7 +427,7 @@ npm run lint
 npm run build
 ```
 
-At the time Phase 4G.2 closed, CI passed all three checks.
+The Phase 4G.3 implementation passed GitHub Actions with `npm ci`, civic-data validation, lint, and the production build. The production build now includes Pagefind indexing after React Router prerendering.
 
 For a new development session:
 
