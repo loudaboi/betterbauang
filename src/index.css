@@ -114,3 +114,39 @@ button:not(:disabled),
 #main-content:focus {
   outline: none;
 }
+
+@keyframes bb-emergency-ticker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.bb-emergency-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: bb-emergency-ticker 34s linear infinite;
+}
+
+.bb-emergency-ticker:hover .bb-emergency-ticker-track,
+.bb-emergency-ticker:focus-within .bb-emergency-ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-emergency-ticker {
+    overflow-x: auto;
+  }
+
+  .bb-emergency-ticker-track {
+    animation: none;
+    transform: none;
+  }
+
+  .bb-emergency-ticker-copy[aria-hidden="true"] {
+    display: none;
+  }
+}
