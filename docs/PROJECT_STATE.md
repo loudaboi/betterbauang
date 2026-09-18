@@ -220,35 +220,31 @@ Completed:
 - verified general municipal trunk line, mobile number, and email normalized from the official Bauang eLGU contact surface;
 - `/contact` built and statically prerendered with tap-to-call links, source links, and last-verified context;
 - persistent emergency strip added above the main header using normalized reviewed data;
-- live header navigation is `Home` and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
+- live header navigation is `Home`, `Services`, and `Contact`, with EN active and FIL / ILO visibly unavailable until reviewed translations exist;
 - official Municipality website and eLGU destinations exposed as external government links;
 - no `/emergency` route added.
 
 ### Services
 
-Status: **NEXT — SOURCE ACQUIRED / NEEDS NORMALIZATION**
+Status: **COMPLETE**
 
-Already have:
+Completed:
 
-- Municipality Citizen's Charter source family;
-- reviewed office-level Charter bundle;
-- BPLO service PDF;
-- official downloadable forms identified during source closure;
-- official Bauang eLGU transaction destination;
-- service schema and empty normalized collection.
-
-Still need:
-
-- normalize resident-facing services;
-- consolidate duplicates/channel variants;
-- organize by resident need;
-- map forms and verified eLGU destinations;
-- build `/services` and service detail pages;
-- implement lightweight Find a Service.
+- eleven source-ready service records normalized from the reviewed BPLO Citizen's Charter PDF and official Bauang eLGU service surface;
+- duplicate new-business channel variants and duplicate Mayor's Clearance entries consolidated into resident-facing records;
+- requirements, where-to-secure information, citizen steps, published fees, processing times, and provider offices surfaced only where the reviewed source supports them;
+- source-limited eLGU records for Local Civil Registry copy requests and Community Tax Certificate / Cedula intentionally omit unverified requirements, fees, and processing times;
+- official eLGU routing exposed for supported online transactions without recreating accounts, applications, or payments;
+- official Municipality-hosted Business Permit Application Form normalized and linked to new and renewal business services;
+- `/services` and `/services/:service` built and statically prerendered from normalized service records;
+- lightweight Find a Service implemented over normalized service data only;
+- Services added to live navigation and transition-homepage access;
+- no site-wide global search or Pagefind reintroduced;
+- the current directory is intentionally limited to source-ready records and is not presented as a complete inventory of every municipal transaction.
 
 ### Government
 
-Status: **SOURCE ACQUIRED / NEEDS CURRENT REVERIFICATION**
+Status: **NEXT — SOURCE ACQUIRED / NEEDS CURRENT REVERIFICATION**
 
 Already have:
 
@@ -364,9 +360,9 @@ Publish Filipino and Ilocano only after reviewed civic content is ready. Do not 
 
 Status: **FOUNDATION EXISTS / FINAL PASS NEEDED**
 
-Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, and the shared emergency/header foundation.
+Already have responsive shell, skip navigation, focus baseline, provenance component, static/mobile architecture, the shared emergency/header foundation, and the Services interaction baseline.
 
-Still need a stronger BetterBauang visual system, excellent service UX, better tables/lists, consistent official-link treatment, and cross-device accessibility review.
+Still need a stronger BetterBauang visual system, better tables/lists across remaining sections, consistent official-link treatment, and cross-device accessibility review.
 
 Target: modern public-service product; strong typography, disciplined whitespace, restrained civic accent, minimal shadows/cards, no gradients/glow, no seal imitation.
 
@@ -392,8 +388,8 @@ Build complete resident-facing verticals instead of more empty foundations.
 ```text
 1. IA/search cleanup                    COMPLETE
 2. Contact + emergency strip            COMPLETE
-3. Services                             NEXT
-4. Government
+3. Services                             COMPLETE
+4. Government                           NEXT
 5. Transparency
 6. Statistics
 7. Final homepage + visual system
