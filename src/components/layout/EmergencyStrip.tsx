@@ -3,15 +3,21 @@ import { Link } from 'react-router'
 import type { EmergencyContact } from '../../domain/civic-data/emergency.ts'
 import { toTelHref } from '../../lib/phone.ts'
 
-const emergencyStripOrder = [
+type EmergencyStripConfig = {
+  id: string
+  label: string
+  compact?: boolean
+}
+
+const emergencyStripOrder: readonly EmergencyStripConfig[] = [
   { id: 'emergency-unified-911', label: '911', compact: true },
   { id: 'emergency-bauang-mdrrmo', label: 'MDRRMO' },
   { id: 'emergency-bauang-pnp', label: 'Police' },
   { id: 'emergency-bauang-bfp', label: 'Fire' },
   { id: 'emergency-bauang-mho', label: 'Health' },
-] as const
+]
 
-type EmergencyItem = (typeof emergencyStripOrder)[number] & {
+type EmergencyItem = EmergencyStripConfig & {
   contact: EmergencyContact
 }
 
@@ -58,7 +64,7 @@ function EmergencyItems({ items, duplicate = false }: { items: EmergencyItem[]; 
 }
 
 export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
-  const items = emergencyStripOrder.flatMap((item) => {
+  const items: EmergencyItem[] = emergencyStripOrder.flatMap((item) => {
     const contact = contacts.find((candidate) => candidate.id === item.id)
     return contact ? [{ ...item, contact }] : []
   })
