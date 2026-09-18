@@ -75,7 +75,7 @@ function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplica
   return (
     <a
       aria-label={duplicate ? undefined : `Call ${item.contact.agency} at ${phoneNumber}`}
-      className="inline-flex min-h-9 shrink-0 items-center gap-2 rounded-full bg-white/15 px-3.5 text-xs font-medium transition-colors hover:bg-white/25"
+      className="inline-flex min-h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-white/15 px-3.5 text-xs font-medium transition-colors hover:bg-white/25"
       href={toTelHref(phoneNumber)}
       tabIndex={duplicate ? -1 : undefined}
     >
@@ -120,12 +120,12 @@ export function EmergencyStrip({ contacts }: { contacts: EmergencyContact[] }) {
         </div>
       </div>
 
-      <div className="mx-auto hidden min-h-12 max-w-7xl items-center gap-4 px-6 py-2 xl:flex xl:px-8">
+      <div className="mx-auto hidden min-h-12 w-full max-w-[96rem] items-center gap-6 px-8 py-2 xl:flex xl:px-10 2xl:px-12">
         <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.13em]">
           Emergency Hotlines
         </span>
 
-        <div className="flex flex-1 items-center justify-center gap-2.5">
+        <div className="flex flex-1 items-center justify-between gap-3">
           {items.map((item) => (
             <HotlineLink item={item} key={item.contact.id} />
           ))}

@@ -30,6 +30,9 @@
   --popover-foreground: var(--bb-ink);
   --primary: var(--bb-purple-700);
   --primary-foreground: #ffffff;
+  --action: var(--bb-purple-900);
+  --action-hover: var(--bb-purple-950);
+  --action-foreground: #ffffff;
   --secondary: var(--bb-purple-100);
   --secondary-foreground: var(--bb-purple-900);
   --muted: #efede9;
@@ -61,6 +64,9 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-foreground: var(--action-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

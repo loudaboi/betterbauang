@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router'
 
-const livePrimaryNav = [
+const primaryNav = [
   { to: '/services', label: 'Services' },
   { to: '/government', label: 'Government' },
+  { to: '/bauang', label: 'Statistics' },
+  { to: '/procurement', label: 'Transparency' },
   { to: '/contact', label: 'Contact' },
 ] as const
 
@@ -23,10 +25,10 @@ function LanguageControls() {
           <button
             aria-pressed={selected}
             className={[
-              'h-8 min-w-10 rounded-md border px-2.5 text-xs font-semibold transition-colors',
+              'h-9 min-w-11 rounded-md border px-3 text-xs font-semibold transition-colors',
               selected
-                ? 'border-primary bg-primary text-primary-foreground'
-                : 'border-primary/55 bg-card text-primary hover:border-primary hover:bg-secondary',
+                ? 'border-action bg-action text-action-foreground hover:bg-action-hover'
+                : 'border-primary/65 bg-card text-primary hover:border-primary hover:bg-secondary',
             ].join(' ')}
             key={language}
             onClick={() => setSelectedLanguage(language)}
@@ -42,13 +44,13 @@ function LanguageControls() {
 
 function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <nav className="flex flex-col lg:flex-row lg:items-center lg:gap-8" aria-label="Primary">
-      {livePrimaryNav.map((item) => (
+    <nav className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-7 xl:gap-8" aria-label="Primary">
+      {primaryNav.map((item) => (
         <NavLink
           className={({ isActive }) =>
             [
-              'flex min-h-12 items-center border-b border-border text-base font-normal transition-colors lg:min-h-11 lg:border-b-0',
-              isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
+              'flex min-h-12 items-center border-b border-border text-base font-medium text-foreground transition-colors lg:min-h-11 lg:border-b-0',
+              isActive ? 'text-primary' : 'hover:text-primary',
             ].join(' ')
           }
           key={item.to}
@@ -68,14 +70,14 @@ function Brand({ mobile = false }: { mobile?: boolean }) {
       <span
         className={
           mobile
-            ? 'block text-lg font-bold tracking-[-0.025em]'
-            : 'block text-2xl font-bold tracking-[-0.035em]'
+            ? 'block text-lg font-semibold tracking-[-0.02em]'
+            : 'block text-[1.3125rem] font-semibold tracking-[-0.025em]'
         }
       >
         BetterBauang
       </span>
       {!mobile && (
-        <span className="mt-0.5 block whitespace-nowrap text-xs font-medium leading-4 text-muted-foreground">
+        <span className="mt-0.5 block whitespace-nowrap text-xs font-normal leading-4 text-muted-foreground">
           Independent Civic Community Portal for Bauang
         </span>
       )}
@@ -88,8 +90,8 @@ export function SiteHeader() {
 
   return (
     <header className="relative border-b border-border bg-card">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6 xl:px-8">
-        <div className="hidden min-h-20 grid-cols-[minmax(19rem,1fr)_auto_minmax(19rem,1fr)] items-center gap-8 lg:grid">
+      <div className="mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+        <div className="hidden min-h-[5.25rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-10 lg:grid xl:gap-14">
           <div className="justify-self-start">
             <Brand />
           </div>
@@ -133,7 +135,7 @@ export function SiteHeader() {
           className="absolute left-0 right-0 top-full z-40 border-b border-border bg-card lg:hidden"
           id="mobile-site-menu"
         >
-          <div className="mx-auto max-w-7xl px-4 pb-5 sm:px-6">
+          <div className="mx-auto w-full max-w-[96rem] px-4 pb-5 sm:px-6">
             <PrimaryNavigation onNavigate={() => setMobileOpen(false)} />
 
             <div className="flex items-center justify-between gap-6 border-b border-border py-5">
