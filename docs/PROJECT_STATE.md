@@ -1,18 +1,18 @@
 # BetterBauang Project State
 
-Status: Active handoff and roadmap reference  
+Status: Active implementation reference  
 Last synchronized: 2026-09-18
 
-This file records the current implementation state and near-term roadmap. It is intentionally compact.
+This file records where BetterBauang is now, the approved V1 information architecture, what evidence is already available, and what still needs implementation or verification.
 
 It does not replace:
 
-- `docs/DATA_PROVENANCE.md` for evidence, source precedence, and freshness rules;
-- `docs/TECHNICAL_ARCHITECTURE.md` for implementation architecture;
-- `docs/EXPERIENCE_FOUNDATION.md` for shared product-experience rules;
+- `docs/DATA_PROVENANCE.md` for evidence, source precedence, and freshness;
+- `docs/TECHNICAL_ARCHITECTURE.md` for the current implementation architecture;
+- `docs/EXPERIENCE_FOUNDATION.md` for shared UX rules;
 - `CONTRIBUTING.md` for contribution requirements.
 
-When this file conflicts with the executable repository state, inspect the current branch and reconcile the documentation rather than assuming this file is newer.
+The repository is executable truth. If implementation and this file disagree, inspect the current branch before changing either.
 
 ## 1. Git and release boundary
 
@@ -26,400 +26,518 @@ Stable release branch:
 
 Do not modify, merge, rebase, reset, force-push, or otherwise move `main` without explicit approval.
 
-At the time this state was synchronized, `main` remained at:
-
-`832a07c4508e2c7523c3f70e6a33c969f6dba06a`
-
 Production release is not approved.
 
-Development changes must remain focused, pass the repository checks, and stay on the development branch until separately reviewed for release.
+At this synchronization point the development branch still contains the previous global Pagefind search implementation. That product direction is superseded by the V1 plan below and should be removed through a normal corrective change, not by rewriting Git history.
 
-## 2. Current phase state
+## 2. Product rule
 
-```text
-Phase 0  Constitution & Governance                 COMPLETE
-Phase 1  Bauang Research / Source Audit            COMPLETE
-Phase 2  Product Definition                        COMPLETE
-Phase 3  Technical Architecture                    COMPLETE
-
-Phase 4A Repository foundation                     COMPLETE
-Phase 4B Civic-data foundation                     COMPLETE
-Phase 4C PSA municipality + barangays              COMPLETE
-Phase 4D Procurement vertical slice                COMPLETE
-Phase 4E Static civic application foundation       COMPLETE
-Phase 4F CI + deployment preparation               COMPLETE
-
-Phase 4G.1 Source Closure                          COMPLETE
-Phase 4G.2 Experience Foundation                   COMPLETE
-Phase 4G.3 Homepage + Global Search Foundation     COMPLETE
-Phase 4G.4 Emergency                               NEXT
-```
-
-Phase 4G.1 expanded the earlier narrow MVP only where authoritative Bauang source gates were closed. Source discovery should not continue broadly unless implementation exposes a specific evidence gap.
-
-## 3. Current product posture
-
-BetterBauang is an independent public-information layer for Bauang, La Union.
-
-It should help residents:
-
-- find and understand government services;
-- reach official government transaction destinations;
-- find verified emergency information;
-- understand municipal offices, officials, and barangays;
-- inspect public finance and procurement records;
-- inspect appropriately attributed infrastructure and public documents;
-- verify where material civic information came from.
-
-BetterBauang must remain visibly independent from the Municipality of Bauang and must not imitate an official municipal portal.
+BetterBauang is an independent civic information layer for Bauang, La Union.
 
 Core rule:
 
 **No source, no civic claim.**
 
-Unknown is valid. Historical is not current. Conflicting official sources must remain explicit.
+The product should reduce the effort required to:
 
-## 4. Current V1 product surface
+- understand and access municipal services;
+- find the right government office or contact;
+- understand who represents and administers Bauang;
+- inspect public finance, procurement, disclosures, audits, and appropriately attributed infrastructure;
+- understand verified statistics about Bauang;
+- trace material civic information to its authoritative source.
 
-The evidence-supported V1 direction now includes:
+BetterBauang must remain visibly independent from the Municipality of Bauang and must not imitate an official government portal.
 
-- Home;
-- Global Search;
-- Emergency;
-- Services;
-- official downloadable forms;
-- Government and municipal offices;
-- Barangays;
-- Transparency;
-- Finances and Full Disclosure records;
-- Procurement;
-- limited infrastructure records with correct implementing-agency attribution;
-- public documents and audit records;
-- About Bauang and statistics;
-- Sources and Methodology;
-- Corrections;
-- accessibility baseline;
-- localization architecture for English, Filipino, and Ilocano.
+## 3. Approved V1 information architecture
 
-Only English is publicly exposed until Filipino and Ilocano content has been reviewed for the relevant civic domain.
+### Persistent emergency strip
 
-## 5. Source roles
+The topmost site utility is a compact emergency hotline strip using reviewed current contacts.
 
-Source precedence is field-specific. See `docs/DATA_PROVENANCE.md` for the full rules.
+It is for immediate access, especially on mobile, and should support tap-to-call.
 
-### Municipality, population, and barangays
+Emergency information does **not** need a standalone page. Full contact context, source, and verification details belong in `Contact`.
 
-PSA / PSGC is canonical for municipality identifiers, barangay composition, and current published population values with their reference period.
-
-### Services and eLGU
-
-The Municipality of Bauang Citizen's Charter is the canonical process source for reviewed:
-
-- eligibility;
-- requirements;
-- steps;
-- fees;
-- processing time;
-- responsible office.
-
-Official Bauang downloadable forms are the document layer for corresponding services.
-
-DICT / Bauang eLGU is the official online transaction destination where the government already provides the transaction.
-
-The intended relationship is:
+### Main header
 
 ```text
-Citizen's Charter
-→ process, requirements, fees, timing
-
-Official Bauang forms
-→ downloadable government documents
-
-eLGU
-→ official online transaction
-
 BetterBauang
-→ discovery, explanation, verification, and routing
+Home
+Services
+Government
+Statistics
+Transparency
+Contact
+EN / FIL / ILO
 ```
 
-BetterBauang must not rebuild eLGU accounts, applications, payments, or identity workflows merely to keep users on BetterBauang.
+Language controls live in the main header area, not in a separate product section.
 
-### Emergency
+Do not add separate top-level navigation for:
 
-Use the newest dedicated official emergency advisory or competent emergency-agency publication. Older conflicting contacts remain traceable as superseded rather than merged into the current list.
+- Search;
+- Barangays;
+- Procurement;
+- About;
+- eLGU;
+- Emergency.
+
+Those belong in the appropriate product section described below.
+
+### Home
+
+Resident entry point.
+
+Final homepage responsibilities:
+
+- clear BetterBauang purpose;
+- `Find a Service` search;
+- popular/useful services;
+- emergency access;
+- quick access to Government, Statistics, Transparency, and Barangays;
+- selected Bauang facts with explicit reporting periods;
+- trust links such as Sources, Methodology, and Corrections.
+
+The current homepage is development scaffolding and is not the final design target.
+
+### Services
+
+Answers: **What do I need to do?**
+
+```text
+/services
+/services/:service
+```
+
+Expected service experience:
+
+- Find a Service search/filter;
+- resident-oriented categories;
+- service purpose;
+- who may avail;
+- requirements;
+- where each requirement is secured;
+- citizen steps;
+- agency actions when useful;
+- fees;
+- processing time;
+- responsible office/personnel where published;
+- official downloadable form where available;
+- official eLGU or other transaction destination where applicable;
+- source and last-verified context.
+
+Search in V1 is primarily **service discovery**, not a separate global-search product.
 
 ### Government
 
-Use current competent LGU/PGLU records for officeholders and offices. Current officeholders require release-time reverification and re-checking after known change events.
-
-### Finances
-
-BLGF is the standardized source for fiscal observations such as actual receipts and expenditures.
-
-Bauang / DILG Full Disclosure records preserve the original disclosure documents and reporting-period snapshots.
-
-Quarterly SRE data must preserve the source's cumulative year-to-date semantics where applicable and must not be summed as independent quarters.
-
-### Procurement
-
-Keep source roles distinct:
+Answers: **Who and where is the local government?**
 
 ```text
-APP / Updated APP / Supplemental APP
-→ planning
-
-PMR
-→ monitoring / execution snapshot
-
-PhilGEPS
-→ current opportunities and published awards
-
-FDP Bid Results / BAC records
-→ period-specific results and documentary evidence
+/government
 ```
 
-Do not infer record relationships unless identifiers and source evidence support the match.
+Contains:
 
-### Infrastructure
+- current elected officials;
+- municipal offices and responsibilities;
+- government/contact directory;
+- all 39 barangays;
+- legislation only if a maintainable official corpus becomes available.
 
-DPWH or the actual implementing agency remains authoritative for national infrastructure records.
+Existing barangay detail routes may remain, but Barangays are conceptually part of Government rather than a primary header destination.
 
-A project being physically located in Bauang does not make it a Municipality of Bauang project.
+### Statistics
 
-### Audits
+Answers: **What do verified data say about Bauang?**
 
-COA is the primary audit source.
+```text
+/statistics
+```
 
-BetterBauang may surface original audit documents and carefully reviewed factual summaries. It must not convert audit material into unsupported misconduct claims, rankings, or scores.
+Contains period-labeled statistics such as:
 
-## 6. Current data state
+- municipality population;
+- barangay population;
+- PSGC/geographic classifications;
+- other demographic or municipal indicators only when supported by competent sources.
 
-The repository already contains reviewed production data for:
+Do not create decorative or undated metric dashboards.
+
+### Transparency
+
+Answers: **What is government spending, procuring, building, and publishing?**
+
+```text
+/transparency
+```
+
+Contains:
+
+- finances and budget context;
+- fund utilization where supported;
+- procurement;
+- Full Disclosure documents;
+- audits;
+- appropriately attributed infrastructure/projects.
+
+Procurement remains a domain inside Transparency rather than a permanent top-level navigation item.
+
+### Contact
+
+Answers: **Who do I need to reach?**
+
+```text
+/contact
+```
+
+Contains:
+
+- full emergency contact directory;
+- Municipal Hall contact/location information;
+- verified municipal office contacts;
+- official Municipality channels;
+- appropriate official external destinations.
+
+The persistent emergency strip is the fast-access version of this information; Contact is the complete context and verification layer.
+
+### Footer / trust layer
+
+Contains supporting project information rather than primary resident tasks:
+
+- About BetterBauang;
+- About Bauang context where useful;
+- Sources;
+- Methodology;
+- Corrections / report an error;
+- official Municipality website;
+- GitHub / contribution links.
+
+## 4. Feature readiness
+
+Readiness states:
+
+- **READY IN REPO** — reviewed normalized production data already exists.
+- **SOURCE ACQUIRED** — authoritative source material has been collected/reviewed, but production normalization or UI work remains.
+- **NEEDS VERIFICATION** — source exists, but current facts must be rechecked before publication.
+- **NEEDS SOURCE** — required source corpus has not yet been sufficiently acquired.
+- **DEFERRED** — not required for V1.
+
+### Home
+
+Status: **PARTIAL IMPLEMENTATION**
+
+Already have:
+
+- shared shell;
+- static homepage route;
+- municipality/barangay/procurement content to link into;
+- provenance/trust components.
+
+Still need:
+
+- remove global-search-first treatment;
+- build final resident-first composition after core sections exist;
+- add Find a Service once service data is normalized;
+- complete final visual-design pass.
+
+### Emergency strip + Contact
+
+Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+
+Already have:
+
+- reviewed 2026 Bauang emergency hotline advisory for MDRRMO, Municipal Health, PNP, and BFP;
+- older Citizen's Charter emergency contacts retained for conflict/supersession handling;
+- municipal website and Charter contact sources.
+
+Still need:
+
+- normalize the current emergency/contact records;
+- verify any Municipal Hall and office contacts intended for V1;
+- implement tap-to-call emergency strip;
+- implement `/contact`;
+- expose source and last-verified context on Contact.
+
+No standalone `/emergency` route is required.
+
+### Services
+
+Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+
+Already have:
+
+- Municipality Citizen's Charter source family;
+- reviewed office-level Charter bundle covering multiple municipal offices;
+- BPLO service document with detailed resident-facing processes;
+- official Bauang downloadable forms discovered during source closure;
+- official Bauang eLGU transaction destination;
+- service domain schema and empty normalized boundary.
+
+Still need:
+
+- extract and review resident-facing services into normalized records;
+- consolidate duplicates and channel variants;
+- categorize services by resident need rather than office structure;
+- map forms to verified services;
+- map eLGU links only where the Charter/official source supports the transaction;
+- build `/services` and service detail pages;
+- implement lightweight Find a Service search/filter over normalized service records.
+
+Do not build accounts, payments, applications, or identity workflows already handled by eLGU.
+
+### Government
+
+Status: **SOURCE ACQUIRED / NEEDS CURRENT REVERIFICATION**
+
+Already have:
+
+- PGLU Bauang profile source;
+- supporting recent official reporting for current mayor/vice mayor gathered during source closure;
+- government schema and empty normalized boundary;
+- all 39 barangays already normalized from PSA/PSGC.
+
+Still need:
+
+- reverify current officeholders immediately before publication/release;
+- normalize the mayor, vice mayor, and Sangguniang Bayan roster;
+- verify municipal office responsibilities and contact details intended for publication;
+- implement `/government` and integrate Barangays beneath it.
+
+Do not publish speculative biographies, campaign material, rankings, or unsupported political claims.
+
+### Statistics
+
+Status: **READY IN REPO for core V1 statistics**
+
+Already have:
 
 - municipality identity;
 - all 39 barangays;
-- 2024 POPCEN population data;
-- the initial historical FY2024 procurement slice.
+- PSGC identifiers;
+- 2024 POPCEN municipality and barangay population data;
+- period/source metadata.
 
-Phase 4G.2 established validated normalized boundaries for:
+Still need:
 
-- services;
-- government officials and offices;
-- emergency contacts;
-- financial observations;
-- civic documents, including forms, disclosures, and audits;
-- public projects.
+- build the `/statistics` experience from existing reviewed data;
+- decide whether any additional statistical indicators materially improve V1 before adding new source work.
 
-Those newer collections are intentionally empty until records pass source registration, validation, and human review. Empty collections are not placeholders and must not be populated with guessed civic facts.
+A statistics page does not require a new backend or dashboard framework.
 
-The production path remains:
+### Transparency — Finances
+
+Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+
+Already have:
+
+- BLGF FY2025 annual fiscal datasets;
+- BLGF FY2026 Q1 SRE data;
+- FY2025 LDRRMF and SEF data;
+- Bauang FDP 2025 and 2026 disclosure packages;
+- fiscal domain schema and empty normalized boundary;
+- documented source precedence and cumulative-YTD rules.
+
+Still need:
+
+- normalize a small useful set of fiscal observations;
+- preserve annual vs quarterly/YTD semantics;
+- organize original FDP documents by year/type/period;
+- design straightforward tables/summaries before considering charts.
+
+### Transparency — Procurement
+
+Status: **PARTIAL READY IN REPO + NEWER SOURCES ACQUIRED**
+
+Already have:
+
+- normalized historical FY2024 PMR slice;
+- FY2025 PMR source material;
+- CY2026 first-semester PMR;
+- Updated/Supplemental APP source material;
+- PhilGEPS source layer;
+- procurement schemas and existing pages.
+
+Still need:
+
+- replace prototype/historical emphasis with a clearer procurement structure;
+- normalize newer defensible records;
+- keep APP planning, PMR execution, PhilGEPS opportunities/awards, and bid-result documents distinct;
+- avoid inferred joins unless identifiers/source evidence prove them.
+
+### Transparency — Documents and audits
+
+Status: **SOURCE ACQUIRED / NEEDS NORMALIZATION**
+
+Already have:
+
+- Bauang FDP 2025 and 2026 document inventories;
+- explicit handling for officially listed but retrieval-failed documents;
+- COA Bauang Compliance Audit Report 2024;
+- document schema and empty normalized boundary.
+
+Still need:
+
+- normalize document metadata;
+- organize by reporting year/type;
+- surface audit reports neutrally;
+- link to original official documents where available.
+
+### Transparency — Infrastructure
+
+Status: **CONDITIONAL**
+
+Already have:
+
+- DPWH identified as the competent source family;
+- project schema and attribution rule.
+
+Still need:
+
+- acquire/verify a limited useful Bauang project corpus before publishing the section;
+- preserve actual implementing agency and source-specific lifecycle status.
+
+Do not label a DPWH/provincial/national project as a Municipality of Bauang project simply because it is located in Bauang.
+
+### Languages
+
+Status: **ARCHITECTURE READY / CONTENT NOT READY**
+
+Already have:
+
+- locale architecture for `en`, `fil`, and `ilo`.
+
+Still need:
+
+- reviewed Filipino and Ilocano UI/content translations after English civic content stabilizes.
+
+Do not publish machine/runtime AI translations as authoritative civic content.
+
+### Visual design and accessibility
+
+Status: **FOUNDATION EXISTS / FINAL PASS NEEDED**
+
+Already have:
+
+- responsive shell;
+- skip navigation;
+- visible focus baseline;
+- provenance component;
+- static/mobile architecture.
+
+Still need:
+
+- stronger BetterBauang visual identity;
+- refined header and emergency strip;
+- service-directory UX;
+- better tables/list layouts;
+- consistent external-government-link treatment;
+- cross-device accessibility review.
+
+The target is a modern public-service product: strong typography, whitespace, restrained civic accent, minimal shadows, minimal decorative cards, no gradients/glow, and no seal imitation.
+
+## 5. Corrected implementation sequence
+
+Build complete resident-facing verticals instead of more empty foundations.
+
+### Step 1 — IA correction and cleanup
+
+- update shared navigation to the approved V1 IA;
+- remove Search from primary navigation;
+- remove the `/search` global-search product and Pagefind dependency/build step unless a real later requirement justifies it;
+- keep existing reviewed pages/data intact;
+- do not rewrite Git history.
+
+### Step 2 — Contact + emergency strip
+
+- normalize reviewed emergency contacts;
+- verify publishable Municipal Hall/contact information;
+- build `/contact`;
+- add persistent tap-to-call emergency strip;
+- keep languages in the main header.
+
+### Step 3 — Services
+
+- normalize the reviewed Citizen's Charter corpus;
+- map forms and eLGU destinations;
+- build service directory/detail pages;
+- implement Find a Service.
+
+### Step 4 — Government
+
+- reverify current officials;
+- normalize officials/offices;
+- build Government experience;
+- integrate existing Barangays beneath Government.
+
+### Step 5 — Transparency
+
+- normalize useful fiscal observations;
+- expand procurement from newer reviewed sources;
+- organize FDP/public documents and audits;
+- add infrastructure only if its source corpus closes sufficiently.
+
+### Step 6 — Statistics
+
+- build the statistics experience using current PSA/PSGC data;
+- add only evidence-supported indicators that materially improve resident understanding.
+
+### Step 7 — Final homepage + visual system
+
+Once the actual core sections exist:
+
+- finalize homepage hierarchy;
+- surface useful services and shortcuts;
+- refine BetterBauang identity and UI;
+- avoid placeholder sections and generic municipal-template design.
+
+### Step 8 — Languages, trust, SEO, accessibility, public QA
+
+- reviewed FIL/ILO coverage;
+- corrections/trust affordances;
+- metadata/sitemap;
+- accessibility and mobile QA;
+- source/freshness review;
+- broken-link review;
+- release review.
+
+## 6. Build discipline
+
+For each civic vertical:
 
 ```text
 official source
 → source registration
-→ staging
+→ extraction/staging when needed
 → schema/domain validation
 → human review
 → normalized production data
-→ static prerender
+→ resident-facing page
+→ navigation/home integration
+→ mobile/accessibility/source QA
 ```
 
-Production UI never consumes staging data.
+Do not call a feature complete because only a schema, empty JSON file, or planning document exists.
 
-## 7. Current architecture
+A completed civic feature should make verified Bauang information more useful to a resident.
 
-The approved architecture remains:
+## 7. Architecture boundary
+
+Keep the current static-first architecture unless a demonstrated product requirement proves otherwise:
 
 - React 19;
-- React Router 8 Framework Mode;
-- Vite 8;
-- TypeScript strict mode;
-- Tailwind CSS 4;
-- Zod 4;
-- Oxlint;
+- React Router Framework Mode;
+- TypeScript strict;
+- Tailwind CSS;
+- Zod;
 - static prerendering;
-- `ssr: false`;
 - Cloudflare static deployment.
 
-Do not add a runtime database, authentication, CMS, application API, Meilisearch, queue, object storage, analytics, runtime AI, or similar infrastructure without a demonstrated requirement and explicit approval.
+Do not add a database, auth, CMS, runtime API, runtime AI, queues, or other infrastructure merely because another BetterLGU project uses them.
 
-## 8. Search direction
+## 8. Validation
 
-Pagefind is the implemented global static-search foundation.
-
-The production build prerenders the React Router site into `build/client` and then Pagefind indexes reviewed generated HTML into `build/client/pagefind`. The public search route is `/search`, with normal URL query state under `?q=` so searches can be linked and bookmarked.
-
-Only pages that deliberately opt into the reviewed search corpus with `data-pagefind-body` are indexed. The current search corpus covers Bauang reference information, barangays, historical procurement, About, Sources, and Methodology. Home and Search are not indexed as primary results.
-
-The current result metadata convention uses a small stable category field and an optional reporting/reference period. Current categories are Bauang, Barangay, Procurement, and About. Future reviewed routes can join the same system with Service, Emergency, Government, Transparency, Finance, Document, Audit, and Infrastructure categories without redesigning global search.
-
-Global Search is for discovery across useful BetterBauang pages and reviewed document metadata. It should not become a replacement for domain-specific filtering.
-
-Examples:
-
-- a service query should lead to the BetterBauang service explanation and then its official destination such as eLGU when applicable;
-- a barangay query should lead to the canonical barangay page;
-- procurement-specific filtering remains in Procurement;
-- raw source PDFs should not overwhelm useful reviewed BetterBauang pages.
-
-Search-result categories may include services, emergency, government, barangays, procurement, transparency/finance, documents/audits, infrastructure, and About content as those routes become publishable.
-
-## 9. Experience direction
-
-Target primary navigation as routes become useful:
-
-```text
-Services
-Government
-Barangays
-Transparency
-About
-Search
-```
-
-Utility access should eventually include:
-
-```text
-Emergency
-EN / FIL / ILO
-```
-
-Do not publish dead navigation.
-
-The homepage foundation is a public-information entry point centered on resident jobs and search, not a generic municipal landing page.
-
-Its composition is intentionally progressive. It activates only destinations backed by reviewed production content while preserving hierarchy for Services, Emergency, Government, Transparency, documents, audits, and other evidence-supported V1 domains as their own phases publish them.
-
-Do not lead with:
-
-- mayoral imagery;
-- political slogans;
-- tourism-first content;
-- generic dashboard-card clutter;
-- decorative undated metrics;
-- gradients or visual effects that weaken information hierarchy.
-
-Brand-specific logo and color decisions remain deferred until the brand phase.
-
-## 10. Remaining Phase 4G roadmap
-
-### 4G.3 — Homepage + Global Search Foundation
-
-Complete.
-
-4G.3 establishes:
-
-- the durable homepage foundation;
-- the global static-search infrastructure;
-- the search route and result model;
-- the information hierarchy that later civic domains will plug into.
-
-4G.3 is not:
-
-- the final content-complete homepage;
-- a temporary homepage architecture built around only the currently populated legacy routes;
-- an implementation of Emergency, Services, Government, or Transparency before their own phases.
-
-The homepage foundation should support the evidence-backed V1 product surface:
-
-- Search;
-- Services;
-- Emergency;
-- Government;
-- Barangays;
-- Transparency and Finances;
-- Procurement;
-- documents and audits;
-- About Bauang;
-- trust, sources, and corrections.
-
-Only destinations backed by reviewed production content should be active. Do not create fake cards, disabled civic features, placeholder claims, or dead navigation.
-
-Homepage composition is progressive across later feature phases. As 4G.4 through 4G.7 publish Emergency, Services, Government, and Transparency, those real domains should integrate into the existing homepage hierarchy without requiring a homepage redesign. Final integration is checked again during the later trust, SEO, accessibility, and public-QA phases.
-
-Pagefind should provide one durable static-search foundation that current reviewed pages can join now and later civic domains can join as they become publishable.
-
-A generic eLGU homepage call to action is not required by 4G.3. eLGU should primarily appear where a verified service routes to the official government transaction destination. A generic official-services link may be added later only when it clearly improves the homepage hierarchy.
-
-Primary implementation goals:
-
-- establish a restrained, task-oriented homepage centered on finding public information quickly;
-- implement Pagefind-based static global search and a real `/search` route;
-- define a small stable result metadata convention that can expand across later civic domains;
-- preserve mobile and accessibility behavior;
-- surface only routes that contain useful reviewed content;
-- avoid overfitting the homepage or search system to the currently populated Bauang, Barangays, Procurement, and About routes.
-
-Completed implementation:
-
-- the homepage now leads with a resident-facing global search and a restrained list of currently reviewed destinations;
-- `/search` is a real prerendered route using `?q=` query state;
-- Pagefind runs after the React Router static build and indexes only explicitly included reviewed pages;
-- search results use category metadata and optional period metadata with a convention designed for later civic domains;
-- Search is a real shared-navigation destination;
-- future-domain navigation, cards, and placeholder civic claims remain absent until reviewed production records exist;
-- a generic eLGU homepage call to action was not added; eLGU remains primarily a verified service-level routing destination.
-
-### 4G.4 — Emergency
-
-Next.
-
-Promote reviewed emergency records and build the high-freshness emergency experience.
-
-### 4G.5 — Services
-
-Normalize and publish resident-facing Citizen's Charter services, map official forms, and route online transactions to eLGU or other authoritative destinations.
-
-### 4G.6 — Government + Offices
-
-Publish verified officeholders and municipal office information with source and freshness metadata.
-
-### 4G.7 — Transparency
-
-Build the structured transparency experience for finances, procurement, disclosures/documents, audits, and appropriately attributed infrastructure.
-
-### 4G.8 — About Bauang + Barangays + Statistics
-
-Improve municipal context, barangay discovery, and period-labeled statistics using reviewed sources.
-
-### 4G.9 — Reviewed Filipino / Ilocano coverage
-
-Expose Filipino and Ilocano only after the relevant civic content has been reviewed. Do not use runtime AI translation for published civic claims.
-
-### 4G.10 — Brand + Trust + Accessibility + SEO
-
-Finalize BetterBauang identity, corrections/trust affordances, accessibility review, metadata, sitemap, and search/social presentation.
-
-The identity must not imitate the municipal seal or imply official-government status.
-
-### 4G.11 — Public QA
-
-Run final cross-device, accessibility, route, source, freshness, broken-link, and content review before release consideration.
-
-## 11. Deferred or evidence-gated work
-
-Do not expand scope merely because another BetterLGU project contains a feature.
-
-Currently deferred or evidence-gated:
-
-- comprehensive ordinances/resolutions explorer until a maintainable official corpus exists;
-- current CMCI presentation until an actual current Bauang record is acquired and reviewed;
-- deep budget analytics;
-- contractor or supplier profiles;
-- inferred procurement-award-project timelines;
-- audit scoring;
-- offline PWA;
-- resident accounts;
-- saved/followed records;
-- notifications;
-- public API;
-- runtime AI question answering.
-
-Source discovery may reopen for a specific domain only when implementation exposes a concrete gap.
-
-## 12. Validation and handoff rule
-
-Before considering an implementation phase complete, run:
+Before completing an implementation step:
 
 ```bash
 npm run validate:data
@@ -427,14 +545,6 @@ npm run lint
 npm run build
 ```
 
-The Phase 4G.3 implementation passed GitHub Actions with `npm ci`, civic-data validation, lint, and the production build. The production build now includes Pagefind indexing after React Router prerendering.
+Check CI after pushing.
 
-For a new development session:
-
-1. verify the active branch and current HEAD;
-2. read this file;
-3. read the relevant architecture/provenance/experience contract;
-4. inspect the current implementation before proposing changes;
-5. report contradictions or stale documentation;
-6. make a small phase-specific plan;
-7. wait for approval before implementation unless the user explicitly instructs otherwise.
+`main` remains untouched until explicit release approval.
