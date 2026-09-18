@@ -116,10 +116,10 @@ export async function loader() {
   return {
     government,
     barangays,
-    municipality,
     rosterSource,
     municipalContact,
     barangaySource,
+    barangayProvenance: municipality.provenance,
   }
 }
 
@@ -127,10 +127,10 @@ export default function GovernmentRoute() {
   const {
     government,
     barangays,
-    municipality,
     rosterSource,
     municipalContact,
     barangaySource,
+    barangayProvenance,
   } = useLoaderData<typeof loader>()
 
   const mayor = government.officials.find((official) => official.role === 'Mayor')
@@ -257,7 +257,11 @@ export default function GovernmentRoute() {
         </section>
       ) : null}
 
-      <section className="mt-16 border-t border-neutral-200 pt-8" aria-labelledby="barangays-heading">
+      <section
+        className="mt-16 border-t border-neutral-200 pt-8"
+        aria-labelledby="barangays-heading"
+        id="barangays"
+      >
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.1em] text-neutral-500">
             Local communities
@@ -269,36 +273,19 @@ export default function GovernmentRoute() {
             {barangays.length} barangays
           </h2>
           <p className="mt-3 text-sm leading-6 text-neutral-600">
-            Every barangay record uses PSA identifiers and {municipality.populationReferencePeriod} population data. Select a barangay for its reviewed reference page.
+            Bauang&apos;s barangays are listed here as part of Government. Current Punong Barangay and direct contact details are shown only after a competent current source passes review; older directories are not treated as current merely because they are complete.
           </p>
         </div>
 
         <ul className="mt-7 grid gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
           {barangays.map((barangay) => (
-            <li className="bg-white" key={barangay.id}>
-              <Link
-                className="flex min-h-16 items-center justify-between gap-4 px-4 py-3 hover:bg-neutral-50"
-                to={`/barangays/${barangay.slug}`}
-              >
-                <span className="text-sm font-medium text-neutral-950">{barangay.name}</span>
-                <span className="text-xs tabular-nums text-neutral-500">
-                  {barangay.population.toLocaleString('en-PH')}
-                </span>
-              </Link>
+            <li className="bg-white px-4 py-4" key={barangay.id}>
+              <span className="text-sm font-medium text-neutral-950">{barangay.name}</span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-5">
-          <Link
-            className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-950 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900"
-            to="/barangays"
-          >
-            Open barangay directory
-          </Link>
-        </div>
-
-        <ProvenancePanel provenance={municipality.provenance} source={barangaySource} />
+        <ProvenancePanel provenance={barangayProvenance} source={barangaySource} />
       </section>
 
       <p className="mt-10 max-w-2xl text-sm leading-6 text-neutral-500">

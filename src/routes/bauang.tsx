@@ -54,9 +54,9 @@ export default function BauangRoute() {
       <p className="mt-10">
         <Link
           className="inline-flex min-h-11 items-center text-sm font-medium underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900"
-          to="/barangays"
+          to="/government#barangays"
         >
-          View all {municipality.barangayCount} barangays
+          View Bauang&apos;s {municipality.barangayCount} barangays in Government
         </Link>
       </p>
 

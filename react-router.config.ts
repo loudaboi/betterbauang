@@ -1,13 +1,12 @@
 import type { Config } from '@react-router/dev/config'
 
-import { getBarangays, getProcurementRecords, getServices } from './src/lib/civic-data.server.ts'
+import { getProcurementRecords, getServices } from './src/lib/civic-data.server.ts'
 
 export default {
   appDirectory: 'src',
   ssr: false,
   async prerender() {
-    const [barangays, procurementRecords, services] = await Promise.all([
-      getBarangays(),
+    const [procurementRecords, services] = await Promise.all([
       getProcurementRecords(),
       getServices(),
     ])
@@ -19,8 +18,6 @@ export default {
       '/government',
       '/contact',
       '/bauang',
-      '/barangays',
-      ...barangays.map((barangay) => `/barangays/${barangay.slug}`),
       '/procurement',
       ...procurementRecords.map((record) => `/procurement/${record.id}`),
       '/about',

@@ -7,8 +7,6 @@ export default [
   route('government', './routes/government.tsx'),
   route('contact', './routes/contact.tsx'),
   route('bauang', './routes/bauang.tsx'),
-  route('barangays', './routes/barangays.tsx'),
-  route('barangays/:slug', './routes/barangay-detail.tsx'),
   route('procurement', './routes/procurement.tsx'),
   route('procurement/:recordId', './routes/procurement-detail.tsx'),
   route('about', './routes/about.tsx'),
