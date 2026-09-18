@@ -1,74 +1,157 @@
 # BetterBauang Experience Foundation
 
-Status: Approved Phase 4G.2 implementation contract
+Status: Approved V1 experience direction  
+Last synchronized: 2026-09-18
 
 ## Purpose
 
-Phase 4G.2 establishes the shared product experience before feature-specific pages expand.
+This document defines the shared resident-facing product experience for BetterBauang.
 
-It does not populate unreviewed civic data and does not introduce runtime infrastructure.
+It does not replace source/provenance rules and does not justify publishing unreviewed civic data.
 
 ## Product posture
 
-BetterBauang is a public-information layer for Bauang, La Union.
+BetterBauang is an independent public-information layer for Bauang, La Union.
 
 The interface should help residents:
 
-- find a service or official destination;
-- reach verified emergency information;
-- understand government offices and barangays;
-- inspect public finance, procurement, documents, and appropriately attributed projects;
-- verify where a material civic claim came from.
+- understand and access municipal services;
+- find government offices, officials, barangays, and contacts;
+- inspect statistics and transparency information;
+- reach emergency contacts quickly;
+- verify where material civic information came from.
 
 The product must remain visibly independent from the Municipality of Bauang.
 
-## Information architecture direction
+## Approved V1 header
 
-Target primary navigation as feature routes become ready:
+### Emergency strip
+
+The topmost utility is a compact emergency hotline strip.
+
+It should:
+
+- use only reviewed current emergency contacts;
+- support tap-to-call on mobile;
+- remain readable without overwhelming the page;
+- link residents to fuller contact context where useful.
+
+Emergency information does not require a standalone page. Full details, sources, and verification context belong in `Contact`.
+
+### Main header
 
 ```text
+BetterBauang
+Home
 Services
 Government
-Barangays
+Statistics
 Transparency
-About
-Search
-```
-
-Utility access should eventually include:
-
-```text
-Emergency
+Contact
 EN / FIL / ILO
 ```
 
-Do not publish dead navigation. A destination enters the shared navigation only when the corresponding route has useful, reviewed content.
+Language controls belong in the main header area.
 
-## Responsive shell
+Do not add separate primary navigation for:
 
-The shared shell must:
+- Search;
+- Barangays;
+- Procurement;
+- About;
+- eLGU;
+- Emergency.
 
-- work without client-only navigation logic;
-- remain readable on narrow mobile widths;
-- keep the independent/unofficial identity visible;
-- provide keyboard-accessible navigation;
-- include a skip-to-content path;
-- avoid decorative dashboard chrome and unnecessary cards;
-- use restrained separators, typography, and whitespace rather than heavy borders or effects.
+Relationship to primary sections:
 
-Brand-specific color and logo decisions remain deferred until the brand phase.
+```text
+Barangays   → Government
+Procurement → Transparency
+Emergency   → persistent strip + Contact
+eLGU        → relevant service pages
+About/Trust → footer/supporting links
+Search      → Find a Service inside Home/Services
+```
+
+Legislative should become a primary destination only if a maintainable official legislation corpus later justifies it. Otherwise relevant laws/ordinances belong under Government.
+
+## Service discovery
+
+V1 search is primarily **Find a Service**.
+
+It should help residents locate services using normal terms such as:
+
+- birth certificate;
+- business permit;
+- cedula;
+- working permit;
+- social assistance;
+- building permit.
+
+Find a Service belongs prominently on Home and Services.
+
+Do not create a separate global-search-first product unless a future demonstrated need justifies it.
 
 ## Page hierarchy
 
 Prefer:
 
 1. resident task or page subject;
-2. current information;
-3. period/context;
-4. source and verification cues;
-5. historical or supporting detail.
+2. current useful information;
+3. action or destination;
+4. period/context;
+5. source and verification cues;
+6. supporting or historical detail.
 
-Do not lead with political imagery, tourism content, decorative statistics, or municipal slogans.
+Do not lead with:
+
+- political imagery;
+- municipal slogans;
+- tourism-first content;
+- decorative undated statistics;
+- generic dashboard-card grids.
+
+## Section responsibilities
+
+### Home
+
+Help a resident orient quickly.
+
+Use:
+
+- Find a Service;
+- popular/useful services;
+- emergency access;
+- shortcuts to Government, Statistics, Transparency, Contact, and Barangays;
+- a small Bauang snapshot when useful;
+- trust/source links.
+
+### Services
+
+Organize around resident needs rather than office bureaucracy.
+
+Service pages should make requirements, steps, fees, processing time, responsible office, forms, and official transaction destinations clear.
+
+### Government
+
+Organize officials, municipal offices, government directory information, and Barangays.
+
+### Statistics
+
+Present period-labeled, sourced data without decorative dashboard behavior.
+
+### Transparency
+
+Organize finances, procurement, public documents, audits, and appropriately attributed infrastructure in one understandable section.
+
+### Contact
+
+Provide the complete contact layer:
+
+- emergency contacts;
+- Municipal Hall;
+- municipal offices;
+- official government channels and destinations.
 
 ## Provenance presentation
 
@@ -80,13 +163,13 @@ Material civic pages should use a shared source-and-verification pattern that ca
 - verification status;
 - last verified date;
 - source freshness note when useful;
-- link to the original official source.
+- original official source link.
 
-Source metadata should be easy to reach without overwhelming the primary task.
+Source metadata should remain accessible without dominating the resident's primary task.
 
 ## Freshness presentation
 
-Use plain-language states rather than internal-only vocabulary where possible:
+Use plain-language states where possible:
 
 - `verified` → Verified
 - `partial` → Partially verified
@@ -98,9 +181,9 @@ Use plain-language states rather than internal-only vocabulary where possible:
 
 Historical records must look historical. Stale action-oriented information must not continue to look current.
 
-## Localization foundation
+## Localization
 
-Canonical editorial and source interpretation language remains English.
+Canonical source interpretation remains English.
 
 Supported locale architecture:
 
@@ -110,15 +193,45 @@ fil
 ilo
 ```
 
-Only English is publicly exposed until Filipino and Ilocano content has been reviewed for the relevant civic domain.
+Only reviewed language content should be publicly exposed.
 
 Do not use runtime AI translation for published civic claims.
 
-## Search
+## Responsive shell
 
-Pagefind remains the approved global static-search foundation.
+The shared shell must:
 
-Search is for page/document discovery. Domain-specific filtering, such as procurement filters, remains part of the relevant domain experience rather than being forced into global search.
+- remain readable on narrow mobile widths;
+- keep the independent/unofficial identity visible;
+- provide keyboard-accessible navigation;
+- include skip-to-content;
+- provide usable tap targets;
+- keep emergency access practical on mobile;
+- avoid unnecessary cards, shadows, and visual chrome.
+
+## Visual direction
+
+BetterBauang should feel like a modern public-service product rather than a generic municipal template.
+
+Prefer:
+
+- strong typography;
+- generous but disciplined whitespace;
+- one restrained civic accent;
+- clear lists and tables;
+- subtle separators;
+- consistent external-government-link treatment;
+- minimal shadows;
+- minimal decorative cards;
+- excellent mobile layouts.
+
+Avoid:
+
+- gradients and glow;
+- seal imitation;
+- visual clutter such as unrelated currency/weather tickers;
+- oversized political imagery;
+- decorative complexity that competes with civic information.
 
 ## Accessibility
 
@@ -135,23 +248,22 @@ Baseline requirements:
 
 ## Architecture boundary
 
-Phase 4G.2 does not add:
+The approved experience does not require:
 
 - database;
 - authentication;
 - CMS;
 - runtime API server;
-- Meilisearch;
 - analytics;
 - notifications;
 - runtime AI.
 
-The approved path remains:
+The civic-data path remains:
 
 ```text
 official source
 → source registration
-→ staging
+→ staging when needed
 → schema/domain validation
 → human review
 → normalized production data
