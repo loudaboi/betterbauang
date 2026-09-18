@@ -70,6 +70,7 @@ function HotlineIcon({ name }: { name: HotlineIconName }) {
 
 function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplicate?: boolean }) {
   const phoneNumber = item.contact.phoneNumbers[0]
+  const isUnified911 = item.id === 'emergency-unified-911'
 
   return (
     <a
@@ -79,8 +80,10 @@ function HotlineLink({ item, duplicate = false }: { item: EmergencyItem; duplica
       tabIndex={duplicate ? -1 : undefined}
     >
       <HotlineIcon name={item.icon} />
-      <span>{item.label}:</span>
-      <span className="font-semibold tabular-nums">{phoneNumber}</span>
+      <span className={isUnified911 ? 'font-semibold' : undefined}>
+        {item.label}{isUnified911 ? '' : ':'}
+      </span>
+      {!isUnified911 && <span className="font-semibold tabular-nums">{phoneNumber}</span>}
     </a>
   )
 }
